@@ -28,12 +28,17 @@ export const CurioAssistant: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatBodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTo({
+        top: chatBodyRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   };
 
   useEffect(() => {
@@ -242,7 +247,7 @@ export const CurioAssistant: React.FC = () => {
           </header>
 
           {/* Messages Stream */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 text-xs">
+          <div ref={chatBodyRef} className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 text-xs">
             
             {/* Opening Welcome State */}
             {messages.length === 0 && (
@@ -333,7 +338,6 @@ export const CurioAssistant: React.FC = () => {
               </div>
             )}
 
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Footer Input */}

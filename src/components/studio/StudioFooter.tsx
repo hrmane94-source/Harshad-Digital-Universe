@@ -38,7 +38,7 @@ export const StudioFooter: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono uppercase tracking-widest text-muted pb-6 border-b border-slate-200 dark:border-white/10">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse" />
-            <span className="text-ink font-bold">INDEX 08 // DISPATCH &amp; CONTACT</span>
+            <span className="text-ink font-bold">SECTION 08 // DISPATCH &amp; CONTACT</span>
           </div>
 
           <div className="flex items-center gap-4 text-muted font-medium">

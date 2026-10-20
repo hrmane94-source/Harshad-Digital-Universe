@@ -36,12 +36,26 @@ function RouteFallback() {
   );
 }
 
+import { StudioIntroAnimation } from './components/ui/StudioIntroAnimation';
+
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    if (!hash) {
+      window.scrollTo(0, 0);
+    } else {
+      const id = hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [pathname, hash]);
 
   return null;
 }
@@ -49,6 +63,7 @@ function ScrollToTop() {
 export function App() {
   return (
     <ThemeProvider>
+      <StudioIntroAnimation />
       <BrowserRouter>
         <ScrollToTop />
         <ScrollProgressBar />

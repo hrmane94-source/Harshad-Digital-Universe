@@ -75,7 +75,7 @@ export interface AssetRegistry {
 
 export const assetConfig: AssetRegistry = {
   identity: {
-    portrait: "", // Owner portrait file can be placed at /assets/identity/portrait.jpg
+    portrait: "/assets/identity/portrait.jpg", // Real portrait image location in /public/assets/identity/portrait.jpg
     portraitAlt: "Harshad Mane — Computer Science Engineering Student & Creative Builder",
   },
   brand: {

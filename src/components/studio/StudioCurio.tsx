@@ -7,7 +7,8 @@ import {
   ShieldCheck,
   Bot,
   User,
-  AlertCircle
+  AlertCircle,
+  MessageSquare
 } from 'lucide-react';
 import { sendChatMessage, type ChatMessage as ServiceChatMessage } from '../../lib/aiService';
 
@@ -40,10 +41,23 @@ export const StudioCurio: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorNotice, setErrorNotice] = useState<string | null>(null);
-  const chatBottomRef = useRef<HTMLDivElement>(null);
 
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
+
+  // ONLY scroll the inner chat container when messages change, NEVER on initial mount or window scroll
   useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   }, [messages, isLoading]);
 
   const handleSendMessage = async (textToSend?: string) => {
@@ -115,7 +129,7 @@ export const StudioCurio: React.FC = () => {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
               <span className="w-2.5 h-2.5 rounded-full bg-cobalt inline-block animate-pulse" />
-              <span className="text-ink">INDEX 07</span>
+              <span className="text-ink">SECTION 07</span>
               <span className="text-slate-300 dark:text-slate-700">//</span>
               <span>CURIO &bull; THE PORTFOLIO SALON</span>
             </div>
@@ -130,7 +144,7 @@ export const StudioCurio: React.FC = () => {
             </div>
 
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans max-w-xl font-medium">
-              An intelligent assistant grounded exclusively in verified public records, architectural case studies, and engineering achievements.
+              An intelligent assistant grounded exclusively in verified public records, architectural case studies, and engineering achievements. Optional &amp; polite.
             </p>
           </div>
 
@@ -205,11 +219,17 @@ export const StudioCurio: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="font-bold text-ink">SESSION ACTIVE</span>
               </div>
-              <span>STREAM: READY</span>
+              <span className="flex items-center gap-1.5 text-cobalt font-bold">
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>AI ASSISTANT</span>
+              </span>
             </div>
 
-            {/* Message Stream */}
-            <div className="flex-1 overflow-y-auto py-4 space-y-4 pr-1">
+            {/* Message Stream with ref to INNER CONTAINER ONLY */}
+            <div 
+              ref={chatContainerRef} 
+              className="flex-1 overflow-y-auto py-4 space-y-4 pr-1 scroll-smooth"
+            >
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -275,11 +295,9 @@ export const StudioCurio: React.FC = () => {
                   <span>{errorNotice}</span>
                 </div>
               )}
-
-              <div ref={chatBottomRef} />
             </div>
 
-            {/* Input Bar */}
+            {/* Input Bar — No autofocus on mount */}
             <div className="pt-3 border-t border-slate-100 dark:border-white/10">
               <div className="flex items-center gap-2">
                 <input

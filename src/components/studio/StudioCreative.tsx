@@ -87,7 +87,7 @@ export const StudioCreative: React.FC = () => {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
               <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse" />
-              <span className="text-ink">INDEX 05</span>
+              <span className="text-ink">SECTION 05</span>
               <span className="text-slate-300 dark:text-slate-700">//</span>
               <span>VISUAL ESSAY &amp; CINEMATOGRAPHY</span>
             </div>

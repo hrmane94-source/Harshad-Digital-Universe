@@ -117,7 +117,7 @@ export const StudioArchive: React.FC = () => {
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block animate-pulse" />
-              <span className="text-ink">INDEX 06</span>
+              <span className="text-ink">SECTION 06</span>
               <span className="text-slate-300 dark:text-slate-700">//</span>
               <span>ARCHIVE OF MILESTONES &amp; RECOGNITION</span>
             </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MapPin, School } from 'lucide-react';
 
 type JourneyCategory = 'all' | 'education' | 'milestones' | 'learning';
 
@@ -26,7 +26,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'B.Tech in Computer Science & Engineering',
     subtitle: 'Annasaheb Dange College of Engineering and Technology (ADCET), Ashta',
     badge: 'First Year Undergraduate',
-    badgeColor: 'bg-blue-50 dark:bg-blue-950/40 text-cobalt border-blue-200 dark:border-blue-800',
+    badgeColor: 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
     description: 'Pursuing foundational computer science curriculum covering algorithmic problem-solving, structured procedural C programming, discrete mathematics, and computational systems.',
     highlights: [
       'National-level PixelCraft web development competition Runner-up',
@@ -44,7 +44,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'FALCON-404: SIH 2026 & Seva First',
     subtitle: 'Sole Application Developer & Team Lead',
     badge: 'National Innovation',
-    badgeColor: 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
+    badgeColor: 'bg-blue-50 dark:bg-blue-950/40 text-cobalt border-blue-200 dark:border-blue-800',
     description: 'Designed and engineered an automated fake identity and document screening system combining browser-side OCR, Error Level Analysis, and privacy masking for Smart India Hackathon 2026.',
     highlights: [
       'Built multi-stage forensic analysis pipeline entirely client-side',
@@ -89,13 +89,30 @@ const timelineEvents: TimelineEvent[] = [
     linkLabel: 'Inspect Skill Ledger'
   },
   {
+    id: 'timeline-junior-college',
+    category: 'education',
+    period: '2024 – 2026',
+    title: 'Junior College Science (HSC)',
+    subtitle: 'Swami Vivekanand Junior College of Science (SWJC), Koparkhairane',
+    badge: 'Completed HSC',
+    badgeColor: 'bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-300 border-sky-200 dark:border-sky-800',
+    description: 'Completed higher secondary coursework in Physics, Chemistry, and Mathematics under the Maharashtra State Board, establishing analytical groundwork.',
+    highlights: [
+      'Built analytical foundations in physics, chemistry, and calculus',
+      'Initiated self-directed study of algorithmic reasoning and programming languages',
+      'Prepared for engineering entrance and computational systems studies'
+    ],
+    link: '/education',
+    linkLabel: 'View Education Details'
+  },
+  {
     id: 'timeline-schooling',
     category: 'education',
     period: '2012 – 2024',
     title: 'Foundational Schooling & Student Leadership',
     subtitle: 'Padua High School, Mankhurd, Mumbai',
     badge: 'Leadership & Academic Topper',
-    badgeColor: 'bg-sky-50 dark:bg-sky-950/40 text-sky-900 dark:text-sky-300 border-sky-200 dark:border-sky-800',
+    badgeColor: 'bg-coral/10 text-coral border-coral/20',
     description: 'Completed 10 years of foundational schooling with distinguished academic and student leadership records.',
     highlights: [
       'Subject Topper in Class 10 (SSC): Mathematics, Hindi, and Marathi (89.20% overall)',
@@ -117,34 +134,34 @@ export const StudioJourney: React.FC = () => {
   return (
     <section 
       id="chapter-03" 
-      className="py-20 sm:py-32 border-b border-slate-200/90 dark:border-white/10 bg-surface text-ink relative overflow-hidden"
+      className="py-20 sm:py-32 border-b border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-emerald-50/30 via-paper to-surface text-ink relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-5">
           <div className="space-y-1.5">
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
+            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-emerald-700 dark:text-emerald-400 uppercase font-bold">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse" />
-              <span className="text-ink">INDEX 04</span>
+              <span className="text-ink">SECTION 04</span>
               <span className="text-slate-300 dark:text-slate-700">//</span>
-              <span>THE CHRONOLOGY OF LEARNING</span>
+              <span>THE CHRONOLOGY OF LEARNING &amp; CAMPUS LIFE</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl font-normal text-ink tracking-tight">
-              Foundations, momentum, &amp; <span className="font-bold text-cobalt italic">continuous learning.</span>
+              Foundations, momentum, &amp; <span className="font-bold text-emerald-700 dark:text-emerald-400 italic">continuous learning.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans max-w-xl font-medium">
-              An unvarnished chronological narrative tracking engineering education at ADCET, practical hackathon builds, systems programming, and applied AI exploration.
+              An unvarnished chronological narrative tracking engineering education at ADCET, practical hackathon builds, systems programming, and foundational schooling.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <Link
               to="/journey"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-paper border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-emerald-700 hover:border-emerald-600 transition-colors shadow-2xs"
             >
               <span>Full Journey Narrative</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3.5 h-3.5 text-emerald-600" />
             </Link>
           </div>
         </div>
@@ -164,7 +181,7 @@ export const StudioJourney: React.FC = () => {
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-colors shrink-0 flex items-center gap-2 cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-ink text-paper font-bold shadow-xs'
-                  : 'bg-paper text-muted hover:text-ink border border-slate-200 dark:border-white/10'
+                  : 'bg-surface text-muted hover:text-ink border border-slate-200 dark:border-white/10'
               }`}
             >
               <span>{tab.label}</span>
@@ -180,7 +197,7 @@ export const StudioJourney: React.FC = () => {
           {filteredEvents.map((event) => (
             <div 
               key={event.id}
-              className="p-6 sm:p-8 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 shadow-xs hover:shadow-md transition-shadow grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+              className="p-6 sm:p-8 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 shadow-xs hover:shadow-md transition-shadow grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
             >
               {/* Left Column: Period & Badge (3 cols) */}
               <div className="lg:col-span-3 space-y-2">
@@ -211,7 +228,7 @@ export const StudioJourney: React.FC = () => {
                   <ul className="space-y-1.5 pt-2">
                     {event.highlights.map((highlight) => (
                       <li key={highlight} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300 font-sans">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cobalt shrink-0 mt-1.5" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:text-emerald-400 shrink-0 mt-1.5" />
                         <span>{highlight}</span>
                       </li>
                     ))}
@@ -224,7 +241,7 @@ export const StudioJourney: React.FC = () => {
                 {event.link && (
                   <Link
                     to={event.link}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-cobalt hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
                   >
                     <span>{event.linkLabel || 'Details'}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -233,6 +250,87 @@ export const StudioJourney: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Institutional Campus & Scientific Delegations Showcase (Requirement 9) */}
+        <div className="p-8 rounded-3xl bg-surface border-2 border-emerald-200/60 dark:border-emerald-900/40 space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-white/10 pb-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-800 dark:text-emerald-300 font-bold">
+              <School className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>AUTHENTIC ACADEMIC CAMPUSES &amp; RESEARCH EXPOSURE</span>
+            </div>
+            <span className="text-[11px] font-mono text-muted">
+              MAHARASHTRA, INDIA
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            {/* Campus 01: ADCET */}
+            <div className="p-5 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-muted">
+                <span className="font-bold text-ink">B.TECH CSE</span>
+                <span className="text-emerald-600 font-bold">CURRENT</span>
+              </div>
+              <h4 className="font-serif text-lg font-bold text-ink">ADCET Ashta</h4>
+              <p className="text-[11px] text-muted font-sans leading-relaxed">
+                Autonomous engineering college affiliated with Shivaji University. Lead developer for Team Falcon.
+              </p>
+              <div className="flex items-center gap-1 text-[10px] font-mono text-muted pt-1">
+                <MapPin className="w-3 h-3 text-coral" />
+                <span>Ashta, Sangli</span>
+              </div>
+            </div>
+
+            {/* Campus 02: SWJC */}
+            <div className="p-5 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-muted">
+                <span className="font-bold text-ink">JUNIOR COLLEGE</span>
+                <span>2024–2026</span>
+              </div>
+              <h4 className="font-serif text-lg font-bold text-ink">Swami Vivekanand JC</h4>
+              <p className="text-[11px] text-muted font-sans leading-relaxed">
+                Higher secondary coursework in Physics, Chemistry, and Mathematics under Maharashtra Board.
+              </p>
+              <div className="flex items-center gap-1 text-[10px] font-mono text-muted pt-1">
+                <MapPin className="w-3 h-3 text-coral" />
+                <span>Koparkhairane, Navi Mumbai</span>
+              </div>
+            </div>
+
+            {/* Campus 03: Padua High School */}
+            <div className="p-5 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-muted">
+                <span className="font-bold text-ink">SCHOOLING</span>
+                <span className="text-sunny font-bold">89.20%</span>
+              </div>
+              <h4 className="font-serif text-lg font-bold text-ink">Padua High School</h4>
+              <p className="text-[11px] text-muted font-sans leading-relaxed">
+                Subject Topper in Class 10 (Math, Hindi, Marathi) and elected 2-term School Head Boy.
+              </p>
+              <div className="flex items-center gap-1 text-[10px] font-mono text-muted pt-1">
+                <MapPin className="w-3 h-3 text-coral" />
+                <span>Mankhurd, Mumbai</span>
+              </div>
+            </div>
+
+            {/* Campus 04: BARC */}
+            <div className="p-5 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-muted">
+                <span className="font-bold text-ink">RESEARCH</span>
+                <span className="text-purple-600 font-bold">2 VISITS</span>
+              </div>
+              <h4 className="font-serif text-lg font-bold text-ink">BARC Science Days</h4>
+              <p className="text-[11px] text-muted font-sans leading-relaxed">
+                Selected for two educational delegations to Bhabha Atomic Research Centre for National Science Day.
+              </p>
+              <div className="flex items-center gap-1 text-[10px] font-mono text-muted pt-1">
+                <MapPin className="w-3 h-3 text-coral" />
+                <span>Trombay, Mumbai</span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>

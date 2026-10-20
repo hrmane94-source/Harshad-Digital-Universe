@@ -7,8 +7,8 @@ interface StudioSection {
 }
 
 const SECTIONS: StudioSection[] = [
-  { id: 'chapter-00', num: '01', label: 'OVERVIEW' },
-  { id: 'chapter-01', num: '02', label: 'THESIS' },
+  { id: 'chapter-00', num: '01', label: 'INTRODUCTION' },
+  { id: 'chapter-01', num: '02', label: 'PHILOSOPHY' },
   { id: 'chapter-02', num: '03', label: 'SELECTED WORK' },
   { id: 'chapter-03', num: '04', label: 'CHRONOLOGY' },
   { id: 'chapter-04', num: '05', label: 'VISUAL ESSAY' },
