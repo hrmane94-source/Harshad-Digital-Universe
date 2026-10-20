@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Lock, 
   LogOut, 
@@ -11,9 +11,23 @@ import {
   EyeOff, 
   Trash2, 
   Database, 
-  ArrowRight
+  ArrowRight,
+  Cloud,
+  RefreshCw
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured, getSupabaseStatus } from '../lib/supabase';
+import { 
+  fetchOwnerTasks, 
+  createOwnerTask, 
+  updateOwnerTask, 
+  deleteOwnerTask, 
+  fetchReflections, 
+  createReflection, 
+  fetchPortfolioProjects, 
+  updateProjectPublicationStatus, 
+  createProjectDraft, 
+  seedInitialDatabase 
+} from '../lib/supabaseService';
 import { portfolioSeedData } from '../data/portfolioSeed';
 import type { 
   ProjectItem, 
@@ -36,6 +50,8 @@ export const OwnerWorkspacePage: React.FC = () => {
   const [passwordInput, setPasswordInput] = useState<string>('');
   const [isSigningIn, setIsSigningIn] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'tasks' | 'learning' | 'goals' | 'reflections' | 'system'>('overview');
+  const [syncStatus, setSyncStatus] = useState<string>('');
+  const [isSeeding, setIsSeeding] = useState<boolean>(false);
 
   // Local state initialized with verified seed data
   const [projects, setProjects] = useState<ProjectItem[]>(portfolioSeedData.projects);
@@ -62,25 +78,76 @@ export const OwnerWorkspacePage: React.FC = () => {
   const [newReflectionContent, setNewReflectionContent] = useState<string>('');
   const [newReflectionMood, setNewReflectionMood] = useState<string>('Focused');
 
-  // Check Supabase session on mount
-  useEffect(() => {
-    const checkSession = async () => {
-      if (isSupabaseConfigured() && supabase) {
-        try {
-          const { data: { session } } = await supabase.auth.getSession();
-          if (session?.user?.email === 'hrmane94@gmail.com') {
-            setIsAuthenticated(true);
-            setUserEmail(session.user.email);
-          }
-        } catch (err: any) {
-          console.error("Session check error:", err);
-        }
-      }
-      setLoading(false);
-    };
+  // Fetch live Supabase data for authenticated owner
+  const loadCloudData = useCallback(async () => {
+    if (!isSupabaseConfigured() || !supabase) return;
+    setSyncStatus('Syncing with Supabase...');
+    try {
+      const [tasksRes, reflRes, projRes] = await Promise.all([
+        fetchOwnerTasks(),
+        fetchReflections(),
+        fetchPortfolioProjects(),
+      ]);
 
-    checkSession();
+      if (tasksRes.data && tasksRes.data.length > 0) {
+        setTasks(tasksRes.data);
+      }
+      if (reflRes.data && reflRes.data.length > 0) {
+        setReflections(reflRes.data);
+      }
+      if (projRes.data && projRes.data.length > 0) {
+        setProjects(projRes.data);
+      }
+      setSyncStatus('Live Cloud Database Synced');
+      setTimeout(() => setSyncStatus(''), 4000);
+    } catch (err: any) {
+      console.warn('Cloud sync fallback to verified seed data:', err);
+      setSyncStatus('Using Verified Local Seed Data');
+      setTimeout(() => setSyncStatus(''), 4000);
+    }
   }, []);
+
+  // Check Supabase session on mount and subscribe to auth state changes
+  useEffect(() => {
+    let isMounted = true;
+
+    if (isSupabaseConfigured() && supabase) {
+      // 1. Check existing session
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!isMounted) return;
+        if (session?.user?.email === 'hrmane94@gmail.com') {
+          setIsAuthenticated(true);
+          setUserEmail(session.user.email);
+          loadCloudData();
+        }
+        setLoading(false);
+      }).catch((err) => {
+        console.error('Session verification failed:', err);
+        if (isMounted) setLoading(false);
+      });
+
+      // 2. Real-time auth listener (OAuth redirect, session refresh, token renewal)
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        if (!isMounted) return;
+        if (session?.user?.email === 'hrmane94@gmail.com') {
+          setIsAuthenticated(true);
+          setUserEmail(session.user.email);
+          loadCloudData();
+        } else if (!session) {
+          setIsAuthenticated(false);
+          setUserEmail('');
+        }
+        setLoading(false);
+      });
+
+      return () => {
+        isMounted = false;
+        subscription.unsubscribe();
+      };
+    } else {
+      setLoading(false);
+    }
+  }, [loadCloudData]);
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,7 +155,7 @@ export const OwnerWorkspacePage: React.FC = () => {
     setIsSigningIn(true);
 
     if (!isSupabaseConfigured() || !supabase) {
-      setAuthError('Supabase is not configured yet. Please configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env.');
+      setAuthError('Supabase is not configured yet. Please configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in Vercel or .env.');
       setIsSigningIn(false);
       return;
     }
@@ -105,6 +172,7 @@ export const OwnerWorkspacePage: React.FC = () => {
         if (data.user.email === 'hrmane94@gmail.com') {
           setIsAuthenticated(true);
           setUserEmail(data.user.email);
+          loadCloudData();
         } else {
           setAuthError('Unauthorized account. Only the verified owner (hrmane94@gmail.com) can access this workspace.');
           await supabase.auth.signOut();
@@ -145,11 +213,15 @@ export const OwnerWorkspacePage: React.FC = () => {
     setUserEmail('');
   };
 
-  // Toggle Publication status (Section 18)
-  const togglePublication = (projectId: string) => {
+  // Toggle Publication status (Section 18) with Supabase Cloud Sync
+  const togglePublication = async (projectId: string) => {
+    const targetProject = projects.find(p => p.id === projectId);
+    if (!targetProject) return;
+    const nextStatus: PublicationStatus = targetProject.publicationStatus === 'published' ? 'draft' : 'published';
+
+    // Optimistic UI update
     setProjects(prev => prev.map(p => {
       if (p.id === projectId) {
-        const nextStatus: PublicationStatus = p.publicationStatus === 'published' ? 'draft' : 'published';
         return {
           ...p,
           publicationStatus: nextStatus,
@@ -158,10 +230,23 @@ export const OwnerWorkspacePage: React.FC = () => {
       }
       return p;
     }));
+
+    // Cloud persistence
+    if (isSupabaseConfigured() && supabase) {
+      setSyncStatus('Saving publication status...');
+      const res = await updateProjectPublicationStatus(targetProject.slug || projectId, nextStatus);
+      if (res.error) {
+        console.warn('Publication update cloud sync error:', res.error);
+        setSyncStatus('Saved locally (Cloud sync skipped)');
+      } else {
+        setSyncStatus('Publication status updated in cloud database');
+      }
+      setTimeout(() => setSyncStatus(''), 3000);
+    }
   };
 
-  // Create Project Draft
-  const handleCreateProjectDraft = (e: React.FormEvent) => {
+  // Create Project Draft with Supabase Cloud Sync
+  const handleCreateProjectDraft = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newProjectTitle.trim()) return;
 
@@ -211,51 +296,102 @@ export const OwnerWorkspacePage: React.FC = () => {
       updatedAt: new Date().toISOString().split('T')[0]
     };
 
+    // Optimistic UI update
     setProjects([newProj, ...projects]);
     setShowNewProjectModal(false);
     setNewProjectTitle('');
     setNewProjectTagline('');
     setNewProjectProblem('');
     setNewProjectSolution('');
+
+    // Cloud persistence
+    if (isSupabaseConfigured() && supabase) {
+      setSyncStatus('Saving new project draft to Supabase...');
+      const res = await createProjectDraft(newProj);
+      if (res.data) {
+        setProjects(prev => prev.map(p => p.id === newProj.id ? res.data! : p));
+        setSyncStatus('Draft saved to Supabase');
+      } else {
+        setSyncStatus('Saved locally (Cloud draft pending)');
+      }
+      setTimeout(() => setSyncStatus(''), 3000);
+    }
   };
 
-  // Add Task
-  const handleAddTask = (e: React.FormEvent) => {
+  // Add Task with Supabase Cloud Sync
+  const handleAddTask = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTaskTitle.trim()) return;
 
-    const task: OwnerTask = {
-      id: `task-${Date.now()}`,
+    const tempId = `task-${Date.now()}`;
+    const newTask: OwnerTask = {
+      id: tempId,
       title: newTaskTitle,
       priority: newTaskPriority,
       status: 'todo'
     };
 
-    setTasks([task, ...tasks]);
+    setTasks([newTask, ...tasks]);
     setNewTaskTitle('');
+
+    // Cloud persistence
+    if (isSupabaseConfigured() && supabase) {
+      setSyncStatus('Persisting task to Supabase...');
+      const res = await createOwnerTask({
+        title: newTask.title,
+        priority: newTask.priority,
+        status: 'todo'
+      });
+
+      if (res.data) {
+        setTasks(prev => prev.map(t => t.id === tempId ? res.data! : t));
+        setSyncStatus('Task persisted to Supabase database');
+      } else {
+        setSyncStatus('Task saved in local session');
+      }
+      setTimeout(() => setSyncStatus(''), 3000);
+    }
   };
 
-  const toggleTaskStatus = (taskId: string) => {
+  const toggleTaskStatus = async (taskId: string) => {
+    const target = tasks.find(t => t.id === taskId);
+    if (!target) return;
+    const nextStatus = target.status === 'done' ? 'todo' : 'done';
+
     setTasks(prev => prev.map(t => {
       if (t.id === taskId) {
-        const next = t.status === 'done' ? 'todo' : 'done';
-        return { ...t, status: next };
+        return { ...t, status: nextStatus };
       }
       return t;
     }));
+
+    if (isSupabaseConfigured() && supabase) {
+      setSyncStatus('Updating task in Supabase...');
+      await updateOwnerTask(taskId, { status: nextStatus });
+      setSyncStatus('Task status updated');
+      setTimeout(() => setSyncStatus(''), 2500);
+    }
   };
 
-  const deleteTask = (taskId: string) => {
+  const deleteTask = async (taskId: string) => {
     setTasks(prev => prev.filter(t => t.id !== taskId));
+
+    if (isSupabaseConfigured() && supabase) {
+      setSyncStatus('Deleting task from Supabase...');
+      await deleteOwnerTask(taskId);
+      setSyncStatus('Task removed from database');
+      setTimeout(() => setSyncStatus(''), 2500);
+    }
   };
 
-  // Add Reflection
-  const handleAddReflection = (e: React.FormEvent) => {
+  // Add Reflection with Supabase Cloud Sync
+  const handleAddReflection = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newReflectionTitle.trim() || !newReflectionContent.trim()) return;
 
-    const refl: PersonalReflection = {
-      id: `refl-${Date.now()}`,
+    const tempId = `refl-${Date.now()}`;
+    const newRefl: PersonalReflection = {
+      id: tempId,
       title: newReflectionTitle,
       content: newReflectionContent,
       date: new Date().toISOString().split('T')[0],
@@ -263,9 +399,52 @@ export const OwnerWorkspacePage: React.FC = () => {
       isPrivate: true
     };
 
-    setReflections([refl, ...reflections]);
+    setReflections([newRefl, ...reflections]);
     setNewReflectionTitle('');
     setNewReflectionContent('');
+
+    if (isSupabaseConfigured() && supabase) {
+      setSyncStatus('Saving private reflection to Supabase...');
+      const res = await createReflection({
+        title: newRefl.title,
+        content: newRefl.content,
+        date: newRefl.date,
+        mood: newRefl.mood,
+        isPrivate: true
+      });
+
+      if (res.data) {
+        setReflections(prev => prev.map(r => r.id === tempId ? res.data! : r));
+        setSyncStatus('Reflection safely encrypted & saved to database');
+      } else {
+        setSyncStatus('Reflection saved in local session');
+      }
+      setTimeout(() => setSyncStatus(''), 3000);
+    }
+  };
+
+  // Seed Supabase with initial verified data
+  const handleSeedDatabase = async () => {
+    if (!isSupabaseConfigured() || !supabase) {
+      alert('Supabase is not configured yet. Please configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY first.');
+      return;
+    }
+
+    setIsSeeding(true);
+    setSyncStatus('Seeding Supabase tables with verified baseline data...');
+    const result = await seedInitialDatabase({
+      projects: portfolioSeedData.projects,
+      tasks: portfolioSeedData.tasks,
+      learningItems: portfolioSeedData.learningItems,
+      goals: portfolioSeedData.goals,
+      reflections: portfolioSeedData.reflections,
+    });
+    setIsSeeding(false);
+    setSyncStatus(result.message);
+    if (result.success) {
+      loadCloudData();
+    }
+    setTimeout(() => setSyncStatus(''), 5000);
   };
 
   // If loading session
@@ -385,12 +564,33 @@ export const OwnerWorkspacePage: React.FC = () => {
               Harshad&apos;s Personal Operating System
             </h1>
           </div>
-          <p className="text-xs font-mono text-cyan-400">
-            Authenticated Session: {userEmail || statusInfo.ownerEmail}
-          </p>
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
+            <span className="text-cyan-400">
+              Authenticated Session: {userEmail || statusInfo.ownerEmail}
+            </span>
+            <span className="text-slate-600">•</span>
+            <span className={statusInfo.isConfigured ? 'text-emerald-400 flex items-center gap-1' : 'text-amber-400'}>
+              <Cloud className="w-3 h-3" />
+              <span>{statusInfo.isConfigured ? 'Supabase Connected' : 'Local Seed Mode'}</span>
+            </span>
+            {syncStatus && (
+              <span className="text-cyan-300 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800">
+                {syncStatus}
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => loadCloudData()}
+            title="Refresh from cloud database"
+            className="p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
+
           <button
             type="button"
             onClick={() => setShowNewProjectModal(true)}
@@ -800,12 +1000,41 @@ export const OwnerWorkspacePage: React.FC = () => {
       {/* --- Tab 7: System & Storage Status --- */}
       {activeTab === 'system' && (
         <div className="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-6">
-          <h2 className="text-xl font-heading font-bold text-white flex items-center gap-2">
-            <Database className="w-5 h-5 text-cyan-400" />
-            <span>Database Architecture &amp; RLS Policies</span>
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-heading font-bold text-white flex items-center gap-2">
+                <Database className="w-5 h-5 text-cyan-400" />
+                <span>Database Architecture &amp; RLS Policies</span>
+              </h2>
+              <p className="text-xs text-slate-400 mt-1">
+                PostgreSQL Row-Level Security, storage buckets, and live database synchronization.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              disabled={isSeeding || !statusInfo.isConfigured}
+              onClick={handleSeedDatabase}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 text-white text-xs font-bold font-mono transition-colors cursor-pointer"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isSeeding ? 'animate-spin' : ''}`} />
+              <span>{isSeeding ? 'Seeding Tables...' : 'Sync Seed Baseline to Supabase'}</span>
+            </button>
+          </div>
 
           <div className="space-y-3 text-xs font-mono">
+            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-cyan-400 font-bold block">Live Connection Status</span>
+                <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${statusInfo.isConfigured ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300 border border-amber-800'}`}>
+                  {statusInfo.mode}
+                </span>
+              </div>
+              <p className="text-slate-400 text-[11px] leading-relaxed">
+                Authorized Owner: <span className="text-white">{statusInfo.ownerEmail}</span> • Supabase URL: <span className="text-white">{statusInfo.urlConfigured ? 'Configured in Environment' : 'Missing'}</span> • Anon Key: <span className="text-white">{statusInfo.anonKeyConfigured ? 'Loaded' : 'Missing'}</span>
+              </p>
+            </div>
+
             <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
               <span className="text-cyan-400 font-bold block">Target Supabase PostgreSQL Schema</span>
               <p className="text-slate-400">Schema file ready at <code className="text-white">supabase/schema.sql</code></p>

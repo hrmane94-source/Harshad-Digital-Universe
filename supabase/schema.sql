@@ -1,18 +1,20 @@
 -- ============================================================
 -- HARSHAD MANE — IMMERSIVE PORTFOLIO & PERSONAL OPERATING SYSTEM
 -- SUPABASE POSTGRESQL SCHEMA WITH ROW-LEVEL SECURITY (RLS)
--- Target Database: Supabase PostgreSQL
+-- Target Database: Supabase PostgreSQL (Postgres 13+)
 -- Authorized Owner: hrmane94@gmail.com
+-- Idempotent: Safe to execute once or multiple times.
 -- ============================================================
 
--- Enable UUID extension
+-- Enable pgcrypto / uuid extensions if not present
+create extension if not exists "pgcrypto";
 create extension if not exists "uuid-ossp";
 
 -- ============================================================
 -- 1. PORTFOLIO ENTRIES TABLE (Public + Private Drafts)
 -- ============================================================
 create table if not exists public.portfolio_entries (
-  id uuid primary key default uuid_generate_v4(),
+  id text primary key default gen_random_uuid()::text,
   slug text unique not null,
   title text not null,
   display_title text not null,
@@ -49,6 +51,7 @@ create index if not exists idx_portfolio_pub_status on public.portfolio_entries 
 alter table public.portfolio_entries enable row level security;
 
 -- Policy 1: Anyone (public visitors) can view ONLY published entries
+drop policy if exists "Public can view published portfolio entries" on public.portfolio_entries;
 create policy "Public can view published portfolio entries"
   on public.portfolio_entries
   for select
@@ -57,6 +60,7 @@ create policy "Public can view published portfolio entries"
   );
 
 -- Policy 2: Authenticated owner has full access (read drafts, create, update, delete)
+drop policy if exists "Owner can manage all portfolio entries" on public.portfolio_entries;
 create policy "Owner can manage all portfolio entries"
   on public.portfolio_entries
   for all
@@ -73,7 +77,7 @@ create policy "Owner can manage all portfolio entries"
 -- 2. OWNER TASKS TABLE (Personal Task Management)
 -- ============================================================
 create table if not exists public.owner_tasks (
-  id uuid primary key default uuid_generate_v4(),
+  id text primary key default gen_random_uuid()::text,
   title text not null,
   priority text not null check (priority in ('low', 'medium', 'high', 'urgent')),
   due_date date,
@@ -87,7 +91,8 @@ create table if not exists public.owner_tasks (
 
 alter table public.owner_tasks enable row level security;
 
--- Owner-only access for tasks
+-- Owner-only access for tasks (No public policy exists)
+drop policy if exists "Owner can manage tasks" on public.owner_tasks;
 create policy "Owner can manage tasks"
   on public.owner_tasks
   for all
@@ -100,7 +105,7 @@ create policy "Owner can manage tasks"
 -- 3. LEARNING ITEMS TABLE (Skill Tracking & Daily/Weekly Studies)
 -- ============================================================
 create table if not exists public.learning_items (
-  id uuid primary key default uuid_generate_v4(),
+  id text primary key default gen_random_uuid()::text,
   title text not null,
   category text not null check (category in ('Programming', 'Machine Learning', 'Cybersecurity', 'Cloud & DevOps', 'Other')),
   status text not null check (status in ('not-started', 'learning', 'practising', 'building', 'proficient', 'completed')),
@@ -114,6 +119,7 @@ create table if not exists public.learning_items (
 
 alter table public.learning_items enable row level security;
 
+drop policy if exists "Owner can manage learning items" on public.learning_items;
 create policy "Owner can manage learning items"
   on public.learning_items
   for all
@@ -126,7 +132,7 @@ create policy "Owner can manage learning items"
 -- 4. PERSONAL GOALS TABLE
 -- ============================================================
 create table if not exists public.goals (
-  id uuid primary key default uuid_generate_v4(),
+  id text primary key default gen_random_uuid()::text,
   category text not null,
   title text not null,
   description text not null,
@@ -138,11 +144,13 @@ create table if not exists public.goals (
 
 alter table public.goals enable row level security;
 
+drop policy if exists "Public can view public goals" on public.goals;
 create policy "Public can view public goals"
   on public.goals
   for select
   using (is_public = true);
 
+drop policy if exists "Owner can manage all goals" on public.goals;
 create policy "Owner can manage all goals"
   on public.goals
   for all
@@ -155,19 +163,20 @@ create policy "Owner can manage all goals"
 -- 5. PERSONAL REFLECTIONS TABLE (Private Journal Entries)
 -- ============================================================
 create table if not exists public.reflections (
-  id uuid primary key default uuid_generate_v4(),
+  id text primary key default gen_random_uuid()::text,
   title text not null,
   content text not null,
   date date not null default current_date,
   mood text,
   tags text[],
-  is_private boolean not null default true, -- Always true by default
+  is_private boolean not null default true, -- Always true
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
 alter table public.reflections enable row level security;
 
--- Strictly private: no public policy exists!
+-- Strictly private: no public policy exists
+drop policy if exists "Owner can manage reflections" on public.reflections;
 create policy "Owner can manage reflections"
   on public.reflections
   for all
@@ -180,7 +189,7 @@ create policy "Owner can manage reflections"
 -- 6. MEDIA ASSETS METADATA TABLE (Photography, Cinematography, Reels)
 -- ============================================================
 create table if not exists public.media_assets (
-  id uuid primary key default uuid_generate_v4(),
+  id text primary key default gen_random_uuid()::text,
   title text not null,
   category text not null check (category in ('photography', 'cinematography', 'reels', 'nature', 'travel', 'behind-the-scenes', 'personal-moments')),
   media_type text not null check (media_type in ('image', 'video')),
@@ -199,11 +208,13 @@ create table if not exists public.media_assets (
 
 alter table public.media_assets enable row level security;
 
+drop policy if exists "Public can view published media" on public.media_assets;
 create policy "Public can view published media"
   on public.media_assets
   for select
   using (published = true);
 
+drop policy if exists "Owner can manage all media assets" on public.media_assets;
 create policy "Owner can manage all media assets"
   on public.media_assets
   for all
@@ -220,18 +231,20 @@ create policy "Owner can manage all media assets"
 
 insert into storage.buckets (id, name, public) 
 values ('portfolio-public', 'portfolio-public', true)
-on conflict (id) do nothing;
+on conflict (id) do update set public = true;
 
 insert into storage.buckets (id, name, public) 
 values ('owner-private', 'owner-private', false)
-on conflict (id) do nothing;
+on conflict (id) do update set public = false;
 
 -- Storage Policy: Public Read on portfolio-public
+drop policy if exists "Public Access to portfolio-public" on storage.objects;
 create policy "Public Access to portfolio-public"
   on storage.objects for select
   using ( bucket_id = 'portfolio-public' );
 
 -- Storage Policy: Owner Upload to portfolio-public
+drop policy if exists "Owner Upload to portfolio-public" on storage.objects;
 create policy "Owner Upload to portfolio-public"
   on storage.objects for insert
   to authenticated
@@ -241,10 +254,23 @@ create policy "Owner Upload to portfolio-public"
   );
 
 -- Storage Policy: Owner Private Bucket Access (Read & Write)
+drop policy if exists "Owner full access to owner-private" on storage.objects;
 create policy "Owner full access to owner-private"
   on storage.objects for all
   to authenticated
   using (
     bucket_id = 'owner-private'
     and auth.jwt() ->> 'email' = 'hrmane94@gmail.com'
+  )
+  with check (
+    bucket_id = 'owner-private'
+    and auth.jwt() ->> 'email' = 'hrmane94@gmail.com'
   );
+
+
+-- ============================================================
+-- 8. GRANT PRIVILEGES TO POSTGRES ROLES
+-- ============================================================
+grant usage on schema public to anon, authenticated;
+grant all on all tables in schema public to anon, authenticated;
+grant all on all sequences in schema public to anon, authenticated;

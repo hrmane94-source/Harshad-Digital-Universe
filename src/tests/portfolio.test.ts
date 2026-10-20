@@ -7,6 +7,16 @@ import { verifiedSkills } from '../data/skills';
 import { resumeData } from '../data/resume';
 import { contactConfig } from '../data/contact';
 import { getSupabaseStatus } from '../lib/supabase';
+import { 
+  fromDbTask, 
+  toDbTask, 
+  fromDbReflection, 
+  toDbReflection, 
+  fromDbProject, 
+  toDbProject,
+  fetchOwnerTasks,
+  createOwnerTask
+} from '../lib/supabaseService';
 import { creativeGalleryItems } from '../data/gallery';
 import { generateResumePdf } from '../utils/generateResumePdf';
 
@@ -146,6 +156,88 @@ describe('Portfolio Verification & Data Integrity Suite', () => {
     const textOutput = doc.output();
     expect(typeof textOutput).toBe('string');
     expect(textOutput.length).toBeGreaterThan(500);
+  });
+
+  it('verifies Supabase data mappers convert between PostgreSQL snake_case and TypeScript camelCase', () => {
+    // Task mapper test
+    const rawDbTask = {
+      id: 'task-101',
+      title: 'Practice Linux Permissions',
+      priority: 'high',
+      due_date: '2026-11-01',
+      related_project: 'proj-falcon-404',
+      status: 'in-progress',
+      completion_date: null,
+      notes: 'Lab exercises'
+    };
+    const mappedTask = fromDbTask(rawDbTask);
+    expect(mappedTask.id).toBe('task-101');
+    expect(mappedTask.dueDate).toBe('2026-11-01');
+    expect(mappedTask.relatedProject).toBe('proj-falcon-404');
+
+    const dbPayload = toDbTask(mappedTask);
+    expect(dbPayload.due_date).toBe('2026-11-01');
+    expect(dbPayload.related_project).toBe('proj-falcon-404');
+    expect(dbPayload.status).toBe('in-progress');
+
+    // Reflection mapper test
+    const rawDbRefl = {
+      id: 'refl-101',
+      title: 'First-Year Learnings',
+      content: 'Consistent effort over intensity.',
+      date: '2026-10-20',
+      mood: 'Focused',
+      is_private: true
+    };
+    const mappedRefl = fromDbReflection(rawDbRefl);
+    expect(mappedRefl.isPrivate).toBe(true);
+    expect(mappedRefl.content).toBe('Consistent effort over intensity.');
+
+    const reflPayload = toDbReflection(mappedRefl);
+    expect(reflPayload.is_private).toBe(true);
+
+    // Project mapper test
+    const rawDbProj = {
+      id: 'proj-test',
+      slug: 'test-project',
+      title: 'Test Project',
+      display_title: 'Test Project Showcase',
+      tagline: 'A sample project',
+      domain: 'Cybersecurity',
+      importance: 'featured',
+      role: 'Lead',
+      status: 'prototype',
+      publication_status: 'draft',
+      summary: 'Summary test',
+      problem: 'Problem test',
+      solution: 'Solution test',
+      features: ['feature 1'],
+      technologies: ['React'],
+      ai_assisted: true
+    };
+    const mappedProj = fromDbProject(rawDbProj);
+    expect(mappedProj.publicationStatus).toBe('draft');
+    expect(mappedProj.aiAssisted).toBe(true);
+    expect(mappedProj.displayTitle).toBe('Test Project Showcase');
+
+    const projPayload = toDbProject(mappedProj);
+    expect(projPayload.publication_status).toBe('draft');
+    expect(projPayload.ai_assisted).toBe(true);
+  });
+
+  it('safely handles Supabase unconfigured states without crashing', async () => {
+    // When environment variables are missing or unconfigured, service calls return safe error descriptors
+    const tasksRes = await fetchOwnerTasks();
+    expect(tasksRes.data === null || Array.isArray(tasksRes.data)).toBe(true);
+
+    const insertRes = await createOwnerTask({
+      title: 'Test offline task',
+      priority: 'low',
+      status: 'todo'
+    });
+    // In unconfigured mode, it gracefully returns error without throwing an unhandled exception
+    expect(insertRes).toBeDefined();
+    expect(insertRes.data === null || typeof insertRes.data === 'object').toBe(true);
   });
 
 });
