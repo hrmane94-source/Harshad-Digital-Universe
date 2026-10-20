@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { SiteHeader } from './components/layout/SiteHeader';
 import { SiteFooter } from './components/layout/SiteFooter';
+import { ScrollProgressBar } from './components/ui/ScrollProgressBar';
+import { AskHarshadAI } from './components/ai/AskHarshadAI';
 import { HomePage } from './pages/HomePage';
 
 // Lazy-loaded routes for code-splitting and rapid initial load
@@ -26,8 +28,8 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ defa
 function RouteFallback() {
   return (
     <div className="min-h-[50vh] flex items-center justify-center">
-      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-400">
-        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-black/[0.08] dark:border-white/[0.1] text-xs font-mono text-cobalt shadow-xs">
+        <span className="w-2 h-2 rounded-full bg-cobalt animate-ping" />
         <span>Loading spatial coordinates...</span>
       </div>
     </div>
@@ -49,7 +51,8 @@ export function App() {
     <ThemeProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-paper text-ink transition-colors duration-200 selection:bg-cobalt/20 selection:text-cobalt">
+        <ScrollProgressBar />
+        <div className="min-h-screen flex flex-col bg-paper text-ink transition-colors duration-200 selection:bg-cobalt/20 selection:text-cobalt relative">
           <SiteHeader />
           <main className="flex-1">
             <Suspense fallback={<RouteFallback />}>
@@ -63,6 +66,7 @@ export function App() {
                 <Route path="/achievements" element={<AchievementsPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/skills" element={<SkillsPage />} />
+                <Route path="/roadmap" element={<CareerRoadmapPage />} />
                 <Route path="/career-roadmap" element={<CareerRoadmapPage />} />
                 <Route path="/creative" element={<CreativePage />} />
                 <Route path="/explorations" element={<ExplorationsPage />} />
@@ -77,6 +81,9 @@ export function App() {
             </Suspense>
           </main>
           <SiteFooter />
+
+          {/* Integrated Personal AI Assistant */}
+          <AskHarshadAI />
         </div>
       </BrowserRouter>
     </ThemeProvider>

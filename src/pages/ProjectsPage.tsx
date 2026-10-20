@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Info } from 'lucide-react';
+import {
+  ShieldCheck,
+  Info,
+  Bot
+} from 'lucide-react';
 import { verifiedProjects } from '../data/projects';
 import { ProjectCard } from '../components/ui/ProjectCard';
 
@@ -25,11 +29,13 @@ export const ProjectsPage: React.FC = () => {
     return true;
   });
 
-  const flagship = filteredProjects.find(p => p.slug === 'falcon-404');
-  const others = filteredProjects.filter(p => p.slug !== 'falcon-404');
+  const falcon = verifiedProjects.find(p => p.slug === 'falcon-404')!;
+  const arogya = verifiedProjects.find(p => p.slug === 'arogya-ai')!;
+  const campus = verifiedProjects.find(p => p.slug === 'campus-copilot')!;
+  const others = verifiedProjects.filter(p => !['falcon-404', 'arogya-ai', 'campus-copilot'].includes(p.slug));
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
       {/* Editorial Page Header */}
       <div className="space-y-4 max-w-3xl">
@@ -41,12 +47,12 @@ export const ProjectsPage: React.FC = () => {
           &ldquo;Ideas are interesting. <br />
           <span className="italic font-normal text-cobalt">Building them is better.&rdquo;</span>
         </h1>
-        <p className="text-muted text-sm sm:text-base leading-relaxed">
+        <p className="text-muted text-sm sm:text-base leading-relaxed font-sans">
           Every project below represents hands-on technical work, competitive hackathon problem-solving, or early scientific innovation. Each case study documents the problem, architecture, individual contribution, and verified limitations.
         </p>
       </div>
 
-      {/* Honest Scope Disclosure Note */}
+      {/* Scope & Integrity Note */}
       <div className="p-5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-subtle/80 flex items-start gap-3.5 text-xs text-muted">
         <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
         <div className="space-y-1">
@@ -76,21 +82,68 @@ export const ProjectsPage: React.FC = () => {
         ))}
       </div>
 
-      {/* Flagship Highlight (when All or Cyber filter is selected) */}
-      {flagship && (selectedFilter === 'all' || selectedFilter === 'cyber') && (
-        <div className="space-y-3">
-          <div className="text-[10px] font-mono uppercase tracking-widest text-cobalt font-bold px-1">
-            FEATURED FLAGSHIP CASE STUDY
+      {/* Layout Option 1: Filtered Specific View */}
+      {selectedFilter !== 'all' ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      ) : (
+        /* Layout Option 2: Curated Editorial Showcase (All Projects) */
+        <div className="space-y-16">
+
+          {/* 1. Flagship Full-Width Editorial Spread: FALCON-404 */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-cobalt font-bold">
+              <span>01 // FLAGSHIP CYBERSECURITY CASE STUDY</span>
+              <span className="text-muted">SMART INDIA HACKATHON 2026</span>
+            </div>
+            <ProjectCard project={falcon} featuredLayout={true} />
           </div>
-          <ProjectCard project={flagship} featuredLayout={true} />
+
+          {/* 2. Asymmetric Dual Spread: Arogya AI & Campus Copilot */}
+          <div className="space-y-4">
+            <div className="text-[11px] font-mono uppercase tracking-widest text-coral font-bold">
+              02 // ADVANCED PROTOTYPING &amp; SYSTEMS
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              <div className="lg:col-span-7">
+                <ProjectCard project={arogya} />
+              </div>
+              <div className="lg:col-span-5">
+                <ProjectCard project={campus} />
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Varied Grid: Web, Creative & Academic Prototypes */}
+          <div className="space-y-4">
+            <div className="text-[11px] font-mono uppercase tracking-widest text-muted font-bold">
+              03 // COMPETITIONS, WEB ARCHITECTURES &amp; EARLY SCIENCE
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {others.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </div>
+
         </div>
       )}
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {(selectedFilter === 'all' || selectedFilter === 'cyber' ? others : filteredProjects).map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+      {/* Interactive AI Inquiries Bottom Prompt */}
+      <div className="p-8 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] text-center space-y-4 shadow-xs">
+        <div className="inline-flex items-center gap-2 text-xs font-mono text-cobalt font-semibold uppercase tracking-wider">
+          <Bot className="w-4 h-4" />
+          <span>Need a customized technical walkthrough?</span>
+        </div>
+        <h3 className="font-serif text-2xl font-bold text-ink">
+          Ask the Portfolio AI Assistant
+        </h3>
+        <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">
+          Ask questions like &ldquo;Compare FALCON-404 and Arogya AI&rdquo; or &ldquo;What did Harshad implement in Neuroverse 2K26?&rdquo; for instant answers.
+        </p>
       </div>
 
     </div>
