@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  ExternalLink, 
+import {
+  ArrowRight,
+  ExternalLink,
   Award
 } from 'lucide-react';
 import { GithubIcon } from './BrandIcons';
@@ -23,18 +23,18 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const hasLiveDemoLink = Boolean(project.links.liveDemoUrl && project.links.liveDemoUrl.trim() !== "");
 
   return (
-    <article className={`rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-slate-700 hover:shadow-2xl hover:shadow-cyan-500/5 flex flex-col ${
-      featuredLayout ? 'lg:grid lg:grid-cols-12 lg:gap-8 items-center' : ''
+    <article className={`rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-surface transition-all duration-300 hover:border-black/[0.2] dark:hover:border-white/[0.25] hover:shadow-lg flex flex-col group ${
+      featuredLayout ? 'lg:grid lg:grid-cols-12 lg:gap-8 items-center p-2 sm:p-3' : 'p-2 sm:p-2.5'
     }`}>
-      
-      {/* Cover Media Section */}
-      <div className={`${featuredLayout ? 'lg:col-span-7 p-4 sm:p-6' : 'p-4'}`}>
-        <Link to={`/projects/${project.slug}`} className="block overflow-hidden rounded-xl group">
+
+      {/* Cover Artwork / Image */}
+      <div className={`${featuredLayout ? 'lg:col-span-7' : 'w-full'}`}>
+        <Link to={`/projects/${project.slug}`} className="block overflow-hidden rounded-xl">
           {hasCoverAsset ? (
             <img
               src={project.assets.cover}
               alt={project.title}
-              className="w-full aspect-video object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+              className="w-full aspect-video object-cover rounded-xl transition-transform duration-500 group-hover:scale-[1.02]"
               loading="lazy"
             />
           ) : (
@@ -49,25 +49,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       {/* Content Section */}
-      <div className={`p-6 sm:p-8 flex flex-col flex-1 justify-between ${
-        featuredLayout ? 'lg:col-span-5 lg:pl-0' : ''
+      <div className={`p-5 sm:p-6 flex flex-col flex-1 justify-between ${
+        featuredLayout ? 'lg:col-span-5' : ''
       }`}>
-        <div className="space-y-4">
-          
+        <div className="space-y-3.5">
+
           {/* Header Badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+            <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-subtle text-muted border border-black/[0.06] dark:border-white/[0.08]">
               {project.domain.split(',')[0]}
             </span>
 
             {project.importance === 'flagship' && (
-              <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-700 font-bold">
+              <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-cobalt text-white font-bold tracking-wider">
                 Flagship Case Study
               </span>
             )}
 
             {project.competition?.result && (
-              <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-700 flex items-center gap-1 font-semibold">
+              <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 flex items-center gap-1 font-semibold">
                 <Award className="w-3 h-3" />
                 <span>{project.competition.result}</span>
               </span>
@@ -76,65 +76,58 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
           {/* Title & Tagline */}
           <div>
-            <h3 className="text-xl sm:text-2xl font-heading font-bold text-white tracking-tight">
-              <Link to={`/projects/${project.slug}`} className="hover:text-cyan-300 transition-colors">
+            <h3 className="text-2xl font-serif text-ink tracking-tight font-semibold leading-snug">
+              <Link to={`/projects/${project.slug}`} className="hover:text-cobalt transition-colors">
                 {project.displayTitle}
               </Link>
             </h3>
-            <p className="text-xs sm:text-sm text-cyan-400 font-medium mt-1">
+            <p className="text-xs sm:text-sm text-muted font-medium mt-1 leading-relaxed">
               {project.tagline}
             </p>
           </div>
 
           {/* Role badge */}
-          <div className="text-xs text-slate-300 font-mono bg-slate-950/70 px-3 py-1.5 rounded-lg border border-slate-800/80">
-            <span className="text-slate-400">Role: </span>
-            <span className="text-slate-200 font-medium">{project.role}</span>
+          <div className="text-[11px] text-muted font-mono bg-subtle px-3 py-1.5 rounded-lg border border-black/[0.04] dark:border-white/[0.06] inline-block">
+            <span className="text-faint">Role: </span>
+            <span className="text-ink font-medium">{project.role}</span>
           </div>
 
           {/* Summary */}
-          <p className="text-slate-300 text-sm leading-relaxed line-clamp-3">
+          <p className="text-muted text-xs sm:text-sm leading-relaxed line-clamp-2">
             {project.summary}
           </p>
 
-          {/* Key Tech Chips */}
+          {/* Key Technologies */}
           <div className="flex flex-wrap gap-1.5 pt-1">
             {project.technologies.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60"
+                className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.04] text-muted border border-black/[0.04] dark:border-white/[0.06]"
               >
                 {tech}
               </span>
             ))}
-            {project.technologies.length > 4 && (
-              <span className="text-[11px] font-mono px-1.5 py-0.5 text-slate-400">
-                +{project.technologies.length - 4} more
-              </span>
-            )}
           </div>
 
         </div>
 
-        {/* Footer Actions */}
-        <div className="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between gap-3">
-          
+        {/* Footer CTAs */}
+        <div className="pt-5 mt-5 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between gap-3">
           <Link
             to={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 hover:text-cyan-300 group"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink hover:text-cobalt transition-colors group/link"
           >
-            <span>Explore Full Case Study</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <span>Read Architecture</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
           </Link>
 
-          {/* Only render external buttons if real valid URLs are supplied (Rule 14 & 22) */}
           <div className="flex items-center gap-2">
             {hasRepoLink && (
               <a
                 href={project.links.repositoryUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white hover:border-slate-500 transition-colors"
+                className="p-1.5 rounded-lg text-muted hover:text-ink hover:bg-subtle transition-colors"
                 title="View Source Repository"
               >
                 <GithubIcon className="w-4 h-4" />
@@ -146,14 +139,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 href={project.links.liveDemoUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 rounded-lg border border-cyan-800/80 bg-cyan-950/60 text-cyan-300 hover:bg-cyan-900/60 transition-colors"
+                className="p-1.5 rounded-lg text-muted hover:text-ink hover:bg-subtle transition-colors"
                 title="Open Live Demonstration"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
             )}
           </div>
-
         </div>
 
       </div>

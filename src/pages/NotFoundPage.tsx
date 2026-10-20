@@ -1,39 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, ArrowLeft, Home } from 'lucide-react';
+import { ArrowLeft, Home } from 'lucide-react';
+import { BrandMonogram } from '../components/ui/BrandMonogram';
 
 export const NotFoundPage: React.FC = () => {
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 text-center space-y-6">
-      <div className="w-20 h-20 rounded-3xl bg-slate-900 border border-slate-800 flex items-center justify-center text-cyan-400">
-        <Compass className="w-10 h-10 animate-spin" />
-      </div>
+      <BrandMonogram size={56} className="mx-auto" />
 
-      <div className="space-y-2">
-        <span className="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold">
-          404 — UNCHARTED COORDINATES
+      <div className="space-y-2 max-w-md mx-auto">
+        <span className="text-[11px] font-mono uppercase tracking-widest text-cobalt font-bold">
+          404 &bull; UNCHARTED PATH
         </span>
-        <h1 className="text-3xl sm:text-4xl font-heading font-extrabold text-white">
-          Digital Horizon Not Found
+        <h1 className="text-3xl sm:text-5xl font-serif text-ink tracking-tight font-normal">
+          Page Not Found
         </h1>
-        <p className="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
-          The requested route or draft does not exist in Harshad Mane&apos;s digital universe. Please return to known pathways.
+        <p className="text-xs sm:text-sm text-muted leading-relaxed">
+          The requested page or case study slug does not exist in Harshad Mane&apos;s digital universe. Please return to known pathways.
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+      <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs hover:bg-cyan-400 transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-ink text-paper text-xs font-semibold uppercase tracking-wider hover:opacity-90 transition-opacity"
         >
-          <Home className="w-4 h-4" />
+          <Home className="w-3.5 h-3.5" />
           <span>Return Home</span>
         </Link>
         <Link
           to="/projects"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-xs hover:bg-slate-800 transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.15] bg-surface text-ink text-xs font-semibold uppercase tracking-wider hover:border-black/[0.3] transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-3.5 h-3.5" />
           <span>Explore Projects</span>
         </Link>
       </div>

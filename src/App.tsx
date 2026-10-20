@@ -1,5 +1,6 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import { SiteHeader } from './components/layout/SiteHeader';
 import { SiteFooter } from './components/layout/SiteFooter';
 import { HomePage } from './pages/HomePage';
@@ -45,38 +46,40 @@ function ScrollToTop() {
 
 export function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-cyan-500/25 selection:text-cyan-200">
-        <SiteHeader />
-        <main className="flex-1">
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/education" element={<EducationPage />} />
-              <Route path="/journey" element={<JourneyPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-              <Route path="/achievements" element={<AchievementsPage />} />
-              <Route path="/events" element={<EventsPage />} />
-              <Route path="/skills" element={<SkillsPage />} />
-              <Route path="/career-roadmap" element={<CareerRoadmapPage />} />
-              <Route path="/creative" element={<CreativePage />} />
-              <Route path="/explorations" element={<ExplorationsPage />} />
-              <Route path="/goals" element={<GoalsPage />} />
-              <Route path="/resume" element={<ResumePage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/owner" element={<OwnerWorkspacePage />} />
-              <Route path="/dashboard" element={<OwnerWorkspacePage />} />
-              <Route path="/404" element={<NotFoundPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <SiteFooter />
-      </div>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col bg-paper text-ink transition-colors duration-200 selection:bg-cobalt/20 selection:text-cobalt">
+          <SiteHeader />
+          <main className="flex-1">
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/education" element={<EducationPage />} />
+                <Route path="/journey" element={<JourneyPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+                <Route path="/achievements" element={<AchievementsPage />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/skills" element={<SkillsPage />} />
+                <Route path="/career-roadmap" element={<CareerRoadmapPage />} />
+                <Route path="/creative" element={<CreativePage />} />
+                <Route path="/explorations" element={<ExplorationsPage />} />
+                <Route path="/goals" element={<GoalsPage />} />
+                <Route path="/resume" element={<ResumePage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/owner" element={<OwnerWorkspacePage />} />
+                <Route path="/dashboard" element={<OwnerWorkspacePage />} />
+                <Route path="/404" element={<NotFoundPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </Suspense>
+          </main>
+          <SiteFooter />
+        </div>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

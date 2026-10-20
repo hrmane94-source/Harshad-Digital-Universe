@@ -1,110 +1,118 @@
 import React from 'react';
-import { 
-  Compass, 
-  Navigation, 
-  Info
+import {
+  Compass,
+  Navigation,
+  Info,
+  CheckCircle2,
+  MapPin
 } from 'lucide-react';
-import { 
-  motorcycleExpeditionVision, 
-  plannedRouteHighlights, 
-  expeditionReadiness 
+import {
+  motorcycleExpeditionVision,
+  plannedRouteHighlights,
+  expeditionReadiness
 } from '../data/explorations';
 
 export const ExplorationsPage: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-      
-      {/* Header */}
+
+      {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-300 text-xs font-mono">
-          <Compass className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Compass className="w-3.5 h-3.5 text-coral" />
           <span>MOTORCYCLE EXPEDITIONS &amp; DISCOVERIES</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
+        <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
           Explorations, Nature &amp; The Open Road
         </h1>
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+        <p className="text-muted text-sm sm:text-base leading-relaxed">
           Curiosity for discovering natural landscapes, future travel ambitions across Maharashtra and India, and preparing for an ambitious long-term motorcycle circuit expedition.
         </p>
       </div>
 
       {/* Flagship Ambition Feature: The All-India Motorcycle Circuit */}
-      <section className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-950/30 via-slate-900 to-slate-950 border border-emerald-500/30 space-y-6">
+      <section className="p-8 sm:p-12 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-6 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="space-y-1">
-            <span className="text-xs font-mono uppercase text-emerald-400 tracking-wider font-semibold">
+            <span className="text-[11px] font-mono uppercase text-coral tracking-widest font-bold">
               Long-Term Personal Ambition
             </span>
-            <h2 className="text-2xl sm:text-4xl font-heading font-bold text-white">
+            <h2 className="text-2xl sm:text-4xl font-serif font-bold text-ink tracking-tight">
               {motorcycleExpeditionVision.title}
             </h2>
           </div>
-          <div className="px-4 py-1.5 rounded-full bg-emerald-950 border border-emerald-700 text-emerald-300 text-xs font-mono font-semibold self-start sm:self-center">
+          <div className="px-3.5 py-1.5 rounded-full bg-coral/10 border border-coral/20 text-coral text-xs font-mono font-semibold self-start sm:self-center">
             Future Expedition Goal
           </div>
         </div>
 
-        <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-base text-muted leading-relaxed max-w-3xl">
           {motorcycleExpeditionVision.ambitionNote}
         </p>
 
         {/* Philosophy quote */}
-        <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 italic text-xs text-slate-300">
+        <div className="p-5 rounded-2xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] italic text-xs sm:text-sm text-ink font-serif leading-relaxed">
           &ldquo;{motorcycleExpeditionVision.philosophy}&rdquo;
         </div>
 
         {/* India Geographic Circuit Highlights */}
-        <div className="space-y-3 pt-4 border-t border-slate-800">
-          <h3 className="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider flex items-center gap-1.5">
-            <Navigation className="w-4 h-4 text-emerald-400" />
+        <div className="space-y-3 pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
+          <h3 className="text-xs font-mono uppercase text-muted font-bold tracking-wider flex items-center gap-1.5">
+            <Navigation className="w-4 h-4 text-cobalt" />
             <span>Target Route Corridors &amp; Terrains</span>
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {plannedRouteHighlights.map((dest) => (
-              <div key={dest.id} className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-                <span className="text-xs font-mono text-emerald-400 font-bold block">{dest.region}</span>
-                <h4 className="text-sm font-semibold text-white">{dest.name}</h4>
-                <p className="text-[11px] text-slate-400 leading-normal">{dest.significance}</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            {plannedRouteHighlights.map((route) => (
+              <div
+                key={route.id}
+                className="p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] space-y-1"
+              >
+                <div className="flex items-center gap-1.5 text-ink font-semibold">
+                  <MapPin className="w-3.5 h-3.5 text-coral shrink-0" />
+                  <span>{route.name}</span>
+                </div>
+                <div className="text-[10px] font-mono text-cobalt">{route.region}</div>
+                <p className="text-[11px] text-muted">{route.significance}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Preparation & Readiness Milestones */}
-      <section className="space-y-6">
-        <div className="space-y-2">
-          <span className="text-xs font-mono uppercase text-emerald-400 tracking-wider font-semibold">
-            Preparation Matrix
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white">
-            Expedition Conditioning &amp; Research Milestones
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {expeditionReadiness.map((item, idx) => (
-            <div key={idx} className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-400 uppercase">{item.category}</span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
-                  {item.status}
-                </span>
+        {/* Preparation & Readiness Steps */}
+        <div className="space-y-3 pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
+          <h3 className="text-xs font-mono uppercase text-muted font-bold tracking-wider">
+            Disciplined Preparation &amp; Progressive Readiness
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            {expeditionReadiness.map((step, idx) => (
+              <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06]">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-ink">{step.title}</span>
+                    <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-surface text-muted border border-black/[0.06] dark:border-white/[0.08]">
+                      {step.status}
+                    </span>
+                  </div>
+                  <p className="leading-relaxed text-muted text-[11px]">{step.description}</p>
+                </div>
               </div>
-              <h3 className="text-base font-heading font-bold text-white">{item.title}</h3>
-              <p className="text-xs text-slate-300 leading-relaxed">{item.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
       </section>
 
-      {/* Exploration Integrity Disclosure */}
-      <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start gap-3.5 text-xs text-slate-300">
-        <Info className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+      {/* Honest Scope Note */}
+      <div className="p-5 rounded-2xl bg-subtle/80 border border-black/[0.08] dark:border-white/[0.08] flex items-start gap-3.5 text-xs text-muted">
+        <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <span className="font-semibold text-white block">Verification Transparency</span>
-          <p className="leading-relaxed text-slate-400">
-            No completed nationwide records, fabricated sponsors, or completed kilometres are claimed. This expedition represents an earnest long-term personal ambition, athletic conditioning goal, and creative documentary project.
+          <span className="font-semibold text-ink block font-mono text-[11px] uppercase tracking-wide">
+            Integrity Disclosure
+          </span>
+          <p className="leading-relaxed">
+            The All-India motorcycle circuit is an aspirational long-term vision being methodically trained for across college semesters. No premature claims of completed world records or completed national circuits are made.
           </p>
         </div>
       </div>

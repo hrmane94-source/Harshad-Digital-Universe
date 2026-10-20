@@ -1,25 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Harshad Mane — Personal Digital Universe & Private OS</title>
-    <meta name="description" content="Personal digital universe of Harshad Mane (shiv.premi_1630). Computer Science Engineering student at ADCET Ashta, exploring AI, cybersecurity, DevSecOps, creative cinematography, and practical technology." />
+    <title>Harshad Mane — Editorial Portfolio & Operating System</title>
+    <meta name="description" content="Personal digital universe and creative portfolio of Harshad Mane (shiv.premi_1630). Computer Science Engineering student at ADCET Ashta, exploring AI, cybersecurity, DevSecOps, and visual cinematography." />
     <meta name="author" content="Harshad Rajaram Mane" />
-    
+
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Harshad Mane — Immersive Portfolio & Personal OS" />
+    <meta property="og:title" content="Harshad Mane — Editorial Portfolio & Operating System" />
     <meta property="og:description" content="Curious enough to explore. Driven enough to build. Technology, AI, Cybersecurity, Cinematography, and Personal Growth." />
     <meta property="og:image" content="/assets/brand/logo.svg" />
-    
-    <!-- Fonts -->
+
+    <!-- Editorial & Interface Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+
+    <!-- Anti-flash inline theme loader -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('hrm_editorial_theme');
+          if (stored === 'dark' || (!stored && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500/25 selection:text-cyan-200 min-h-screen">
+  <body class="bg-paper text-ink selection:bg-cobalt/20 selection:text-cobalt antialiased min-h-screen transition-colors duration-300">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

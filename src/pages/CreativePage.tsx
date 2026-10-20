@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Camera, 
-  Film, 
-  MapPin, 
-  Calendar, 
-  X, 
+import {
+  Camera,
+  MapPin,
+  Calendar,
+  X,
   Play
 } from 'lucide-react';
 import { creativeGalleryItems, creativeCategoriesList } from '../data/gallery';
 import type { CreativeMediaItem } from '../types/portfolio';
+import { contactConfig } from '../data/contact';
 
 export const CreativePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeMedia, setActiveMedia] = useState<CreativeMediaItem | null>(null);
 
-  // Filter only published items for public view (Section 18 & 21)
+  // Filter only published items for public view
   const publishedItems = creativeGalleryItems.filter(item => item.published);
 
   const displayItems = selectedCategory === 'all'
@@ -42,31 +42,32 @@ export const CreativePage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-      
-      {/* Header */}
+
+      {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/80 border border-purple-800 text-purple-300 text-xs font-mono">
-          <Camera className="w-3.5 h-3.5" />
-          <span>VISUAL STORYTELLING &amp; CINEMATOGRAPHY</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Camera className="w-3.5 h-3.5 text-coral" />
+          <span>VISUAL STORYTELLING &bull; @{contactConfig.creativeIdentity}</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
-          Creative Portfolio &amp; Visual Journal
+        <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
+          &ldquo;Frames, places, and stories <br />
+          <span className="italic font-normal text-coral">— collected along the way.&rdquo;</span>
         </h1>
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-          The photographic and cinematic world of <span className="text-purple-300 font-semibold font-mono">@shiv.premi_1630</span>. Exploring creative visual storytelling, nature and landscape interests, future travel plans, and the quiet beauty of authentic life moments.
+        <p className="text-muted text-sm sm:text-base leading-relaxed">
+          The photographic and cinematic journal of Harshad Mane under the creative moniker <span className="font-mono text-ink font-semibold">shiv.premi_1630</span>. Exploring perspective, mountain light, high-frame-rate movement, and genuine natural textures.
         </p>
       </div>
 
       {/* Category Filter Chips */}
-      <div className="flex flex-wrap gap-2 border-b border-slate-800 pb-4">
+      <div className="flex flex-wrap gap-2 border-b border-black/[0.08] dark:border-white/[0.08] pb-4">
         {creativeCategoriesList.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-4 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer ${
               selectedCategory === cat.id
-                ? 'bg-purple-600 text-white font-semibold shadow-md shadow-purple-600/20'
-                : 'bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 hover:text-white'
+                ? 'bg-ink text-paper font-semibold shadow-xs'
+                : 'bg-surface text-muted border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.2] dark:hover:border-white/[0.2] hover:text-ink'
             }`}
           >
             {cat.label}
@@ -74,61 +75,50 @@ export const CreativePage: React.FC = () => {
         ))}
       </div>
 
-      {/* Gallery Display or Sophisticated Empty State (Rule 13 & 20) */}
+      {/* Gallery Display or Sophisticated Empty State */}
       {displayItems.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {displayItems.map((item) => (
             <article
               key={item.id}
               onClick={() => setActiveMedia(item)}
-              className={`rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden cursor-pointer group transition-all duration-300 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 flex flex-col justify-between ${
-                item.isVertical ? 'row-span-2' : ''
-              }`}
+              className="group cursor-pointer rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] bg-surface flex flex-col justify-between hover:border-black/[0.2] dark:hover:border-white/[0.25] transition-all shadow-xs"
             >
-              <div className="relative overflow-hidden aspect-video w-full bg-slate-950">
-                {item.mediaType === 'image' ? (
-                  <img
-                    src={item.thumbnail || item.source}
-                    alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full relative flex items-center justify-center">
-                    {item.poster ? (
-                      <img src={item.poster} alt={item.alt} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full bg-slate-950 flex items-center justify-center">
-                        <Film className="w-8 h-8 text-purple-400" />
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                      <div className="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                        <Play className="w-5 h-5 ml-0.5" />
-                      </div>
+              <div className="relative aspect-4/3 overflow-hidden bg-subtle">
+                <img
+                  src={item.thumbnail || item.source}
+                  alt={item.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                {item.mediaType === 'video' && (
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-white/90 text-slate-900 flex items-center justify-center shadow-lg">
+                      <Play className="w-5 h-5 ml-0.5" />
                     </div>
                   </div>
                 )}
-                
-                <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-slate-950/80 text-[10px] font-mono text-slate-300 border border-slate-700">
+                <span className="absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-mono uppercase bg-black/60 text-white backdrop-blur-xs">
                   {item.category}
-                </div>
+                </span>
               </div>
 
-              <div className="p-4 space-y-1.5">
-                <h3 className="text-base font-heading font-bold text-white group-hover:text-purple-300 transition-colors">
+              <div className="p-5 space-y-2">
+                <h3 className="font-serif text-xl font-bold text-ink group-hover:text-coral transition-colors line-clamp-1">
                   {item.title}
                 </h3>
                 {item.caption && (
-                  <p className="text-xs text-slate-400 line-clamp-2">{item.caption}</p>
+                  <p className="text-xs text-muted line-clamp-2 leading-relaxed">
+                    {item.caption}
+                  </p>
                 )}
-                <div className="flex items-center justify-between pt-2 text-[11px] font-mono text-slate-400 border-t border-slate-800/80">
-                  {item.location && (
+                <div className="flex items-center justify-between pt-2 border-t border-black/[0.06] dark:border-white/[0.08] text-[10px] font-mono text-faint">
+                  {item.location ? (
                     <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-purple-400" />
+                      <MapPin className="w-3 h-3 text-coral" />
                       <span>{item.location}</span>
                     </span>
-                  )}
+                  ) : <span />}
                   {item.date && (
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
@@ -141,95 +131,59 @@ export const CreativePage: React.FC = () => {
           ))}
         </div>
       ) : (
-        /* Designed Editorial Empty State */
-        <div className="p-12 sm:p-20 rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/60 to-slate-950 text-center space-y-6 max-w-2xl mx-auto shadow-2xl">
-          <div className="w-20 h-20 rounded-3xl bg-purple-950/60 border border-purple-500/40 mx-auto flex items-center justify-center text-purple-400 shadow-xl shadow-purple-500/10">
-            <Camera className="w-10 h-10" />
+        /* Sophisticated Architectural Empty State (Rule 13 & 20) */
+        <div className="p-12 sm:p-16 rounded-3xl border border-dashed border-black/[0.12] dark:border-white/[0.15] bg-surface text-center space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] mx-auto flex items-center justify-center text-coral">
+            <Camera className="w-8 h-8" />
           </div>
 
-          <div className="space-y-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-purple-400 font-semibold">
-              Visual Journal Architecture Active
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white">
-              The Creative Gallery is Prepared
-            </h2>
-            <p className="text-sm text-slate-300 leading-relaxed max-w-lg mx-auto">
-              This gallery environment is built to showcase Harshad&apos;s cinematography, vertical reels, photography, and future motorcycle travel documentation as <span className="text-purple-300 font-mono font-medium">@shiv.premi_1630</span>.
+          <div className="space-y-2 max-w-lg mx-auto">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
+              Visual Archive &amp; Media Registry
+            </h3>
+            <p className="text-xs sm:text-sm text-muted leading-relaxed">
+              Photographs, cinematography clips, and vertical travel reels remain initially empty per authentic asset guidelines until actual high-resolution media is imported.
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs text-left font-mono space-y-2 max-w-md mx-auto">
-            <span className="text-cyan-400 font-bold block">How To Populate Media:</span>
-            <p className="text-slate-300 text-[11px]">
-              1. Place photos/videos in <code className="text-purple-300">/public/assets/gallery/&lt;category&gt;/</code><br />
-              2. Add an entry in <code className="text-purple-300">src/data/gallery.ts</code> with <code className="text-emerald-400">published: true</code>.<br />
-              3. The gallery renders your media automatically without touching any UI code!
-            </p>
-          </div>
-
-          <div className="pt-2 text-xs text-slate-400 font-mono">
-            * In adherence to verification rules, no generic stock or synthetic photography is displayed as personal work.
+          <div className="p-5 rounded-2xl bg-subtle max-w-xl mx-auto border border-black/[0.06] dark:border-white/[0.08] text-xs font-mono text-muted space-y-1.5 text-left">
+            <span className="text-[10px] uppercase font-bold text-ink block">How to populate this gallery:</span>
+            <p>1. Place your exported photos &amp; video thumbnails in <code className="text-cobalt">/public/assets/gallery/</code>.</p>
+            <p>2. Set items to <code className="text-cobalt font-bold">published: true</code> in <code className="text-cobalt">src/data/gallery.ts</code> or the Owner Workspace.</p>
+            <p>3. They will immediately render in this high-resolution masonry grid!</p>
           </div>
         </div>
       )}
 
       {/* Lightbox Modal */}
       {activeMedia && (
-        <div 
-          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-2xl flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
-          onClick={() => setActiveMedia(null)}
-        >
-          <div 
-            className="relative max-w-5xl w-full max-h-[90vh] bg-slate-900 rounded-3xl border border-slate-700 overflow-hidden shadow-2xl flex flex-col"
-            onClick={(e) => e.stopPropagation()}
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+          <button
+            type="button"
+            onClick={() => setActiveMedia(null)}
+            className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+            aria-label="Close Preview"
           >
-            {/* Top Bar */}
-            <div className="p-4 sm:p-6 border-b border-slate-800 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-heading font-bold text-white">{activeMedia.title}</h3>
-                <p className="text-xs text-purple-400 font-mono">{activeMedia.category} • @shiv.premi_1630</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setActiveMedia(null)}
-                className="p-2 rounded-xl border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer"
-                aria-label="Close Lightbox"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            <X className="w-6 h-6" />
+          </button>
 
-            {/* Media Content */}
-            <div className="flex-1 bg-black flex items-center justify-center overflow-hidden p-2 min-h-[360px]">
-              {activeMedia.mediaType === 'image' ? (
-                <img
-                  src={activeMedia.source}
-                  alt={activeMedia.alt}
-                  className="max-h-[65vh] max-w-full object-contain"
-                />
+          <div className="max-w-4xl w-full bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl space-y-4">
+            <div className="max-h-[70vh] bg-black flex items-center justify-center">
+              {activeMedia.mediaType === 'video' ? (
+                <video src={activeMedia.source} controls autoPlay className="max-h-[70vh] w-auto mx-auto" />
               ) : (
-                <video
-                  src={activeMedia.source}
-                  poster={activeMedia.poster}
-                  controls
-                  className="max-h-[65vh] max-w-full rounded-lg"
-                />
+                <img src={activeMedia.source} alt={activeMedia.alt} className="max-h-[70vh] w-auto mx-auto object-contain" />
               )}
             </div>
 
-            {/* Caption & Location Footer */}
-            {(activeMedia.caption || activeMedia.location || activeMedia.date) && (
-              <div className="p-4 sm:p-6 bg-slate-950 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                {activeMedia.caption && (
-                  <p className="text-slate-300 italic">{activeMedia.caption}</p>
-                )}
-                <div className="flex items-center gap-3 text-slate-400 font-mono shrink-0">
-                  {activeMedia.location && <span>{activeMedia.location}</span>}
-                  {activeMedia.date && <span>{activeMedia.date}</span>}
-                </div>
+            <div className="p-6 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-muted">
+                <span className="uppercase text-coral font-bold">{activeMedia.category}</span>
+                <span>{activeMedia.location || 'Maharashtra, India'}</span>
               </div>
-            )}
+              <h3 className="font-serif text-2xl font-bold text-ink">{activeMedia.title}</h3>
+              {activeMedia.caption && <p className="text-xs text-muted leading-relaxed">{activeMedia.caption}</p>}
+            </div>
           </div>
         </div>
       )}

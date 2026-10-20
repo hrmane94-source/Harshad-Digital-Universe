@@ -1,192 +1,165 @@
 import React from 'react';
-import { 
-  Route, 
-  CheckCircle2, 
-  Info
+import {
+  Route
 } from 'lucide-react';
-import { 
-  careerRoadmapVision, 
-  learningPriorityStages, 
-  careerMilestones 
+import {
+  careerRoadmapVision,
+  learningPriorityStages,
+  careerMilestones
 } from '../data/careerRoadmap';
 
 export const CareerRoadmapPage: React.FC = () => {
   const getStageStatusBadge = (status: string) => {
     switch (status) {
       case 'learning':
-        return 'bg-cyan-950 text-cyan-300 border-cyan-700 animate-pulse';
+        return 'bg-cobalt/10 text-cobalt border-cobalt/20 font-bold';
       case 'practising':
-        return 'bg-blue-950 text-blue-300 border-blue-700';
+        return 'bg-coral/10 text-coral border-coral/20 font-semibold';
       case 'building':
-        return 'bg-purple-950 text-purple-300 border-purple-700';
+        return 'bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20 font-semibold';
       case 'proficient':
-        return 'bg-emerald-950 text-emerald-300 border-emerald-700';
+        return 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20 font-bold';
       case 'completed':
-        return 'bg-slate-800 text-slate-300 border-slate-700';
+        return 'bg-subtle text-muted border-black/[0.06] dark:border-white/[0.08]';
       default:
-        return 'bg-slate-900 text-slate-400 border-slate-800';
+        return 'bg-subtle text-muted border-black/[0.06] dark:border-white/[0.08]';
     }
   };
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-      
-      {/* Header */}
+
+      {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800 text-cyan-300 text-xs font-mono">
-          <Route className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Route className="w-3.5 h-3.5 text-cobalt" />
           <span>FOUR-YEAR ENGINEERING ROADMAP &amp; DEVSECOPS VISION</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
-          Career Direction &amp; Learning Progression
+        <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
+          Career Direction &amp; Progression
         </h1>
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+        <p className="text-muted text-sm sm:text-base leading-relaxed">
           Targeting high-impact specialization in Cybersecurity and DevSecOps by 2030, anchored in disciplined programming foundations, practical machine learning, and secure cloud delivery.
         </p>
       </div>
 
       {/* Vision 2030 Banner */}
-      <section className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-cyan-950/30 via-slate-900 to-blue-950/40 border border-cyan-500/30 space-y-4">
-        <div className="flex items-center justify-between gap-4">
-          <span className="text-xs font-mono uppercase text-cyan-400 tracking-wider font-semibold">
+      <section className="p-8 sm:p-10 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4 shadow-xs">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <span className="text-xs font-mono uppercase text-cobalt tracking-wider font-bold">
             Primary Target Direction: {careerRoadmapVision.primaryDirection}
           </span>
-          <span className="text-xs font-mono text-slate-400">
+          <span className="text-xs font-mono text-muted">
             {careerRoadmapVision.currentAcademicPhase}
           </span>
         </div>
-        
-        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white">
+
+        <h2 className="text-2xl sm:text-4xl font-serif font-bold text-ink tracking-tight">
           The 2030 Engineering Vision
         </h2>
-        
-        <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-4xl">
+
+        <p className="text-xs sm:text-base text-muted leading-relaxed max-w-4xl">
           {careerRoadmapVision.vision2030}
         </p>
 
-        <div className="pt-4 border-t border-slate-800 flex flex-wrap gap-2 text-xs font-mono">
-          <span className="text-slate-400">Secondary Fields of Interest:</span>
+        <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex flex-wrap items-center gap-2 text-xs font-mono">
+          <span className="text-muted">Secondary Fields of Exploration:</span>
           {careerRoadmapVision.secondaryInterests.map((interest, i) => (
-            <span key={i} className="text-cyan-300 bg-slate-950 px-2.5 py-0.5 rounded-md border border-slate-800">
+            <span key={i} className="text-ink bg-subtle px-2.5 py-0.5 rounded-md border border-black/[0.06] dark:border-white/[0.08]">
               {interest}
             </span>
           ))}
         </div>
       </section>
 
-      {/* Schedule Flexibility & Exam Disclosure */}
-      <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start gap-3.5 text-xs text-slate-300">
-        <Info className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-        <div className="space-y-1">
-          <span className="font-semibold text-white block">Flexible Learning Commitment</span>
-          <p className="leading-relaxed text-slate-400">
-            Study timelines remain adaptive around college examinations, mid-semester deadlines, and hackathons. As planned, structured self-directed certifications and specialized security lab coursework will begin following the conclusion of first-year mid-semester examinations in November 2026.
-          </p>
-        </div>
-      </div>
-
-      {/* Structured Learning Priority Order (Section 12) */}
-      <section className="space-y-8">
-        <div className="space-y-2">
-          <span className="text-xs font-mono uppercase text-cyan-400 tracking-wider font-semibold">
-            Systematic Curriculum
+      {/* 4-Year Academic Progression */}
+      <section className="space-y-6">
+        <div className="space-y-1 pb-4 border-b border-black/[0.08] dark:border-white/[0.08]">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-muted font-semibold">
+            DEVELOPMENTAL MILESTONES
           </span>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white">
-            Sequential Learning Priority Stages
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink tracking-tight">
+            Four-Year Undergraduate Progression (2026 – 2030)
           </h2>
         </div>
 
-        <div className="space-y-6">
-          {learningPriorityStages.map((stage) => (
-            <article
-              key={stage.id}
-              className="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-5 hover:border-slate-700 transition-all"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {careerMilestones.map((m) => (
+            <div
+              key={m.year}
+              className="p-6 sm:p-8 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-3.5 shadow-xs"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div>
-                  <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold block mb-1">
-                    {stage.plannedPhase}
-                  </span>
-                  <h3 className="text-2xl font-heading font-bold text-white">
-                    {stage.title}
-                  </h3>
-                  <p className="text-xs text-slate-400 font-mono mt-0.5">
-                    Focus: {stage.focus}
-                  </p>
-                </div>
-
-                <div className="self-start sm:self-center">
-                  <span className={`px-3 py-1 rounded-full text-xs font-mono font-semibold border capitalize ${getStageStatusBadge(stage.status)}`}>
-                    Status: {stage.status}
-                  </span>
-                </div>
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="px-3 py-1 rounded-full bg-subtle text-ink font-bold border border-black/[0.06] dark:border-white/[0.08]">
+                  {m.year}
+                </span>
+                <span className="text-cobalt font-semibold capitalize">{m.status}</span>
               </div>
 
-              <p className="text-sm text-slate-300 leading-relaxed">
-                {stage.description}
+              <h3 className="font-serif text-2xl font-bold text-ink tracking-tight">
+                {m.title}
+              </h3>
+              <div className="text-[11px] font-mono text-coral font-medium uppercase">
+                {m.phase}
+              </div>
+              <p className="text-xs text-muted leading-relaxed">
+                {m.description}
               </p>
 
-              {/* Core Topics Checklist */}
-              <div className="space-y-2 pt-2 border-t border-slate-800/80">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold block">
-                  Core Topic Progression:
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
-                  {stage.topics.map((t, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                      <span>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Reference Resources */}
-              <div className="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400">
-                <span>Target Study Material:</span>
-                {stage.targetResources.map((res, i) => (
-                  <span key={i} className="text-slate-200 bg-slate-950 px-2.5 py-0.5 rounded border border-slate-800">
-                    {res}
+              <div className="pt-2 border-t border-black/[0.06] dark:border-white/[0.08] flex flex-wrap gap-1.5">
+                {m.focusAreas.map((f, idx) => (
+                  <span
+                    key={idx}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle text-muted border border-black/[0.04] dark:border-white/[0.06]"
+                  >
+                    {f}
                   </span>
                 ))}
               </div>
-
-            </article>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Year-by-Year Milestones */}
-      <section className="space-y-8">
-        <div className="space-y-2">
-          <span className="text-xs font-mono uppercase text-cyan-400 tracking-wider font-semibold">
-            Progression Timeline
+      {/* Active Study Tracks */}
+      <section className="space-y-6">
+        <div className="space-y-1 pb-4 border-b border-black/[0.08] dark:border-white/[0.08]">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-muted font-semibold">
+            LEARNING DISCIPLINE MATRIX
           </span>
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white">
-            Engineering Milestones (2026 – 2030)
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink tracking-tight">
+            Active Study Tracks &amp; Weekly Targets
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {careerMilestones.map((m, idx) => (
+        <div className="space-y-4">
+          {learningPriorityStages.map((stage) => (
             <div
-              key={idx}
-              className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800 space-y-3"
+              key={stage.id}
+              className="p-6 sm:p-8 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs"
             >
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-cyan-400 font-bold">
-                  {m.year}
-                </span>
-                <span className="text-slate-400 capitalize">{m.status}</span>
-              </div>
-              <h3 className="text-lg font-heading font-bold text-white">{m.title}</h3>
-              <p className="text-xs text-slate-300 leading-relaxed">{m.description}</p>
-              <div className="flex flex-wrap gap-1.5 pt-2">
-                {m.focusAreas.map((area, i) => (
-                  <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-950 text-slate-400 border border-slate-800">
-                    {area}
+              <div className="space-y-1.5 max-w-xl">
+                <div className="flex items-center gap-2">
+                  <span className="text-[11px] font-mono text-muted uppercase tracking-wider">{stage.focus}</span>
+                  <span className={`text-[10px] font-mono uppercase px-2 py-0.5 rounded-full border ${getStageStatusBadge(stage.status)}`}>
+                    {stage.status}
                   </span>
-                ))}
+                </div>
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-ink tracking-tight">
+                  {stage.title}
+                </h3>
+                <p className="text-xs text-muted leading-relaxed">
+                  {stage.description}
+                </p>
+                <div className="pt-1 text-[11px] font-mono text-cobalt">
+                  <strong>Key Topics:</strong> {stage.topics.slice(0, 3).join(' • ')}
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] text-xs font-mono shrink-0 space-y-1 md:text-right">
+                <span className="text-muted block text-[10px] uppercase">Target Phase</span>
+                <span className="text-ink font-semibold">{stage.plannedPhase}</span>
+                <span className="text-faint text-[10px] block truncate max-w-xs">{stage.targetResources[0]}</span>
               </div>
             </div>
           ))}

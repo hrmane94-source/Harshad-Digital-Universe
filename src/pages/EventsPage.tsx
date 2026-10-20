@@ -1,7 +1,8 @@
 import React from 'react';
-import { 
-  Calendar, 
-  CheckCircle2
+import {
+  Calendar,
+  CheckCircle2,
+  Clock
 } from 'lucide-react';
 import { verifiedEvents } from '../data/events';
 
@@ -9,31 +10,31 @@ export const EventsPage: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'Runner-up':
-        return 'bg-amber-950 text-amber-300 border-amber-700';
+        return 'bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20 font-bold';
       case 'Online selection pending':
-        return 'bg-cyan-950 text-cyan-300 border-cyan-700 animate-pulse';
+        return 'bg-cobalt/10 text-cobalt border-cobalt/20 font-semibold';
       case 'Demonstrated':
-        return 'bg-blue-950 text-blue-300 border-blue-700';
+        return 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20';
       case 'Participated':
-        return 'bg-slate-800 text-slate-300 border-slate-700';
+        return 'bg-black/[0.04] dark:bg-white/[0.06] text-muted border-black/[0.06] dark:border-white/[0.08]';
       default:
-        return 'bg-slate-900 text-slate-400 border-slate-800';
+        return 'bg-subtle text-muted border-black/[0.06] dark:border-white/[0.08]';
     }
   };
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-      
-      {/* Header */}
+
+      {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800 text-cyan-300 text-xs font-mono">
-          <Calendar className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Calendar className="w-3.5 h-3.5 text-cobalt" />
           <span>COMPETITIONS &amp; SYMPOSIUMS</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-tight">
-          Events &amp; Hackathon Participation
+        <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
+          Events &amp; Hackathons
         </h1>
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+        <p className="text-muted text-sm sm:text-base leading-relaxed">
           Comprehensive record of competitive hackathons, innovation challenges, entrepreneurial expos, and institutional symposiums with verified evaluation statuses.
         </p>
       </div>
@@ -43,67 +44,67 @@ export const EventsPage: React.FC = () => {
         {verifiedEvents.map((evt) => (
           <article
             key={evt.id}
-            className="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-5 hover:border-slate-700 transition-all"
+            className="p-8 sm:p-10 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-5 hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-colors shadow-xs"
           >
             {/* Header row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold block mb-1">
+                <span className="text-[11px] font-mono text-cobalt uppercase tracking-widest font-bold block mb-1">
                   {evt.hostInstitution}
                 </span>
-                <h2 className="text-2xl font-heading font-bold text-white">
+                <h2 className="text-2xl sm:text-3xl font-serif font-bold text-ink tracking-tight">
                   {evt.name}
                 </h2>
                 {evt.dates && (
-                  <p className="text-xs text-slate-400 font-mono mt-0.5">
-                    {evt.dates}
+                  <p className="text-xs text-muted font-mono mt-0.5 flex items-center gap-1.5">
+                    <Clock className="w-3 h-3 text-coral" />
+                    <span>{evt.dates}</span>
                   </p>
                 )}
               </div>
 
               <div className="self-start sm:self-center">
-                <span className={`px-3 py-1 rounded-full text-xs font-mono font-semibold border ${getStatusBadge(evt.status)}`}>
+                <span className={`px-3 py-1 rounded-full text-xs font-mono border ${getStatusBadge(evt.status)}`}>
                   Status: {evt.status}
                 </span>
               </div>
             </div>
 
-            {/* Role & Project Presented */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono p-4 rounded-2xl bg-slate-950/70 border border-slate-800">
+            {/* Role & Project */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06]">
               <div>
-                <span className="text-slate-400 block mb-0.5">Role / Participation Context</span>
-                <span className="text-white font-medium">{evt.role}</span>
+                <span className="text-muted block text-[10px] uppercase tracking-wider mb-0.5">Role</span>
+                <span className="text-ink font-semibold">{evt.role}</span>
               </div>
               {evt.projectPresented && (
                 <div>
-                  <span className="text-slate-400 block mb-0.5">Project Presented</span>
-                  <span className="text-cyan-300 font-medium">{evt.projectPresented}</span>
+                  <span className="text-muted block text-[10px] uppercase tracking-wider mb-0.5">Project Presented</span>
+                  <span className="text-cobalt font-semibold">{evt.projectPresented}</span>
                 </div>
               )}
             </div>
 
             {/* Description */}
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted leading-relaxed">
               {evt.description}
             </p>
 
             {/* Highlights */}
             {evt.highlights && evt.highlights.length > 0 && (
-              <div className="space-y-2 pt-2 border-t border-slate-800/80">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold block">
-                  Event Highlights &amp; Scope:
+              <div className="space-y-2 pt-2 border-t border-black/[0.06] dark:border-white/[0.08]">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-muted block">
+                  Event Highlights &amp; Scope
                 </span>
-                <ul className="space-y-1.5 text-xs text-slate-300">
-                  {evt.highlights.map((item, i) => (
+                <ul className="space-y-1.5 text-xs text-ink/90">
+                  {evt.highlights.map((h, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-                      <span>{item}</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cobalt shrink-0 mt-0.5" />
+                      <span>{h}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
-
           </article>
         ))}
       </div>

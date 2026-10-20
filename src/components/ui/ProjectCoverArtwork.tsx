@@ -1,12 +1,13 @@
 import React from 'react';
-import { 
-  ShieldAlert, 
-  Activity, 
-  Bot, 
-  Sparkles, 
-  Cpu, 
-  Palette, 
-  Leaf 
+import {
+  ShieldAlert,
+  Activity,
+  Bot,
+  Cpu,
+  Palette,
+  Leaf,
+  Globe,
+  Layers
 } from 'lucide-react';
 import type { ProjectCoverArtwork as CoverArtworkType } from '../../types/portfolio';
 
@@ -41,139 +42,129 @@ export const ProjectCoverArtwork: React.FC<ProjectCoverArtworkProps> = ({
         return Palette;
       case 'Leaf':
         return Leaf;
+      case 'Globe':
+        return Globe;
       default:
-        return Sparkles;
+        return Layers;
     }
   };
 
   const Icon = getIcon(coverArtwork.iconName);
 
-  const aspectClass = 
+  const aspectClass =
     aspectRatio === 'square' ? 'aspect-square' :
     aspectRatio === 'wide' ? 'aspect-video sm:aspect-[21/9]' : 'aspect-video';
 
-  // Distinct procedural themes based on coverArtwork.type
-  const getThemeDetails = () => {
+  // Editorial palette mapping for project types
+  const getPalette = () => {
     switch (coverArtwork.type) {
       case 'cyber':
         return {
-          gradient: 'from-cyan-950/80 via-slate-950 to-blue-950/90',
-          accent: '#00f0ff',
-          gridColor: 'rgba(0, 240, 255, 0.08)',
-          badge: 'CYBERSECURITY & OCR FORENSICS',
-          badgeClass: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30'
+          bgLight: 'bg-[#F0F4F8] text-[#1E3A8A] border-[#D1DCE8]',
+          bgDark: 'dark:bg-[#151922] dark:text-[#93C5FD] dark:border-[#222A38]',
+          accentLight: '#1D4ED8',
+          accentDark: '#60A5FA',
+          label: 'CYBERSECURITY FORENSICS',
+          num: '01'
         };
       case 'health':
         return {
-          gradient: 'from-teal-950/80 via-slate-950 to-blue-950/90',
-          accent: '#06b6d4',
-          gridColor: 'rgba(6, 182, 212, 0.08)',
-          badge: 'HEALTHCARE PREDICTIVE ANALYTICS',
-          badgeClass: 'bg-teal-500/10 text-teal-300 border-teal-500/30'
+          bgLight: 'bg-[#F2F7F6] text-[#0F766E] border-[#D1E5E2]',
+          bgDark: 'dark:bg-[#121E1E] dark:text-[#5EEAD4] dark:border-[#1F3333]',
+          accentLight: '#0F766E',
+          accentDark: '#2DD4BF',
+          label: 'HEALTHCARE ANALYTICS',
+          num: '02'
         };
       case 'chat':
         return {
-          gradient: 'from-blue-950/80 via-slate-950 to-indigo-950/90',
-          accent: '#3b82f6',
-          gridColor: 'rgba(59, 130, 246, 0.08)',
-          badge: 'GROUNDED CAMPUS AI AGENT',
-          badgeClass: 'bg-blue-500/10 text-blue-300 border-blue-500/30'
+          bgLight: 'bg-[#F4F2F8] text-[#5B21B6] border-[#DCD6E8]',
+          bgDark: 'dark:bg-[#1A1624] dark:text-[#C4B5FD] dark:border-[#2B233C]',
+          accentLight: '#6D28D9',
+          accentDark: '#A78BFA',
+          label: 'AI CONVERSATIONAL AGENT',
+          num: '03'
         };
       case 'marketplace':
         return {
-          gradient: 'from-amber-950/80 via-slate-950 to-rose-950/90',
-          accent: '#f97316',
-          gridColor: 'rgba(249, 115, 22, 0.08)',
-          badge: 'CREATIVE DISCOVERY MARKETPLACE',
-          badgeClass: 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+          bgLight: 'bg-[#FAF4ED] text-[#C2410C] border-[#EADACD]',
+          bgDark: 'dark:bg-[#201814] dark:text-[#FDBA74] dark:border-[#38261F]',
+          accentLight: '#EA580C',
+          accentDark: '#FB923C',
+          label: 'COMMERCE & WEB DESIGN',
+          num: '04'
         };
       case 'eco':
         return {
-          gradient: 'from-emerald-950/80 via-slate-950 to-slate-950/90',
-          accent: '#10b981',
-          gridColor: 'rgba(16, 185, 129, 0.08)',
-          badge: 'SUSTAINABLE SCIENCE INNOVATION',
-          badgeClass: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+          bgLight: 'bg-[#F2F7F1] text-[#15803D] border-[#D4E5D2]',
+          bgDark: 'dark:bg-[#131C14] dark:text-[#86EFAC] dark:border-[#203022]',
+          accentLight: '#16A34A',
+          accentDark: '#4ADE80',
+          label: 'ENVIRONMENTAL SCIENCE',
+          num: '05'
         };
       default:
         return {
-          gradient: 'from-purple-950/80 via-slate-950 to-slate-900/90',
-          accent: '#8b5cf6',
-          gridColor: 'rgba(139, 92, 246, 0.08)',
-          badge: 'CREATIVE WEB ENGINEERING',
-          badgeClass: 'bg-purple-500/10 text-purple-300 border-purple-500/30'
+          bgLight: 'bg-[#F5F5F7] text-[#374151] border-[#E5E7EB]',
+          bgDark: 'dark:bg-[#1A1C20] dark:text-[#D1D5DB] dark:border-[#282B32]',
+          accentLight: '#4B5563',
+          accentDark: '#9CA3AF',
+          label: 'ENGINEERING PROTOTYPE',
+          num: '06'
         };
     }
   };
 
-  const theme = getThemeDetails();
+  const palette = getPalette();
 
   return (
-    <div className={`relative w-full ${aspectClass} rounded-2xl overflow-hidden border border-slate-800 bg-gradient-to-br ${theme.gradient} flex flex-col justify-between p-6 sm:p-8 select-none group ${className}`}>
-      
-      {/* Background Graphic Grid */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-40 transition-opacity group-hover:opacity-60"
+    <div className={`relative ${aspectClass} ${palette.bgLight} ${palette.bgDark} border rounded-xl overflow-hidden p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${className}`}>
+
+      {/* Background Architectural Grid Lines */}
+      <div
+        className="absolute inset-0 opacity-[0.4] dark:opacity-[0.25] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(to right, ${theme.gridColor} 1px, transparent 1px), linear-gradient(to bottom, ${theme.gridColor} 1px, transparent 1px)`,
-          backgroundSize: '28px 28px'
+          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+          backgroundSize: '24px 24px'
         }}
       />
 
-      {/* Luminous Glow Orbs */}
-      <div 
-        className="absolute top-1/4 right-1/4 w-48 h-48 rounded-full blur-[80px] pointer-events-none transition-transform group-hover:scale-125"
-        style={{ backgroundColor: `${theme.accent}20` }}
-      />
-      <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-blue-600/15 blur-[60px] pointer-events-none" />
-
-      {/* Top Header Badge Row */}
-      <div className="relative z-10 flex items-center justify-between gap-2">
-        <div className={`px-2.5 py-1 rounded-md text-[10px] font-mono tracking-wider font-semibold border ${theme.badgeClass}`}>
-          {theme.badge}
+      {/* Top Metadata Header */}
+      <div className="relative z-10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] tracking-widest uppercase font-semibold px-2 py-0.5 rounded-full border border-current/20 bg-white/40 dark:bg-black/20">
+            {palette.label}
+          </span>
+          {importance === 'flagship' && (
+            <span className="font-mono text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full bg-cobalt text-white">
+              FLAGSHIP
+            </span>
+          )}
         </div>
-
-        {importance === 'flagship' && (
-          <div className="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase bg-cyan-400 text-slate-950 font-bold shadow-md shadow-cyan-400/30">
-            ★ FLAGSHIP
-          </div>
-        )}
+        <span className="font-mono text-xs opacity-60 font-semibold">
+          REF #{palette.num}
+        </span>
       </div>
 
-      {/* Center Icon & Geometric Art */}
-      <div className="relative z-10 my-auto flex items-center justify-center py-4">
-        <div className="relative flex items-center justify-center">
-          {/* Concentric subtle rings */}
-          <div 
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-dashed opacity-40 animate-[spin_20s_linear_infinite]"
-            style={{ borderColor: theme.accent }}
-          />
-          <div className="absolute inset-2 rounded-full border border-slate-700/60" />
-          
-          {/* Central domain icon container */}
-          <div 
-            className="absolute w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-900/90 border flex items-center justify-center shadow-xl transition-transform group-hover:scale-110"
-            style={{ borderColor: `${theme.accent}60`, color: theme.accent }}
-          >
-            <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
-          </div>
+      {/* Center Icon & Composition */}
+      <div className="relative z-10 my-auto flex flex-col items-center justify-center text-center py-4">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border border-current/20 bg-white/60 dark:bg-black/40 backdrop-blur-xs flex items-center justify-center shadow-xs mb-3 group-hover:scale-105 transition-transform duration-300">
+          <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
         </div>
-      </div>
-
-      {/* Bottom Title & Domain info */}
-      <div className="relative z-10 space-y-1">
-        <h3 className="text-xl sm:text-2xl font-heading font-bold text-white tracking-tight group-hover:text-cyan-200 transition-colors">
+        <h4 className="font-serif text-xl sm:text-2xl text-ink font-semibold tracking-tight max-w-sm line-clamp-1">
           {title}
-        </h3>
-        <p className="text-xs text-slate-400 line-clamp-1 font-mono">
+        </h4>
+        <span className="text-[11px] font-mono text-muted tracking-wide mt-1">
           {domain}
-        </p>
+        </span>
       </div>
 
-      {/* Technical verification watermark */}
-      <div className="absolute bottom-2 right-4 text-[9px] font-mono text-slate-400 uppercase tracking-widest pointer-events-none">
-        Architectural Design Artwork
+      {/* Bottom Editorial Accent Footer */}
+      <div className="relative z-10 flex items-center justify-between pt-2 border-t border-current/15 text-[10px] font-mono opacity-70">
+        <span>B.Tech Prototype Archive</span>
+        <span className="tracking-widest">ADCET CSE // 2026</span>
       </div>
+
     </div>
   );
 };
