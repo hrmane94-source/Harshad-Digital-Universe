@@ -250,7 +250,7 @@ export function generateClientSideGroundedReply(
 
   // Default Greeting / Suggested topics
   return {
-    reply: `Hi! I am **Ask Harshad AI**, your conversational guide to Harshad Mane's portfolio.\n\nYou can ask me natural questions such as:\n* *"Who is Harshad Mane?"*\n* *"Tell me about the FALCON-404 project."*\n* *"What technologies does he use?"*\n* *"What are his achievements?"*\n* *"Compare FALCON-404 and Arogya AI."*\n* *"How can I contact him?"*`,
+    reply: `Welcome. I'm **CURIO**, a curious guide to Harshad's world.\nAsk me about his projects, technical journey, creative work, or achievements.\n\nYou can ask me natural questions such as:\n* *"Who is Harshad?"*\n* *"Explore FALCON-404"*\n* *"What is he learning?"*\n* *"Compare his projects"*\n* *"How can I contact him?"*`,
     suggestedRoute: "/projects",
     routeLabel: "Explore: All Projects",
     isLiveModel: false

@@ -97,7 +97,7 @@ describe('Ask Harshad AI — Assistant Logic & Knowledge Grounding Suite', () =>
 
   it('handles empty input gracefully', () => {
     const res = generateClientSideGroundedReply('');
-    expect(res.reply).toContain('Ask Harshad AI');
+    expect(res.reply).toContain('CURIO');
   });
 
 });

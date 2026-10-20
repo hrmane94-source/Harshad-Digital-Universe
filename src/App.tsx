@@ -4,7 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { SiteHeader } from './components/layout/SiteHeader';
 import { SiteFooter } from './components/layout/SiteFooter';
 import { ScrollProgressBar } from './components/ui/ScrollProgressBar';
-import { AskHarshadAI } from './components/ai/AskHarshadAI';
+import { CurioAssistant } from './components/ai/CurioAssistant';
 import { HomePage } from './pages/HomePage';
 
 // Lazy-loaded routes for code-splitting and rapid initial load
@@ -82,8 +82,8 @@ export function App() {
           </main>
           <SiteFooter />
 
-          {/* Integrated Personal AI Assistant */}
-          <AskHarshadAI />
+          {/* Integrated Personal AI Assistant: CURIO */}
+          <CurioAssistant />
         </div>
       </BrowserRouter>
     </ThemeProvider>

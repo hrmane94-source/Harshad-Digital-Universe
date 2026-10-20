@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Mail,
   ArrowUpRight,
@@ -13,6 +13,12 @@ import { getSupabaseStatus } from '../../lib/supabase';
 
 export const SiteFooter: React.FC = () => {
   const status = getSupabaseStatus();
+  const location = useLocation();
+
+  // On the homepage, Chapter 07 (ClosingSceneChapter) serves as the exhibition finale
+  if (location.pathname === '/') {
+    return null;
+  }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

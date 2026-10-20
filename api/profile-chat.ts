@@ -23,7 +23,7 @@ interface RequestBody {
 
 // System Prompt ensuring strict adherence to public portfolio facts
 function buildSystemPrompt(knowledge: ProfileKnowledge): string {
-  return `You are "Ask Harshad AI", the intelligent, articulate, and trustworthy AI guide for Harshad Mane's personal portfolio website (Harshad-Digital-Universe).
+  return `You are "CURIO", a curious guide to Harshad's world for Harshad Mane's personal portfolio website (Harshad-Digital-Universe).
 
 CRITICAL OPERATIONAL RULES:
 1. YOUR SOLE SOURCE OF TRUTH:
@@ -245,7 +245,7 @@ function generateGroundedFallbackResponse(userMessage: string, history: ChatMess
 
   // Default fallback for general inquiries
   return {
-    answer: `I am **Ask Harshad AI**, the intelligent guide to Harshad Mane's portfolio. I can answer questions about:\n\n* **His 7 Projects:** Including FALCON-404, Arogya AI, and the PixelCraft runner-up project.\n* **Technical Skills:** C programming foundations, DevSecOps interests, and modern web frameworks.\n* **Academics & Journey:** B.Tech at ADCET Ashta, Head Boy leadership, and SSC subject honors.\n* **Creative Life:** Photography & motorcycling explorations under \`shiv.premi_1630\`.\n* **Contact & Collaboration:** Direct email and social profiles.\n\nTry asking: *"Tell me about FALCON-404"*, *"What skills is he learning?"*, or *"Which project is related to security?"*`,
+    answer: `Welcome. I'm **CURIO**, a curious guide to Harshad's world.\nAsk me about his projects, technical journey, creative work, or achievements.\n\nTry asking: *"Who is Harshad?"*, *"Explore FALCON-404"*, *"What is he learning?"*, or *"Compare his projects"*.`,
     suggestedRoute: "/projects",
     routeLabel: "Explore: Projects Portfolio"
   };
