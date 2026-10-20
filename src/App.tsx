@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { SiteHeader } from './components/layout/SiteHeader';
 import { SiteFooter } from './components/layout/SiteFooter';
 import { ScrollProgressBar } from './components/ui/ScrollProgressBar';
+import { CinematicIntroOverlay } from './components/ui/CinematicIntroOverlay';
 import { CurioAssistant } from './components/ai/CurioAssistant';
 import { HomePage } from './pages/HomePage';
 
@@ -49,6 +50,7 @@ function ScrollToTop() {
 export function App() {
   return (
     <ThemeProvider>
+      <CinematicIntroOverlay />
       <BrowserRouter>
         <ScrollToTop />
         <ScrollProgressBar />

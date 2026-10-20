@@ -139,10 +139,10 @@ export const ProjectsPage: React.FC = () => {
           <span>Need a customized technical walkthrough?</span>
         </div>
         <h3 className="font-serif text-2xl font-bold text-ink">
-          Ask the Portfolio AI Assistant
+          Ask CURIO — Personal Portfolio Guide
         </h3>
         <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">
-          Ask questions like &ldquo;Compare FALCON-404 and Arogya AI&rdquo; or &ldquo;What did Harshad implement in Neuroverse 2K26?&rdquo; for instant answers.
+          Ask questions like &ldquo;Compare FALCON-404 and Arogya AI&rdquo; or &ldquo;What did Harshad implement in Neuroverse 2K26?&rdquo; for instant grounded answers.
         </p>
       </div>
 
