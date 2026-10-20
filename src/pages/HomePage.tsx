@@ -1,43 +1,43 @@
 import React from 'react';
-import { ExhibitionHUD } from '../components/exhibition/ExhibitionHUD';
-import { IntroChapter } from '../components/exhibition/IntroChapter';
-import { ManifestoChapter } from '../components/exhibition/ManifestoChapter';
-import { ProjectExhibitionChapter } from '../components/exhibition/ProjectExhibitionChapter';
-import { JourneyChapter } from '../components/exhibition/JourneyChapter';
-import { CreativeChapter } from '../components/exhibition/CreativeChapter';
-import { AchievementArchiveChapter } from '../components/exhibition/AchievementArchiveChapter';
-import { CurioChapter } from '../components/exhibition/CurioChapter';
-import { ClosingSceneChapter } from '../components/exhibition/ClosingSceneChapter';
+import { StudioHUD } from '../components/studio/StudioHUD';
+import { StudioHero } from '../components/studio/StudioHero';
+import { StudioThesis } from '../components/studio/StudioThesis';
+import { StudioProjects } from '../components/studio/StudioProjects';
+import { StudioJourney } from '../components/studio/StudioJourney';
+import { StudioCreative } from '../components/studio/StudioCreative';
+import { StudioArchive } from '../components/studio/StudioArchive';
+import { StudioCurio } from '../components/studio/StudioCurio';
+import { StudioFooter } from '../components/studio/StudioFooter';
 
 export const HomePage: React.FC = () => {
   return (
     <div className="relative selection:bg-cobalt/20 selection:text-cobalt">
-      {/* Chapter 00-07 Floating Exhibition Navigator */}
-      <ExhibitionHUD />
+      {/* Chapter 01-08 Floating Studio HUD Navigator */}
+      <StudioHUD />
 
-      {/* Chapter 00: Opening Scene / Prologue */}
-      <IntroChapter />
+      {/* Index 01: Studio Hero & Identity */}
+      <StudioHero />
 
-      {/* Chapter 01: The Manifesto */}
-      <ManifestoChapter />
+      {/* Index 02: Core Thesis & Philosophy */}
+      <StudioThesis />
 
-      {/* Chapter 02: The Project Exhibition */}
-      <ProjectExhibitionChapter />
+      {/* Index 03: Flagship & Selected Projects */}
+      <StudioProjects />
 
-      {/* Chapter 03: The Technical Journey */}
-      <JourneyChapter />
+      {/* Index 04: The Technical Journey */}
+      <StudioJourney />
 
-      {/* Chapter 04: The Creative World */}
-      <CreativeChapter />
+      {/* Index 05: Visual Essay & Cinematography */}
+      <StudioCreative />
 
-      {/* Chapter 05: Archive of Milestones */}
-      <AchievementArchiveChapter />
+      {/* Index 06: Archive of Verified Milestones */}
+      <StudioArchive />
 
-      {/* Chapter 06: CURIO, The Portfolio Guide */}
-      <CurioChapter />
+      {/* Index 07: CURIO AI Guide Terminal */}
+      <StudioCurio />
 
-      {/* Chapter 07: The Closing Scene */}
-      <ClosingSceneChapter />
+      {/* Index 08: Dispatch & Closing Canvas */}
+      <StudioFooter />
     </div>
   );
 };
