@@ -32,7 +32,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'B.Tech in Computer Science & Engineering',
     subtitle: 'Annasaheb Dange College of Engineering and Technology (ADCET), Ashta',
     badge: 'First Year Undergraduate',
-    badgeColor: 'bg-cobalt/10 text-cobalt border-cobalt/20',
+    badgeColor: 'bg-blue-100 text-cobalt border-blue-200',
     description: 'Pursuing foundational computer science curriculum covering algorithmic problem-solving, structured C programming, discrete mathematics, and computational systems.',
     highlights: [
       'National-level PixelCraft web development competition Runner-up',
@@ -50,7 +50,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'FALCON-404: SIH 2026 & Seva First',
     subtitle: 'Sole Application Developer & Team Lead',
     badge: 'National Innovation',
-    badgeColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+    badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
     description: 'Designed and engineered an automated fake identity and document screening system combining browser-side OCR, Error Level Analysis, and privacy masking for Smart India Hackathon 2026.',
     highlights: [
       'Built multi-stage forensic analysis pipeline entirely client-side',
@@ -67,7 +67,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'PixelCraft Runner-Up (2nd Place)',
     subtitle: 'Neuroverse 2K26 National Technical Symposium',
     badge: '2nd Place Winner',
-    badgeColor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+    badgeColor: 'bg-amber-100 text-amber-900 border-amber-300',
     description: 'Secured second place in a high-intensity national front-end competition across two rounds: rapid development of GADA ELECTRONICS cyber store and the official Neuroverse 2K26 event website.',
     highlights: [
       'Timed dual-round sprint testing UX architecture, responsive design, and performance',
@@ -83,7 +83,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'Systems Fundamentals: C & Linux Internals',
     subtitle: 'Low-Level Architecture & Operating Systems Foundation',
     badge: 'Deep Study',
-    badgeColor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20',
+    badgeColor: 'bg-purple-100 text-purple-900 border-purple-300',
     description: 'Deliberately mastering memory management, pointers, bitwise operations, data structures in ANSI C, alongside Linux command-line environments and network protocol basics.',
     highlights: [
       'C standard library memory models, structs, and pointer arithmetic',
@@ -100,7 +100,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'Higher Secondary Certificate (HSC) — Science',
     subtitle: 'Swami Vivekanand Junior College of Science, Koparkhairane',
     badge: 'Completed',
-    badgeColor: 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20',
+    badgeColor: 'bg-slate-100 text-slate-800 border-slate-300',
     description: 'Rigorous coursework in Physics, Chemistry, and Higher Mathematics, establishing analytical discipline and algorithmic reasoning before entering university.',
     highlights: [
       'Advanced Mathematics, Calculus, and Analytical Physics foundations',
@@ -114,7 +114,7 @@ const timelineEvents: TimelineEvent[] = [
     title: 'Secondary School (SSC) & Head Boy Leadership',
     subtitle: 'Padua High School, Mankhurd, Mumbai',
     badge: 'Leadership & Academic Topper',
-    badgeColor: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20',
+    badgeColor: 'bg-sky-100 text-sky-900 border-sky-300',
     description: 'Completed 10 years of foundational schooling with distinguished academic and student leadership records.',
     highlights: [
       'Subject Topper in Class 10 (SSC): Mathematics, Hindi, and Marathi',
@@ -136,29 +136,29 @@ export const JourneyChapter: React.FC = () => {
   return (
     <section 
       id="chapter-03" 
-      className="py-20 sm:py-32 border-b border-black/[0.08] dark:border-white/[0.08] bg-paper relative overflow-hidden"
+      className="py-20 sm:py-32 border-b border-slate-200/80 bg-gradient-to-b from-[#FAF8F5] via-[#F8FAFC] to-[#FFFDF9] relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Chapter Folio Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/[0.08] dark:border-white/[0.08] pb-6">
+        {/* Folio Scene Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-5">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
-              <span className="w-2 h-2 rounded-full bg-cobalt inline-block" />
-              <span>CHAPTER 03 // THE TECHNICAL JOURNEY</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-pulse" />
+              <span>SCENE 04 // THE JOURNEY OF LEARNING</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-ink tracking-tight">
-              Foundations, momentum, & continuous learning.
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-slate-900 tracking-tight">
+              Foundations, momentum, &amp; continuous learning.
             </h2>
-            <p className="text-xs sm:text-sm text-muted font-sans max-w-xl">
-              An editorial chronology tracking engineering education at ADCET, practical hackathon deployments, low-level systems study, and future architectural focus.
+            <p className="text-xs sm:text-sm text-slate-600 font-sans max-w-xl font-medium">
+              An unvarnished chronological narrative tracking engineering education at ADCET, practical hackathon builds, systems programming, and applied AI exploration.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <Link
               to="/journey"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-xs font-mono font-semibold text-ink hover:text-cobalt transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-xs font-mono font-bold text-slate-800 hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs"
             >
               <span>Full Journey Narrative</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -180,12 +180,12 @@ export const JourneyChapter: React.FC = () => {
               onClick={() => setActiveTab(tab.id as JourneyCategory)}
               className={`px-3.5 py-2 rounded-xl text-xs font-mono shrink-0 transition-all cursor-pointer flex items-center gap-2 ${
                 activeTab === tab.id
-                  ? 'bg-ink text-paper font-semibold shadow-xs'
-                  : 'bg-subtle text-muted hover:text-ink border border-black/[0.06] dark:border-white/[0.08]'
+                  ? 'bg-slate-900 text-white font-bold shadow-md'
+                  : 'bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 shadow-2xs'
               }`}
             >
               <span>{tab.label}</span>
-              <span className="text-[10px] opacity-70 px-1.5 py-0.5 rounded-md bg-black/10 dark:bg-white/10">
+              <span className="text-[10px] opacity-75 px-1.5 py-0.5 rounded-md bg-black/10 dark:bg-white/10">
                 {tab.count}
               </span>
             </button>
@@ -195,7 +195,7 @@ export const JourneyChapter: React.FC = () => {
         {/* Chronological Timeline Grid */}
         <div className="relative">
           {/* Vertical Architectural Connecting Line */}
-          <div className="hidden md:block absolute left-[120px] top-4 bottom-4 w-px bg-black/[0.08] dark:border-white/[0.08] pointer-events-none" />
+          <div className="hidden md:block absolute left-[120px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-sky-400 via-cobalt to-emerald-400 pointer-events-none" />
 
           <div className="space-y-8">
             <AnimatePresence mode="wait">
@@ -214,44 +214,44 @@ export const JourneyChapter: React.FC = () => {
                   >
                     {/* Date / Milestone Number Column */}
                     <div className="md:col-span-3 flex md:flex-col items-baseline md:items-end justify-between md:justify-start gap-2 text-right pr-0 md:pr-8">
-                      <span className="text-2xl sm:text-3xl font-serif font-bold text-ink/30 dark:text-paper/20 group-hover:text-cobalt transition-colors">
+                      <span className="text-2xl sm:text-3xl font-serif font-bold text-slate-400 group-hover:text-cobalt transition-colors">
                         0{idx + 1}
                       </span>
-                      <span className="text-xs font-mono font-medium text-muted">
+                      <span className="text-xs font-mono font-bold text-slate-600">
                         {evt.period}
                       </span>
                     </div>
 
                     {/* Milestone Pin Icon on Connecting Line (Desktop) */}
-                    <div className="hidden md:flex absolute left-[114px] top-2.5 w-3.5 h-3.5 rounded-full bg-paper border-2 border-cobalt z-10 items-center justify-center group-hover:scale-125 transition-transform" />
+                    <div className="hidden md:flex absolute left-[114px] top-3.5 w-3.5 h-3.5 rounded-full bg-white border-2 border-cobalt z-10 items-center justify-center group-hover:scale-125 transition-transform shadow-xs" />
 
                     {/* Content Editorial Card */}
-                    <div className="md:col-span-9 bg-surface rounded-2xl p-6 sm:p-8 border border-black/[0.08] dark:border-white/[0.08] hover:border-black/20 dark:hover:border-white/20 transition-all shadow-xs space-y-4">
+                    <div className="md:col-span-9 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 hover:border-cobalt/40 transition-all shadow-sm hover:shadow-md space-y-4">
                       
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div className="space-y-1">
-                          <h3 className="font-serif text-xl sm:text-2xl font-bold text-ink tracking-tight">
+                          <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                             {evt.title}
                           </h3>
-                          <p className="text-xs sm:text-sm font-sans font-medium text-muted">
+                          <p className="text-xs sm:text-sm font-sans font-medium text-slate-600">
                             {evt.subtitle}
                           </p>
                         </div>
-                        <span className={`text-[11px] font-mono font-semibold px-2.5 py-1 rounded-full border ${evt.badgeColor}`}>
+                        <span className={`text-[11px] font-mono font-bold px-3 py-1 rounded-full border shadow-2xs ${evt.badgeColor}`}>
                           {evt.badge}
                         </span>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-ink/80 dark:text-paper/80 font-sans leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-700 font-sans leading-relaxed">
                         {evt.description}
                       </p>
 
                       {/* Verified Highlights Bullet Points */}
-                      <div className="space-y-2 pt-2 border-t border-black/[0.06] dark:border-white/[0.06]">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-faint">
+                      <div className="space-y-2 pt-3 border-t border-slate-100">
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold">
                           Key Verified Milestones
                         </span>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans text-muted">
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans text-slate-600 font-medium">
                           {evt.highlights.map((highlight, hIdx) => (
                             <li key={hIdx} className="flex items-start gap-2">
                               <span className="w-1.5 h-1.5 rounded-full bg-cobalt mt-1.5 shrink-0" />
@@ -265,7 +265,7 @@ export const JourneyChapter: React.FC = () => {
                         <div className="pt-2">
                           <Link
                             to={evt.link}
-                            className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-cobalt hover:underline"
+                            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-cobalt hover:underline"
                           >
                             <span>{evt.linkLabel || 'Read More'}</span>
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -281,61 +281,61 @@ export const JourneyChapter: React.FC = () => {
         </div>
 
         {/* Technical Development Matrix: Systems vs Modern Web */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-8 border-t border-black/[0.08] dark:border-white/[0.08]">
-          <div className="bg-surface rounded-2xl p-6 border border-black/[0.08] dark:border-white/[0.08] space-y-4">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cobalt font-semibold">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-6 border-t border-slate-200">
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cobalt font-bold">
               <Terminal className="w-4 h-4" />
               <span>01 // Low-Level Systems</span>
             </div>
-            <h4 className="font-serif text-lg font-bold text-ink">
-              C Foundations & OS Concepts
+            <h4 className="font-serif text-lg font-bold text-slate-900">
+              C Foundations &amp; OS Concepts
             </h4>
-            <p className="text-xs text-muted leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed font-medium">
               Studying structured systems programming in ANSI C, mastering pointers, manual dynamic memory management, and data structures.
             </p>
-            <div className="flex flex-wrap gap-1.5 pt-2">
+            <div className="flex flex-wrap gap-1.5 pt-1">
               {['ANSI C', 'Pointers', 'Memory Allocation', 'Data Structures', 'Linux Shell'].map(s => (
-                <span key={s} className="px-2 py-0.5 rounded-md bg-subtle text-[11px] font-mono text-ink border border-black/[0.06] dark:border-white/[0.06]">
+                <span key={s} className="px-2.5 py-1 rounded-lg bg-slate-50 text-[11px] font-mono text-slate-800 font-semibold border border-slate-200">
                   {s}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="bg-surface rounded-2xl p-6 border border-black/[0.08] dark:border-white/[0.08] space-y-4">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold">
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-emerald-700 font-bold">
               <Code2 className="w-4 h-4" />
               <span>02 // Modern Web Engineering</span>
             </div>
-            <h4 className="font-serif text-lg font-bold text-ink">
-              TypeScript & Architecture
+            <h4 className="font-serif text-lg font-bold text-slate-900">
+              TypeScript &amp; Architecture
             </h4>
-            <p className="text-xs text-muted leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed font-medium">
               Crafting fast, accessible client-side applications with React, Vite, Tailwind CSS, Framer Motion, and Supabase integration.
             </p>
-            <div className="flex flex-wrap gap-1.5 pt-2">
+            <div className="flex flex-wrap gap-1.5 pt-1">
               {['TypeScript', 'React 18', 'Tailwind CSS', 'Vite', 'Supabase SQL'].map(s => (
-                <span key={s} className="px-2 py-0.5 rounded-md bg-subtle text-[11px] font-mono text-ink border border-black/[0.06] dark:border-white/[0.06]">
+                <span key={s} className="px-2.5 py-1 rounded-lg bg-emerald-50 text-[11px] font-mono text-emerald-800 font-semibold border border-emerald-200">
                   {s}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="bg-surface rounded-2xl p-6 border border-black/[0.08] dark:border-white/[0.08] space-y-4">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold">
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-purple-700 font-bold">
               <Cpu className="w-4 h-4" />
-              <span>03 // Applied AI & Forensics</span>
+              <span>03 // Applied AI &amp; Forensics</span>
             </div>
-            <h4 className="font-serif text-lg font-bold text-ink">
-              Grounded Models & OCR
+            <h4 className="font-serif text-lg font-bold text-slate-900">
+              Grounded Models &amp; OCR
             </h4>
-            <p className="text-xs text-muted leading-relaxed">
+            <p className="text-xs text-slate-600 leading-relaxed font-medium">
               Building client-side forensics pipelines (Error Level Analysis), privacy-first redaction, and deterministic context-grounded AI guides.
             </p>
-            <div className="flex flex-wrap gap-1.5 pt-2">
+            <div className="flex flex-wrap gap-1.5 pt-1">
               {['Tesseract OCR', 'ELA Forensics', 'Prompt Guardrails', 'Gemini API', 'CURIO Engine'].map(s => (
-                <span key={s} className="px-2 py-0.5 rounded-md bg-subtle text-[11px] font-mono text-ink border border-black/[0.06] dark:border-white/[0.06]">
+                <span key={s} className="px-2.5 py-1 rounded-lg bg-purple-50 text-[11px] font-mono text-purple-800 font-semibold border border-purple-200">
                   {s}
                 </span>
               ))}

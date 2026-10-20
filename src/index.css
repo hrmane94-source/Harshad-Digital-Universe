@@ -16,27 +16,31 @@
 
   --color-cobalt: var(--accent-cobalt);
   --color-coral: var(--accent-coral);
+  --color-tangerine: #F97316;
+  --color-sunny: #FBBF24;
+  --color-skyblue: #0EA5E9;
+  --color-mint: #10B981;
   --color-lavender: var(--accent-lavender);
   --color-chartreuse: var(--accent-chartreuse);
 }
 
 @layer base {
   :root {
-    --bg-paper: #FAF7F2;
+    --bg-paper: #FFFDF9;
     --bg-surface: #FFFFFF;
-    --bg-subtle: #F3EFE8;
-    --border-hairline: rgba(20, 21, 24, 0.08);
-    --border-medium: rgba(20, 21, 24, 0.16);
-    --border-strong: rgba(20, 21, 24, 0.3);
+    --bg-subtle: #F5EFE6;
+    --border-hairline: rgba(15, 23, 42, 0.08);
+    --border-medium: rgba(15, 23, 42, 0.16);
+    --border-strong: rgba(15, 23, 42, 0.28);
 
-    --text-ink: #141518;
-    --text-muted: #5C5E67;
-    --text-faint: #8E909B;
+    --text-ink: #0F172A;
+    --text-muted: #475569;
+    --text-faint: #94A3B8;
 
     --accent-cobalt: #1D4ED8;
-    --accent-coral: #EA580C;
-    --accent-lavender: #7C3AED;
-    --accent-chartreuse: #4D7C0F;
+    --accent-coral: #F97316;
+    --accent-lavender: #6366F1;
+    --accent-chartreuse: #65A30D;
   }
 
   .dark {

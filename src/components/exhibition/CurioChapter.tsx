@@ -21,7 +21,7 @@ interface ChatMessage {
 const INITIAL_MESSAGE: ChatMessage = {
   id: 'msg-initial',
   sender: 'curio',
-  text: "Welcome. I'm CURIO, a curious guide to Harshad's world. Ask me about his projects, technical journey, creative work, or achievements.",
+  text: "Welcome! I'm CURIO, an interactive guide to Harshad's digital universe. Ask me about his projects, technical learning in systems, creative cinematography, or verified milestones.",
   timestamp: 'Just now'
 };
 
@@ -80,7 +80,7 @@ export const CurioChapter: React.FC = () => {
       };
       setMessages(prev => [...prev, curioMsg]);
     } catch {
-      setErrorNotice("Unable to reach the assistant. Grounded fallback is available.");
+      setErrorNotice("Unable to reach live assistant endpoint. Local grounded retrieval active.");
       const fallbackMsg: ChatMessage = {
         id: `curio-err-${Date.now()}`,
         sender: 'curio',
@@ -102,28 +102,32 @@ export const CurioChapter: React.FC = () => {
   return (
     <section 
       id="chapter-06" 
-      className="py-20 sm:py-32 border-b border-black/[0.08] dark:border-white/[0.08] bg-surface relative overflow-hidden"
+      className="py-20 sm:py-32 border-b border-slate-200/80 bg-gradient-to-b from-[#FFFDF9] via-[#F8FAFC] to-[#EEF7FF] relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      {/* Background Solar Aura */}
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-sky-200/20 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] rounded-full bg-amber-200/25 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
         
-        {/* Folio Chapter Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-black/[0.08] dark:border-white/[0.08] pb-6">
+        {/* Folio Scene Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 pb-5">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
-              <span className="w-2 h-2 rounded-full bg-cobalt inline-block" />
-              <span>CHAPTER 06 // CURIO, THE PORTFOLIO GUIDE</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block animate-pulse" />
+              <span>SCENE 07 // CURIO &mdash; INTERACTIVE AI GUIDE</span>
             </div>
             
             <div className="flex items-baseline gap-3">
-              <h2 className="font-serif text-3xl sm:text-5xl font-bold text-ink tracking-tight">
+              <h2 className="font-serif text-4xl sm:text-6xl font-bold text-slate-900 tracking-tight">
                 CURIO
               </h2>
-              <span className="text-sm sm:text-base font-serif italic text-muted">
+              <span className="text-sm sm:text-base font-serif italic text-slate-600 font-medium">
                 &mdash; &ldquo;A curious guide to Harshad&apos;s world.&rdquo;
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm text-muted font-sans max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-600 font-sans max-w-xl font-medium">
               An intelligent assistant grounded exclusively in verified public records, architectural case studies, and engineering achievements.
             </p>
           </div>
@@ -132,7 +136,7 @@ export const CurioChapter: React.FC = () => {
             <button
               type="button"
               onClick={handleResetConversation}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-xs font-mono text-muted hover:text-ink transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-slate-300 text-xs font-mono font-bold text-slate-700 hover:text-slate-900 hover:border-slate-400 transition-colors cursor-pointer shadow-2xs"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset Chat</span>
@@ -145,31 +149,31 @@ export const CurioChapter: React.FC = () => {
           
           {/* Left Column: Context & Suggested Prompts (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="bg-paper rounded-2xl p-6 border border-black/[0.08] dark:border-white/[0.08] space-y-4 shadow-xs">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-cobalt text-white flex items-center justify-center font-serif font-bold text-lg shadow-xs">
+            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 space-y-4 shadow-sm">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-cobalt to-sky-500 text-white flex items-center justify-center font-serif font-bold text-xl shadow-sm">
                   C
                 </div>
                 <div>
-                  <h3 className="font-serif text-base font-bold text-ink">CURIO Guide</h3>
-                  <p className="text-[11px] font-mono text-muted">Grounded Conversational Agent</p>
+                  <h3 className="font-serif text-base font-bold text-slate-900">CURIO Guide</h3>
+                  <p className="text-[11px] font-mono text-slate-500 font-medium">Grounded Conversational Agent</p>
                 </div>
               </div>
 
-              <div className="text-xs text-muted font-sans leading-relaxed space-y-2 border-t border-black/[0.06] dark:border-white/[0.06] pt-3">
+              <div className="text-xs text-slate-600 font-sans leading-relaxed space-y-2 border-t border-slate-100 pt-3">
                 <p>
                   CURIO synthesizes Harshad&apos;s projects, hackathon records, C systems development, and creative interests.
                 </p>
-                <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Privacy-first & verified facts only</span>
+                <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-700 font-semibold">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <span>Privacy-first &bull; Verified public facts only</span>
                 </div>
               </div>
             </div>
 
             {/* Suggested Question Chips */}
             <div className="space-y-2.5">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-faint font-semibold">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-bold">
                 Suggested Curiosities
               </span>
               <div className="flex flex-col gap-2">
@@ -179,10 +183,10 @@ export const CurioChapter: React.FC = () => {
                     type="button"
                     onClick={() => handleSendMessage(q)}
                     disabled={isLoading}
-                    className="text-left px-4 py-2.5 rounded-xl bg-paper hover:bg-subtle border border-black/[0.08] dark:border-white/[0.08] hover:border-cobalt/40 text-xs font-sans text-ink transition-all flex items-center justify-between group cursor-pointer disabled:opacity-50"
+                    className="text-left px-4 py-3 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 hover:border-cobalt/50 text-xs font-sans text-slate-800 font-medium transition-all flex items-center justify-between group cursor-pointer shadow-2xs disabled:opacity-50"
                   >
                     <span>&ldquo;{q}&rdquo;</span>
-                    <ArrowRight className="w-3 h-3 text-muted group-hover:text-cobalt group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-cobalt group-hover:translate-x-0.5 transition-all" />
                   </button>
                 ))}
               </div>
@@ -190,15 +194,15 @@ export const CurioChapter: React.FC = () => {
           </div>
 
           {/* Right Column: Conversational Canvas (8 cols) */}
-          <div className="lg:col-span-8 bg-paper rounded-2xl border border-black/[0.08] dark:border-white/[0.08] shadow-xs flex flex-col h-[520px] overflow-hidden">
+          <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200/90 shadow-sm flex flex-col h-[520px] overflow-hidden">
             
             {/* Terminal Top Bar */}
-            <div className="px-5 py-3.5 border-b border-black/[0.08] dark:border-white/[0.08] bg-subtle/50 flex items-center justify-between text-xs font-mono">
+            <div className="px-6 py-3.5 border-b border-slate-100 bg-slate-50/70 flex items-center justify-between text-xs font-mono">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-semibold text-ink">CURIO Active Session</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-bold text-slate-800">CURIO Active Session</span>
               </div>
-              <span className="text-muted text-[11px]">Multi-turn Contextual Memory</span>
+              <span className="text-slate-500 text-[11px] font-medium">Multi-turn Contextual Memory</span>
             </div>
 
             {/* Message Stream Scroll Area */}
@@ -209,20 +213,20 @@ export const CurioChapter: React.FC = () => {
                   className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] sm:max-w-[78%] rounded-2xl p-4 text-xs sm:text-sm font-sans leading-relaxed shadow-xs ${
+                    className={`max-w-[85%] sm:max-w-[80%] rounded-2xl p-4 text-xs sm:text-sm font-sans leading-relaxed shadow-xs ${
                       msg.sender === 'user'
-                        ? 'bg-ink text-paper rounded-br-xs'
-                        : 'bg-surface text-ink border border-black/[0.08] dark:border-white/[0.08] rounded-bl-xs'
+                        ? 'bg-slate-900 text-white rounded-br-xs'
+                        : 'bg-slate-50 text-slate-800 border border-slate-200/80 rounded-bl-xs font-normal'
                     }`}
                   >
                     <p className="whitespace-pre-line">{msg.text}</p>
 
                     {/* Suggested Navigation Route Link if Provided */}
                     {msg.suggestedRoute && (
-                      <div className="mt-3 pt-2.5 border-t border-black/[0.08] dark:border-white/[0.08]">
+                      <div className="mt-3 pt-2.5 border-t border-slate-200">
                         <Link
                           to={msg.suggestedRoute}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cobalt text-white text-[11px] font-mono font-semibold hover:bg-cobalt/90 transition-colors shadow-xs"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cobalt text-white text-[11px] font-mono font-bold hover:bg-blue-700 transition-colors shadow-2xs"
                         >
                           <span>{msg.routeLabel || 'Explore Page'}</span>
                           <ArrowRight className="w-3 h-3" />
@@ -230,7 +234,7 @@ export const CurioChapter: React.FC = () => {
                       </div>
                     )}
                   </div>
-                  <span className="text-[10px] font-mono text-faint mt-1 px-1">
+                  <span className="text-[10px] font-mono text-slate-400 mt-1 px-1 font-medium">
                     {msg.timestamp}
                   </span>
                 </div>
@@ -238,13 +242,13 @@ export const CurioChapter: React.FC = () => {
 
               {/* Restrained Typing Indicator */}
               {isLoading && (
-                <div className="flex items-center gap-2 text-xs font-mono text-muted bg-surface p-3.5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] w-fit">
+                <div className="flex items-center gap-2 text-xs font-mono text-slate-500 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 w-fit">
                   <div className="flex gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-cobalt animate-bounce" />
                     <span className="w-1.5 h-1.5 rounded-full bg-cobalt animate-bounce [animation-delay:0.15s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-cobalt animate-bounce [animation-delay:0.3s]" />
                   </div>
-                  <span className="text-[11px]">CURIO is consulting Harshad&apos;s records...</span>
+                  <span className="text-[11px] font-medium">CURIO is consulting Harshad&apos;s verified records...</span>
                 </div>
               )}
 
@@ -253,8 +257,8 @@ export const CurioChapter: React.FC = () => {
 
             {/* Network / Error Notice Banner if triggered */}
             {errorNotice && (
-              <div className="px-5 py-2 bg-amber-500/10 border-t border-amber-500/20 text-xs font-mono text-amber-700 dark:text-amber-400 flex items-center gap-2">
-                <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+              <div className="px-5 py-2 bg-amber-50 border-t border-amber-200 text-xs font-mono text-amber-900 flex items-center gap-2">
+                <AlertCircle className="w-3.5 h-3.5 shrink-0 text-amber-700" />
                 <span>{errorNotice}</span>
               </div>
             )}
@@ -265,20 +269,20 @@ export const CurioChapter: React.FC = () => {
                 e.preventDefault();
                 handleSendMessage();
               }}
-              className="p-3 sm:p-4 border-t border-black/[0.08] dark:border-white/[0.08] bg-surface flex items-center gap-2"
+              className="p-3 sm:p-4 border-t border-slate-100 bg-slate-50/50 flex items-center gap-2"
             >
               <input
                 type="text"
                 value={inputValue}
                 onChange={e => setInputValue(e.target.value)}
-                placeholder="Ask CURIO anything about Harshad..."
+                placeholder="Ask CURIO anything about Harshad's work, learning, or projects..."
                 disabled={isLoading}
-                className="flex-1 bg-subtle px-4 py-2.5 rounded-xl border border-black/[0.08] dark:border-white/[0.08] text-xs sm:text-sm font-sans text-ink placeholder:text-muted focus:outline-hidden focus:border-cobalt disabled:opacity-60"
+                className="flex-1 bg-white px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-sans text-slate-800 placeholder:text-slate-400 focus:outline-hidden focus:border-cobalt disabled:opacity-60 shadow-2xs"
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="px-4 py-2.5 rounded-xl bg-cobalt text-white text-xs font-mono font-semibold flex items-center gap-1.5 hover:bg-cobalt/90 disabled:opacity-40 transition-all cursor-pointer shadow-xs"
+                className="px-5 py-2.5 rounded-xl bg-cobalt text-white text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 hover:bg-blue-700 disabled:opacity-40 transition-all cursor-pointer shadow-sm"
               >
                 <span>Send</span>
                 <Send className="w-3.5 h-3.5" />

@@ -12,7 +12,7 @@ export const CinematicIntroOverlay: React.FC<CinematicIntroOverlayProps> = ({ on
 
   useEffect(() => {
     // Check if user has already seen the intro during this browser session
-    const hasSeenIntro = sessionStorage.getItem('has_seen_intro_v5');
+    const hasSeenIntro = sessionStorage.getItem('has_seen_cinematic_v6');
     
     // Check reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -22,26 +22,26 @@ export const CinematicIntroOverlay: React.FC<CinematicIntroOverlayProps> = ({ on
       return;
     }
 
-    // Begin sequence
+    // Begin bright cinematic sequence
     setIsVisible(true);
 
     const timer1 = setTimeout(() => {
       setStage('monogram');
-    }, 150);
+    }, 120);
 
     const timer2 = setTimeout(() => {
       setStage('name');
-    }, 600);
+    }, 500);
 
     const timer3 = setTimeout(() => {
       setStage('exit');
-    }, 1450);
+    }, 1300);
 
     const timer4 = setTimeout(() => {
       setIsVisible(false);
-      sessionStorage.setItem('has_seen_intro_v5', 'true');
+      sessionStorage.setItem('has_seen_cinematic_v6', 'true');
       onComplete?.();
-    }, 1950);
+    }, 1750);
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -62,7 +62,7 @@ export const CinematicIntroOverlay: React.FC<CinematicIntroOverlayProps> = ({ on
 
   const dismissIntro = () => {
     setIsVisible(false);
-    sessionStorage.setItem('has_seen_intro_v5', 'true');
+    sessionStorage.setItem('has_seen_cinematic_v6', 'true');
     onComplete?.();
   };
 
@@ -75,31 +75,34 @@ export const CinematicIntroOverlay: React.FC<CinematicIntroOverlayProps> = ({ on
           key="cinematic-intro"
           initial={{ opacity: 1 }}
           animate={{ opacity: stage === 'exit' ? 0 : 1 }}
-          exit={{ opacity: 0, y: -40 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[100] bg-neutral-950 text-neutral-100 flex flex-col items-center justify-center overflow-hidden pointer-events-auto selection:bg-cobalt/30 select-none"
+          exit={{ opacity: 0, scale: 1.04 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed inset-0 z-[100] bg-gradient-to-br from-[#FFFDF9] via-[#F8FAFC] to-[#F0FDF4] text-[#1E293B] flex flex-col items-center justify-center overflow-hidden pointer-events-auto selection:bg-cobalt/20 select-none"
         >
-          {/* Subtle architectural grid pattern */}
+          {/* Subtle sunlit architectural grid & luminous aura */}
           <div 
-            className="absolute inset-0 opacity-[0.04] pointer-events-none"
+            className="absolute inset-0 opacity-[0.06] pointer-events-none"
             style={{ 
-              backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', 
-              backgroundSize: '32px 32px' 
+              backgroundImage: 'radial-gradient(circle, #0284C7 1.5px, transparent 1.5px)', 
+              backgroundSize: '36px 36px' 
             }}
           />
 
-          {/* Top Folio Indicator */}
+          <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-amber-300/30 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-sky-300/30 blur-3xl pointer-events-none" />
+
+          {/* Top Folio Film Slate Indicator */}
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute top-6 left-6 right-6 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-neutral-400"
+            transition={{ duration: 0.35 }}
+            className="absolute top-6 left-6 right-6 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-slate-500"
           >
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cobalt inline-block animate-pulse" />
-              <span>THE DIGITAL EXHIBITION</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block animate-ping" />
+              <span className="font-bold text-slate-800">SCENE 01 // TITLE SEQUENCE</span>
             </div>
-            <span>VOL. 05 // 2026 EDITION</span>
+            <span className="hidden sm:inline font-semibold text-cobalt">THE DIGITAL UNIVERSE • VOL. 06</span>
           </motion.div>
 
           {/* Centerpiece Composition */}
@@ -107,13 +110,14 @@ export const CinematicIntroOverlay: React.FC<CinematicIntroOverlayProps> = ({ on
             
             {/* Monogram Reveal */}
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.7, opacity: 0, rotate: -6 }}
               animate={{ 
-                scale: stage !== 'initial' ? 1 : 0.8, 
-                opacity: stage !== 'initial' ? 1 : 0 
+                scale: stage !== 'initial' ? 1 : 0.7, 
+                opacity: stage !== 'initial' ? 1 : 0,
+                rotate: stage !== 'initial' ? 0 : -6
               }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="p-3 rounded-2xl bg-white/[0.04] border border-white/10 shadow-2xl backdrop-blur-xs"
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="p-4 rounded-3xl bg-white/90 border border-slate-200/80 shadow-xl backdrop-blur-md"
             >
               <BrandMonogram size={56} />
             </motion.div>
@@ -121,51 +125,58 @@ export const CinematicIntroOverlay: React.FC<CinematicIntroOverlayProps> = ({ on
             {/* Typography Stagger */}
             <div className="space-y-2 overflow-hidden">
               <motion.div
-                initial={{ y: 40, opacity: 0 }}
+                initial={{ y: 35, opacity: 0 }}
                 animate={{ 
-                  y: stage === 'name' || stage === 'exit' ? 0 : 40, 
+                  y: stage === 'name' || stage === 'exit' ? 0 : 35, 
                   opacity: stage === 'name' || stage === 'exit' ? 1 : 0 
                 }}
-                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className="text-[11px] font-mono tracking-[0.3em] uppercase text-cobalt font-semibold block mb-1">
-                  PORTFOLIO OF
-                </span>
-                <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
+                <div className="flex items-center justify-center gap-2 mb-1.5">
+                  <span className="h-px w-6 bg-coral/60" />
+                  <span className="text-[11px] font-mono tracking-[0.25em] uppercase text-coral font-bold">
+                    AN INTERACTIVE FILM
+                  </span>
+                  <span className="h-px w-6 bg-coral/60" />
+                </div>
+                <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 leading-[1.02]">
                   HARSHAD MANE
                 </h1>
               </motion.div>
 
               <motion.p
                 initial={{ opacity: 0 }}
-                animate={{ opacity: stage === 'name' || stage === 'exit' ? 0.7 : 0 }}
-                transition={{ duration: 0.4, delay: 0.15 }}
-                className="text-xs sm:text-sm font-mono text-neutral-400 tracking-wide"
+                animate={{ opacity: stage === 'name' || stage === 'exit' ? 0.9 : 0 }}
+                transition={{ duration: 0.35, delay: 0.1 }}
+                className="text-xs sm:text-sm font-mono text-slate-600 tracking-wide font-medium"
               >
-                Computer Science &bull; Systems &bull; Applied AI &bull; Cinematography
+                Computer Science &bull; Systems &bull; Applied AI &bull; Creative Vision
               </motion.p>
             </div>
 
-            {/* Hairline Loading / Transition Bar */}
-            <div className="w-36 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
+            {/* Luminous Warm Hairline Bar */}
+            <div className="w-44 h-1 bg-slate-200 rounded-full overflow-hidden relative">
               <motion.div 
                 initial={{ x: '-100%' }}
                 animate={{ x: stage === 'name' || stage === 'exit' ? '100%' : '-100%' }}
-                transition={{ duration: 0.9, ease: 'easeInOut' }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-cobalt to-transparent"
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+                className="absolute inset-0 bg-gradient-to-r from-amber-400 via-coral to-cobalt"
               />
             </div>
           </div>
 
-          {/* Bottom Escape / Skip Prompt */}
-          <div className="absolute bottom-6 flex items-center justify-between w-full px-6 text-[10px] font-mono text-neutral-400">
-            <span>ADCET ASHTA, MAHARASHTRA</span>
+          {/* Bottom Coordinates & Skip Control */}
+          <div className="absolute bottom-6 flex items-center justify-between w-full px-6 text-[11px] font-mono text-slate-500">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span>ADCET ASHTA, MAHARASHTRA</span>
+            </span>
             <button
               type="button"
               onClick={dismissIntro}
-              className="hover:text-white transition-colors cursor-pointer px-2 py-1 rounded-md bg-white/[0.05] border border-white/10"
+              className="hover:text-slate-900 hover:border-slate-400 transition-all cursor-pointer px-3 py-1 rounded-lg bg-white/80 border border-slate-200 shadow-xs font-semibold"
             >
-              Skip Intro [Esc]
+              Skip Intro [Esc] &rarr;
             </button>
           </div>
         </motion.div>

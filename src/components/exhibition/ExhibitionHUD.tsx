@@ -7,14 +7,14 @@ interface Chapter {
 }
 
 const CHAPTERS: Chapter[] = [
-  { id: 'chapter-00', number: '00', title: 'PROLOGUE' },
-  { id: 'chapter-01', number: '01', title: 'MANIFESTO' },
-  { id: 'chapter-02', number: '02', title: 'PROJECT EXHIBITION' },
-  { id: 'chapter-03', number: '03', title: 'JOURNEY' },
-  { id: 'chapter-04', number: '04', title: 'CREATIVE WORLD' },
-  { id: 'chapter-05', number: '05', title: 'ARCHIVE' },
-  { id: 'chapter-06', number: '06', title: 'CURIO' },
-  { id: 'chapter-07', number: '07', title: 'FINALE' },
+  { id: 'chapter-00', number: '01', title: 'THE PERSON' },
+  { id: 'chapter-01', number: '02', title: 'MANIFESTO' },
+  { id: 'chapter-02', number: '03', title: 'PROJECT JOURNEY' },
+  { id: 'chapter-03', number: '04', title: 'LEARNING & SYSTEMS' },
+  { id: 'chapter-04', number: '05', title: 'CREATIVE WORLD' },
+  { id: 'chapter-05', number: '06', title: 'MILESTONES' },
+  { id: 'chapter-06', number: '07', title: 'CURIO GUIDE' },
+  { id: 'chapter-07', number: '08', title: 'FINAL FRAME' },
 ];
 
 export const ExhibitionHUD: React.FC = () => {
@@ -54,7 +54,7 @@ export const ExhibitionHUD: React.FC = () => {
       {/* Current Chapter Pill */}
       <div className="px-3.5 py-2 rounded-2xl bg-surface/90 backdrop-blur-md border border-black/[0.08] dark:border-white/[0.12] shadow-lg flex items-center gap-2.5 text-[11px] font-mono">
         <span className="w-2 h-2 rounded-full bg-cobalt animate-pulse" />
-        <span className="font-bold text-ink">CHAPTER {current.number}</span>
+        <span className="font-bold text-ink">SCENE {current.number}</span>
         <span className="text-muted tracking-widest">//</span>
         <span className="text-muted tracking-wider">{current.title}</span>
       </div>

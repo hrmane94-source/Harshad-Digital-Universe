@@ -166,11 +166,11 @@ export const CurioAssistant: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-surface/90 backdrop-blur-md text-ink border border-black/[0.1] dark:border-white/[0.15] text-xs font-mono font-medium shadow-lg hover:border-cobalt transition-all cursor-pointer group"
+            className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 backdrop-blur-md text-slate-900 border border-slate-200 text-xs font-mono font-semibold shadow-md hover:border-cobalt transition-all cursor-pointer group"
           >
-            <span className="w-2 h-2 rounded-full bg-cobalt animate-pulse" />
-            <span className="font-bold tracking-wider">CURIO</span>
-            <span className="text-muted text-[11px]">&bull; A curious guide</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+            <span className="font-bold tracking-wider text-cobalt">CURIO</span>
+            <span className="text-slate-500 text-[11px]">&bull; A curious guide</span>
           </button>
 
           <button
@@ -178,13 +178,13 @@ export const CurioAssistant: React.FC = () => {
             type="button"
             onClick={() => setIsOpen(true)}
             aria-label="Open CURIO portfolio guide"
-            className="w-13 h-13 rounded-2xl bg-ink text-paper border border-black/[0.12] dark:border-white/[0.2] flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer relative group"
+            className="w-13 h-13 rounded-2xl bg-gradient-to-br from-cobalt via-blue-600 to-sky-500 text-white border border-blue-400/30 flex items-center justify-center shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer relative group"
           >
             <div className="relative">
-              <BrandMonogram size={24} className="text-paper transition-transform group-hover:scale-105" />
-              <Sparkles className="w-3.5 h-3.5 text-coral absolute -top-1 -right-1 animate-spin duration-3000" />
+              <BrandMonogram size={24} className="text-white transition-transform group-hover:scale-105" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-300 absolute -top-1 -right-1 animate-spin duration-3000" />
             </div>
-            <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cobalt border-2 border-paper" />
+            <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-400 border-2 border-white" />
           </button>
         </div>
       )}
