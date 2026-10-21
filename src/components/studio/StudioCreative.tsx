@@ -1,79 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, MapPin, ArrowRight, Compass } from 'lucide-react';
+import { MapPin, ArrowRight, Compass, Play, Film, X } from 'lucide-react';
 import { InstagramIcon } from '../ui/BrandIcons';
 import { contactConfig } from '../../data/contact';
-
-interface VisualEditorialPiece {
-  id: string;
-  title: string;
-  category: 'photography' | 'cinematography' | 'essay';
-  tag: string;
-  aspectRatio: string;
-  span: string;
-  location: string;
-  date: string;
-  caption: string;
-  technicalNote: string;
-}
-
-const editorialPieces: VisualEditorialPiece[] = [
-  {
-    id: 'piece-nature-dawn',
-    title: 'Horizon at Dawn',
-    category: 'photography',
-    tag: 'Landscape & Solitude',
-    aspectRatio: 'aspect-[16/10]',
-    span: 'lg:col-span-8',
-    location: 'Western Ghats, Maharashtra',
-    date: '2026',
-    caption: 'Quiet dawn landscape study. Capturing the soft sunlit gradient where morning mist breaks over the ridge line.',
-    technicalNote: 'Natural morning light exposure // 35mm equivalent perspective'
-  },
-  {
-    id: 'piece-monsoon-rain',
-    title: 'Monsoon Mist',
-    category: 'photography',
-    tag: 'Atmosphere',
-    aspectRatio: 'aspect-[4/5]',
-    span: 'lg:col-span-4',
-    location: 'Ashta Countryside, Sangli',
-    date: '2026',
-    caption: 'Rain study in rural Maharashtra. Heavy overcast clouds softening contrast across lush foliage.',
-    technicalNote: 'Subdued saturation // High shutter speed rain capture'
-  },
-  {
-    id: 'piece-mountain-path',
-    title: 'Sahyadri Ascent',
-    category: 'cinematography',
-    tag: 'Motion & Terrain',
-    aspectRatio: 'aspect-[4/3]',
-    span: 'lg:col-span-4',
-    location: 'Western Ghats Pass',
-    date: '2026',
-    caption: 'Chasing elevations and curving roads through Sahyadri ghats. Framing nature as a quiet sanctuary.',
-    technicalNote: 'Motorcycle expedition visual frame // Ambient environmental sound'
-  },
-  {
-    id: 'piece-texture-stone',
-    title: 'Architectural Stone & Shadow',
-    category: 'essay',
-    tag: 'Heritage & Form',
-    aspectRatio: 'aspect-[16/9]',
-    span: 'lg:col-span-8',
-    location: 'Historic Maharashtra Environs',
-    date: '2026',
-    caption: 'Monolithic stone masonry surviving centuries. Exploring symmetry, patina, and tactile geometry in ancient architecture.',
-    technicalNote: 'Deep dynamic range // Architectural framing'
-  }
-];
+import { creativeGalleryItems, creativeCategoriesList } from '../../data/gallery';
+import type { CreativeMediaItem } from '../../types/portfolio';
 
 export const StudioCreative: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [activeMedia, setActiveMedia] = useState<CreativeMediaItem | null>(null);
 
+  const published = creativeGalleryItems.filter(item => item.published);
+
+  // Curate featured or matching items
   const filteredPieces = selectedCategory === 'all'
-    ? editorialPieces
-    : editorialPieces.filter(p => p.category === selectedCategory);
+    ? published.slice(0, 8)
+    : published.filter(p => p.category === selectedCategory).slice(0, 8);
 
   return (
     <section 
@@ -97,8 +39,8 @@ export const StudioCreative: React.FC = () => {
               <span className="italic font-serif text-coral font-bold">collected along the way.&rdquo;</span>
             </h2>
 
-            <div className="flex items-center gap-3 pt-1 text-xs font-mono text-muted">
-              <span className="font-bold text-ink">BRAND IDENTITY:</span>
+            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-mono text-muted">
+              <span className="font-bold text-ink">CREATIVE IDENTITY:</span>
               <a
                 href={contactConfig.profiles.instagram}
                 target="_blank"
@@ -108,6 +50,8 @@ export const StudioCreative: React.FC = () => {
                 <InstagramIcon className="w-3 h-3" />
                 <span>@{contactConfig.creativeIdentity}</span>
               </a>
+              <span>&bull;</span>
+              <span>{published.length} Authentic Photos &amp; Video Clips</span>
             </div>
           </div>
 
@@ -116,7 +60,7 @@ export const StudioCreative: React.FC = () => {
               to="/creative"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs"
             >
-              <span>Explore Visual Archive</span>
+              <span>Explore All {published.length} Works</span>
               <ArrowRight className="w-3.5 h-3.5 text-coral" />
             </Link>
           </div>
@@ -124,17 +68,12 @@ export const StudioCreative: React.FC = () => {
 
         {/* Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-          {[
-            { id: 'all', label: 'All Curated Pieces' },
-            { id: 'photography', label: 'Landscape & Solitude' },
-            { id: 'cinematography', label: 'Rides & Motion' },
-            { id: 'essay', label: 'Architectural Studies' }
-          ].map(cat => (
+          {creativeCategoriesList.slice(0, 6).map(cat => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono transition-colors cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full text-xs font-mono transition-colors cursor-pointer shrink-0 ${
                 selectedCategory === cat.id
                   ? 'bg-ink text-paper font-bold shadow-xs'
                   : 'bg-surface text-muted hover:text-ink border border-slate-200 dark:border-white/10'
@@ -145,48 +84,53 @@ export const StudioCreative: React.FC = () => {
           ))}
         </div>
 
-        {/* Creative Editorial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Creative Asymmetric Grid — Authentic Photos & Videos */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
           {filteredPieces.map((piece) => (
             <div 
               key={piece.id}
-              className={`${piece.span} p-6 sm:p-7 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 shadow-xs hover:shadow-md transition-all space-y-4 group`}
+              onClick={() => setActiveMedia(piece)}
+              className="p-4 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 shadow-xs hover:shadow-md transition-all space-y-3 group cursor-pointer"
             >
-              {/* Artistic Framed Viewport */}
-              <div className={`w-full ${piece.aspectRatio} rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 flex flex-col justify-between p-4 relative overflow-hidden`}>
-                <div className="flex items-center justify-between text-xs font-mono text-muted">
-                  <span className="px-2 py-0.5 rounded bg-surface/90 backdrop-blur-md border border-slate-200 dark:border-white/10 font-bold text-[10px]">
-                    {piece.tag}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-coral" />
-                    <span>{piece.location}</span>
-                  </span>
-                </div>
+              {/* Media Viewport */}
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center">
+                <img
+                  src={piece.thumbnail || piece.source}
+                  alt={piece.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
 
-                <div className="text-center py-6">
-                  <div className="w-12 h-12 rounded-full bg-surface/90 border border-slate-200 dark:border-white/10 mx-auto flex items-center justify-center text-coral shadow-xs group-hover:scale-105 transition-transform">
-                    <Camera className="w-5 h-5" />
+                {/* If video: render video play indicator */}
+                {piece.mediaType === 'video' && (
+                  <div className="absolute inset-0 bg-black/35 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-white/95 text-slate-900 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                      <Play className="w-4 h-4 ml-0.5 fill-slate-900" />
+                    </div>
+                    <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/80 text-white flex items-center gap-1">
+                      <Film className="w-2.5 h-2.5 text-sunny" />
+                      <span>VIDEO</span>
+                    </span>
                   </div>
-                  <span className="font-serif italic text-sm text-muted mt-2 block">
-                    Authentic visual study
-                  </span>
-                </div>
+                )}
 
-                <div className="flex items-center justify-between text-[11px] font-mono text-muted border-t border-slate-200/60 dark:border-white/10 pt-2">
-                  <span>{piece.technicalNote}</span>
-                  <span className="font-bold text-ink">{piece.date}</span>
-                </div>
+                <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[9px] font-mono uppercase bg-black/70 text-white backdrop-blur-xs">
+                  {piece.category}
+                </span>
               </div>
 
-              {/* Editorial Description */}
-              <div className="space-y-1.5">
-                <h3 className="font-serif text-xl sm:text-2xl font-bold text-ink">
+              {/* Description */}
+              <div className="space-y-1">
+                <h3 className="font-serif text-base font-bold text-ink group-hover:text-coral transition-colors truncate">
                   {piece.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
-                  {piece.caption}
-                </p>
+                <div className="flex items-center justify-between text-[10px] font-mono text-muted pt-1 border-t border-slate-100 dark:border-white/5">
+                  <span className="flex items-center gap-1 truncate max-w-[70%]">
+                    <MapPin className="w-2.5 h-2.5 text-coral shrink-0" />
+                    <span className="truncate">{piece.location}</span>
+                  </span>
+                  <span>{piece.date}</span>
+                </div>
               </div>
             </div>
           ))}
@@ -200,7 +144,7 @@ export const StudioCreative: React.FC = () => {
               <span>TRAVEL &amp; MOTORCYCLE EXPEDITION HORIZONS</span>
             </div>
             <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-sans">
-              Dreaming of long-distance motorcycle expeditions across the high passes of Ladakh and remote corners of India.
+              Documenting journeys through Western Ghats passes and dreaming of long-distance motorcycle expeditions across Ladakh and remote India.
             </p>
           </div>
 
@@ -214,6 +158,58 @@ export const StudioCreative: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Lightbox Modal for Homepage Preview */}
+      {activeMedia && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
+          onClick={() => setActiveMedia(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setActiveMedia(null)}
+            className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition-colors cursor-pointer z-50"
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          <div 
+            className="max-w-4xl w-full bg-surface dark:bg-slate-900 rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-black flex-1 flex items-center justify-center p-2 min-h-[40vh] max-h-[70vh]">
+              {activeMedia.mediaType === 'video' ? (
+                <video 
+                  src={activeMedia.source} 
+                  poster={activeMedia.poster || activeMedia.thumbnail}
+                  controls 
+                  autoPlay 
+                  playsInline 
+                  className="max-h-[68vh] w-auto max-w-full mx-auto rounded-lg" 
+                />
+              ) : (
+                <img 
+                  src={activeMedia.source} 
+                  alt={activeMedia.alt} 
+                  className="max-h-[68vh] w-auto max-w-full mx-auto object-contain rounded-lg" 
+                />
+              )}
+            </div>
+
+            <div className="p-5 space-y-1.5 border-t border-slate-200 dark:border-white/10 bg-surface dark:bg-slate-900">
+              <div className="flex items-center justify-between text-xs font-mono text-muted">
+                <span className="uppercase text-coral font-bold">{activeMedia.category}</span>
+                <span>{activeMedia.location}</span>
+              </div>
+              <h3 className="font-serif text-xl font-bold text-ink">{activeMedia.title}</h3>
+              {activeMedia.caption && (
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-sans">{activeMedia.caption}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
