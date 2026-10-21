@@ -10,12 +10,9 @@ import {
   Bike,
   ArrowRight
 } from 'lucide-react';
-import { assetConfig } from '../data/assets';
-import { contactConfig } from '../data/contact';
-import { BrandMonogram } from '../components/ui/BrandMonogram';
+import { EditorialPortrait } from '../components/ui/EditorialPortrait';
 
 export const AboutPage: React.FC = () => {
-  const hasPortrait = Boolean(assetConfig.identity.portrait && assetConfig.identity.portrait.trim() !== "");
 
   const personalInterests = [
     { title: "Cinematography & Visual Framing", icon: Camera, desc: "Capturing movement, lighting, and landscape perspectives." },
@@ -79,40 +76,9 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Portrait Slot or Designed Monogram Placeholder */}
+        {/* Right: Editorial Portrait Showcase */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="w-full max-w-sm aspect-4/5 rounded-3xl overflow-hidden border border-black/[0.1] dark:border-white/[0.12] bg-surface p-6 flex flex-col justify-between shadow-lg relative group">
-
-            <div className="flex items-center justify-between text-[11px] text-muted font-mono pb-2 border-b border-black/[0.06] dark:border-white/[0.08]">
-              <span>AUTHENTIC IDENTITY</span>
-              <span className="text-cobalt">@{contactConfig.creativeIdentity}</span>
-            </div>
-
-            {hasPortrait ? (
-              <img
-                src={assetConfig.identity.portrait}
-                alt={assetConfig.identity.portraitAlt}
-                className="w-full h-full object-cover rounded-2xl"
-              />
-            ) : (
-              <div className="my-auto text-center space-y-4 py-8">
-                <BrandMonogram size={64} className="mx-auto" />
-                <div>
-                  <h3 className="font-serif text-2xl font-semibold text-ink">{contactConfig.publicDisplayName}</h3>
-                  <p className="text-xs font-mono text-muted mt-1">B.Tech CSE Student &bull; ADCET Ashta</p>
-                </div>
-                <div className="text-[10px] font-mono text-muted bg-subtle px-3 py-1.5 rounded-full inline-block">
-                  Sangli, Maharashtra &bull; India
-                </div>
-              </div>
-            )}
-
-            <div className="pt-3 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-muted">
-              <span>Status: Active CSE Undergrad</span>
-              <span>2026 – 2030</span>
-            </div>
-
-          </div>
+          <EditorialPortrait variant="about" className="w-full max-w-sm mx-auto" />
         </div>
 
       </section>

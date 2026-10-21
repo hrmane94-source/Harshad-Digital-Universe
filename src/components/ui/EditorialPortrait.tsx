@@ -1,18 +1,41 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Award } from 'lucide-react';
+import { Award, UserCheck } from 'lucide-react';
 import { BrandMonogram } from './BrandMonogram';
 import { assetConfig } from '../../data/assets';
+import { contactConfig } from '../../data/contact';
 
 interface EditorialPortraitProps {
   className?: string;
+  variant?: 'hero' | 'about';
+  aspectRatio?: string;
 }
 
-export const EditorialPortrait: React.FC<EditorialPortraitProps> = ({ className = "" }) => {
-  const [imageError, setImageError] = useState(false);
+const CANDIDATE_SOURCES = [
+  assetConfig.identity.portrait,
+  "/assets/identity/portrait.png",
+  "/assets/identity/portrait.jpg",
+  "/assets/identity/1000109865.png"
+].filter(Boolean) as string[];
+
+export const EditorialPortrait: React.FC<EditorialPortraitProps> = ({ 
+  className = "", 
+  variant = 'hero',
+  aspectRatio = 'aspect-square sm:aspect-[4/5]'
+}) => {
+  const [sourceIdx, setSourceIdx] = useState(0);
+  const [hasError, setHasError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const portraitSrc = assetConfig.identity.portrait || "/assets/identity/portrait.jpg";
+  const currentSrc = CANDIDATE_SOURCES[sourceIdx] || "/assets/identity/portrait.png";
+
+  const handleImageError = () => {
+    if (sourceIdx < CANDIDATE_SOURCES.length - 1) {
+      setSourceIdx(prev => prev + 1);
+    } else {
+      setHasError(true);
+    }
+  };
 
   return (
     <div className={`relative ${className}`}>
@@ -22,26 +45,29 @@ export const EditorialPortrait: React.FC<EditorialPortraitProps> = ({ className 
       <div className="absolute -inset-1.5 sm:-inset-2 bg-gradient-to-br from-sunny/40 via-amber-200/50 to-cobalt/30 rounded-[2.25rem] transform rotate-1 -z-10" />
 
       {/* Main Portrait Frame */}
-      <div className="relative aspect-[4/5] sm:aspect-[3/4] rounded-3xl overflow-hidden bg-surface border-2 border-slate-900/10 dark:border-white/15 shadow-xl">
+      <div className={`relative ${aspectRatio} rounded-3xl overflow-hidden bg-surface border-2 border-slate-900/10 dark:border-white/15 shadow-xl`}>
         
-        {/* If image exists and hasn't errored */}
-        {!imageError ? (
+        {/* If image exists and hasn't exhausted all sources */}
+        {!hasError ? (
           <>
             <img
-              src={portraitSrc}
-              alt={assetConfig.identity.portraitAlt || "Harshad Mane — Personal Portrait"}
+              src={currentSrc}
+              alt={assetConfig.identity.portraitAlt || "Harshad Mane — Personal Photograph"}
               onLoad={() => setImageLoaded(true)}
-              onError={() => setImageError(true)}
-              className={`w-full h-full object-cover object-top transition-all duration-700 ${
+              onError={handleImageError}
+              className={`w-full h-full object-cover object-top sm:object-center transition-all duration-700 ${
                 imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
               }`}
             />
+
+            {/* Subtle Gradient Shade at bottom for badge contrast */}
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/50 via-black/20 to-transparent pointer-events-none" />
 
             {/* Fallback while loading */}
             {!imageLoaded && (
               <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[#FFFDF9] via-[#FAF8F5] to-amber-50/40">
                 <BrandMonogram size={56} className="animate-pulse" />
-                <span className="font-mono text-xs text-muted mt-3">Loading portrait...</span>
+                <span className="font-mono text-xs text-muted mt-3">Loading photograph...</span>
               </div>
             )}
           </>
@@ -71,15 +97,15 @@ export const EditorialPortrait: React.FC<EditorialPortraitProps> = ({ className 
 
               <div className="space-y-1">
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-ink tracking-tight">
-                  Harshad Mane
+                  {contactConfig.publicDisplayName}
                 </h3>
                 <p className="text-xs font-mono text-muted tracking-wide">
-                  @shiv.premi_1630
+                  @{contactConfig.creativeIdentity}
                 </p>
               </div>
 
               <p className="text-xs text-slate-600 dark:text-slate-300 font-sans max-w-xs mx-auto leading-relaxed italic">
-                &ldquo;Curious enough to explore. Driven enough to build.&rdquo;
+                &ldquo;{contactConfig.motto}&rdquo;
               </p>
             </div>
 
@@ -91,27 +117,53 @@ export const EditorialPortrait: React.FC<EditorialPortraitProps> = ({ className 
           </div>
         )}
 
-        {/* Floating Verified Achievement Badges on Portrait */}
-        <motion.div 
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="absolute top-4 left-4 z-20 px-3 py-1.5 rounded-xl bg-surface/95 backdrop-blur-md border border-black/[0.08] dark:border-white/15 shadow-md flex items-center gap-2 text-[10px] sm:text-[11px] font-mono"
-        >
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-bold text-ink">ACTIVE BUILDER</span>
-          <span className="text-muted hidden sm:inline">&bull; SIH &apos;26</span>
-        </motion.div>
+        {/* Floating Verified Achievement / Identity Badges on Portrait */}
+        {variant === 'hero' ? (
+          <>
+            <motion.div 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="absolute top-4 left-4 z-20 px-3 py-1.5 rounded-xl bg-surface/95 backdrop-blur-md border border-black/[0.08] dark:border-white/15 shadow-md flex items-center gap-2 text-[10px] sm:text-[11px] font-mono"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-bold text-ink">ACTIVE BUILDER</span>
+              <span className="text-muted hidden sm:inline">&bull; SIH &apos;26</span>
+            </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="absolute bottom-4 right-4 z-20 px-3.5 py-1.5 rounded-xl bg-cobalt text-white shadow-lg flex items-center gap-2 text-[10px] sm:text-[11px] font-mono font-bold"
-        >
-          <Award className="w-3.5 h-3.5 text-sunny" />
-          <span>PIXELCRAFT 2ND PLACE</span>
-        </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="absolute bottom-4 right-4 z-20 px-3.5 py-1.5 rounded-xl bg-cobalt text-white shadow-lg flex items-center gap-2 text-[10px] sm:text-[11px] font-mono font-bold"
+            >
+              <Award className="w-3.5 h-3.5 text-sunny" />
+              <span>PIXELCRAFT 2ND PLACE</span>
+            </motion.div>
+          </>
+        ) : (
+          <>
+            <motion.div 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="absolute top-4 left-4 z-20 px-3 py-1.5 rounded-xl bg-surface/95 backdrop-blur-md border border-black/[0.08] dark:border-white/15 shadow-md flex items-center gap-2 text-[10px] sm:text-[11px] font-mono"
+            >
+              <UserCheck className="w-3.5 h-3.5 text-cobalt" />
+              <span className="font-bold text-ink">AUTHENTIC IDENTITY</span>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="absolute bottom-4 left-4 z-20 px-3.5 py-1.5 rounded-xl bg-surface/95 backdrop-blur-md border border-black/[0.08] dark:border-white/15 shadow-lg flex items-center gap-2 text-[10px] sm:text-[11px] font-mono font-bold text-ink"
+            >
+              <span className="text-cobalt">@{contactConfig.creativeIdentity}</span>
+              <span className="text-muted">&bull; ADCET Ashta</span>
+            </motion.div>
+          </>
+        )}
 
       </div>
     </div>
