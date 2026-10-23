@@ -85,44 +85,65 @@ export const assetConfig: AssetRegistry = {
   },
   projects: {
     falcon404: {
-      cover: "",
-      screenshots: [],
+      cover: "/assets/projects/falcon-404/falcon 404.png",
+      screenshots: [
+        "/assets/projects/falcon-404/falcon 404.png",
+        "/assets/events/smart-india-hackathon/falcon 404.png"
+      ],
       architectureDiagram: "",
       demoVideo: "",
       certificate: "",
     },
     arogyaAI: {
-      cover: "",
-      screenshots: [],
+      cover: "/assets/projects/arogya-ai/Arogya AI Hospital Operations Dashboard.png",
+      screenshots: [
+        "/assets/projects/arogya-ai/Arogya AI Hospital Operations Dashboard.png",
+        "/assets/events/aarambh-wce/Arogya AI Hospital Operations Dashboard.png"
+      ],
       architectureDiagram: "",
       demoVideo: "",
       certificate: "",
     },
     campusCopilot: {
-      cover: "",
-      screenshots: [],
+      cover: "/assets/projects/campus-copilot/Campus Copilot College Dashboard.png",
+      screenshots: [
+        "/assets/projects/campus-copilot/Campus Copilot College Dashboard.png",
+        "/assets/events/tantraparv/Campus Copilot College Dashboard.png"
+      ],
       demoVideo: "",
       certificate: "",
     },
     neuroverseWebsite: {
-      cover: "",
-      screenshots: [],
+      cover: "/assets/projects/neuroverse-2k26/Neon Neuroverse 2K26 Event Homepage.png",
+      screenshots: [
+        "/assets/projects/neuroverse-2k26/Neon Neuroverse 2K26 Event Homepage.png",
+        "/assets/events/neuroverse-2k26/Neon Neuroverse 2K26 Event Homepage.png"
+      ],
       eventPhotographs: [],
       runnerUpCertificate: "",
     },
     gadaElectronics: {
-      cover: "",
-      screenshots: [],
+      cover: "/assets/projects/gada-electronics/GADA Electronics Futuristic Storefront.png",
+      screenshots: [
+        "/assets/projects/gada-electronics/GADA Electronics Futuristic Storefront.png",
+        "/assets/events/neuroverse-2k26/GADA Electronics Futuristic Storefront.png"
+      ],
       demoVideo: "",
     },
     artbookAI: {
-      cover: "",
-      screenshots: [],
+      cover: "/assets/projects/artbook-ai/ArtBook AI Artist Booking Dashboard.png",
+      screenshots: [
+        "/assets/projects/artbook-ai/ArtBook AI Artist Booking Dashboard.png",
+        "/assets/events/founders-expo/ArtBook AI Artist Booking Dashboard.png"
+      ],
       demoVideo: "",
     },
     ecoFriendlyPlanting: {
-      cover: "",
-      screenshots: [],
+      cover: "/assets/projects/eco-friendly-planting/EcoPlant Sustainable Planting Dashboard.png",
+      screenshots: [
+        "/assets/projects/eco-friendly-planting/EcoPlant Sustainable Planting Dashboard.png",
+        "/assets/events/school-events/EcoPlant Sustainable Planting Dashboard.png"
+      ],
     },
   },
   certificates: {

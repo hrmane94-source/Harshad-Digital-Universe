@@ -14,7 +14,8 @@ export const verifiedEvents: EventItem[] = [
       "Sole developer building client-side OCR, image forensics, and privacy-first masking",
       "Team ID: ISIH26106, Problem Statement: 26188",
       "Prepared end-to-end technical proposal, architecture schematics, and functional codebase"
-    ]
+    ],
+    eventPhotoAsset: "/assets/events/smart-india-hackathon/falcon 404.png"
   },
   {
     id: "evt-seva-first",
@@ -28,7 +29,8 @@ export const verifiedEvents: EventItem[] = [
     highlights: [
       "Presented working client-side forensic screening workflow",
       "Demonstrated real-time metadata and compression anomaly checks"
-    ]
+    ],
+    eventPhotoAsset: "/assets/events/smart-india-hackathon/falcon 404.png"
   },
   {
     id: "evt-neuroverse-pixelcraft",
@@ -42,7 +44,8 @@ export const verifiedEvents: EventItem[] = [
     highlights: [
       "Runner-up (2nd Place) recognition in PixelCraft",
       "Two complete responsive web applications designed and built under timed evaluation"
-    ]
+    ],
+    eventPhotoAsset: "/assets/events/neuroverse-2k26/Neon Neuroverse 2K26 Event Homepage.png"
   },
   {
     id: "evt-tantraparv",
@@ -56,7 +59,8 @@ export const verifiedEvents: EventItem[] = [
     highlights: [
       "Working conversational demonstration answering live panel questions",
       "Developed presentation deck and integrated front-end experience"
-    ]
+    ],
+    eventPhotoAsset: "/assets/events/tantraparv/Campus Copilot College Dashboard.png"
   },
   {
     id: "evt-founders-expo",
@@ -70,7 +74,8 @@ export const verifiedEvents: EventItem[] = [
     highlights: [
       "Interactive clickable prototype built with Google AI Studio",
       "Demonstrated multi-service discovery concept for photographers, cinematographers, and mehendi artists"
-    ]
+    ],
+    eventPhotoAsset: "/assets/events/founders-expo/ArtBook AI Artist Booking Dashboard.png"
   },
   {
     id: "evt-aarambh-wce",
@@ -84,7 +89,23 @@ export const verifiedEvents: EventItem[] = [
     highlights: [
       "Built feature flows, Supabase models, and integrated ML forecasting endpoints",
       "Tested prototype using a synthetic hospital bed demand dataset"
-    ]
+    ],
+    eventPhotoAsset: "/assets/events/aarambh-wce/Arogya AI Hospital Operations Dashboard.png"
+  },
+  {
+    id: "evt-ncsc-school-science",
+    name: "National Children's Science Congress & School Science Exhibition",
+    hostInstitution: "Padua High School / NCSC District Forum",
+    dates: "Class 8 (2022)",
+    role: "Student Researcher & Project Lead",
+    projectPresented: "Eco-Friendly Planting System",
+    status: "Participated",
+    description: "Researched and developed an automated eco-friendly planting and soil monitoring model, presenting empirical findings at the school exhibition and qualifying for the district evaluation forum.",
+    highlights: [
+      "Designed sustainable soil and irrigation monitoring prototype",
+      "Selected as school representative for district-level defense"
+    ],
+    eventPhotoAsset: "/assets/events/school-events/EcoPlant Sustainable Planting Dashboard.png"
   },
   {
     id: "evt-barc-visits",

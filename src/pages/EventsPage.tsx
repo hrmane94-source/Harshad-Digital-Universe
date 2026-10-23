@@ -84,6 +84,34 @@ export const EventsPage: React.FC = () => {
               )}
             </div>
 
+            {/* Event Photo / Presented Dashboard Asset */}
+            {evt.eventPhotoAsset && (
+              <div className="rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] bg-slate-950 shadow-md">
+                <div className="px-4 py-2 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-rose-500/80" />
+                      <div className="w-2 h-2 rounded-full bg-amber-500/80" />
+                      <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
+                    </div>
+                    <span>{evt.projectPresented ? `Presented Artifact: ${evt.projectPresented}` : 'Event Artifact'}</span>
+                  </div>
+                  <span className="text-emerald-400 text-[10px] flex items-center gap-1 font-mono">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Verified Exhibition Asset
+                  </span>
+                </div>
+                <div className="p-2 sm:p-4 bg-slate-950 flex items-center justify-center">
+                  <img
+                    src={evt.eventPhotoAsset}
+                    alt={evt.name}
+                    className="w-full max-h-[360px] object-contain rounded-lg"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            )}
+
             {/* Description */}
             <p className="text-xs sm:text-sm text-muted leading-relaxed">
               {evt.description}

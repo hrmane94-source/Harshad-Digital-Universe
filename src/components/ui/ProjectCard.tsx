@@ -29,14 +29,20 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Cover Artwork / Image */}
       <div className={`${featuredLayout ? 'lg:col-span-7' : 'w-full'}`}>
-        <Link to={`/projects/${project.slug}`} className="block overflow-hidden rounded-xl">
+        <Link to={`/projects/${project.slug}`} className="block overflow-hidden rounded-xl bg-slate-950 border border-black/[0.08] dark:border-white/[0.08]">
           {hasCoverAsset ? (
-            <img
-              src={project.assets.cover}
-              alt={project.title}
-              className="w-full aspect-video object-cover rounded-xl transition-transform duration-500 group-hover:scale-[1.02]"
-              loading="lazy"
-            />
+            <div className="relative overflow-hidden aspect-video bg-slate-950 flex items-center justify-center p-1.5 group-hover:bg-slate-900 transition-colors">
+              <img
+                src={project.assets.cover}
+                alt={project.title}
+                className="w-full h-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+              <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-slate-700/80 backdrop-blur-sm text-[10px] font-mono text-slate-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Live Dashboard</span>
+              </div>
+            </div>
           ) : (
             <ProjectCoverArtwork
               coverArtwork={project.coverArtwork}

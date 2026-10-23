@@ -104,13 +104,38 @@ export const ProjectDetailPage: React.FC = () => {
       </header>
 
       {/* Cover Showcase or Procedural Artwork */}
-      <section className="rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] shadow-lg">
+      <section className="rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] shadow-xl bg-slate-950">
         {hasCoverAsset ? (
-          <img
-            src={project.assets.cover}
-            alt={project.displayTitle}
-            className="w-full aspect-video sm:aspect-[21/9] object-cover"
-          />
+          <div className="flex flex-col">
+            {/* Workstation top bar */}
+            <div className="px-4 py-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                </div>
+                <span className="text-[11px] font-mono text-slate-400 pl-2 hidden sm:inline">{project.displayTitle} &bull; Verified Interface View</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700/60 uppercase tracking-wider">
+                  {project.domain}
+                </span>
+                <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Verified Asset
+                </span>
+              </div>
+            </div>
+            {/* Dashboard display (uncropped, preserving tables/charts/toolbars) */}
+            <div className="w-full bg-slate-950 flex items-center justify-center p-2 sm:p-4 md:p-6">
+              <img
+                src={project.assets.cover}
+                alt={project.displayTitle}
+                className="w-full max-h-[580px] object-contain rounded-lg shadow-2xl"
+              />
+            </div>
+          </div>
         ) : (
           <ProjectCoverArtwork
             coverArtwork={project.coverArtwork}
@@ -350,12 +375,16 @@ export const ProjectDetailPage: React.FC = () => {
         <h3 className="font-serif text-xl font-bold text-ink">Project Visual Documentation</h3>
 
         {hasScreenshots || hasArchDiagram || hasVideoAsset ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {project.assets.screenshots.map((shot, idx) => (
-              <img key={idx} src={shot} alt={`Screenshot ${idx + 1}`} className="rounded-xl border border-black/[0.08] dark:border-white/[0.1] w-full aspect-video object-cover" />
+              <div key={idx} className="rounded-xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] bg-slate-950 p-2 flex items-center justify-center">
+                <img key={idx} src={shot} alt={`${project.displayTitle} screenshot ${idx + 1}`} className="w-full max-h-[380px] object-contain rounded" />
+              </div>
             ))}
             {hasArchDiagram && (
-              <img src={project.assets.architectureDiagram} alt="Architecture Diagram" className="rounded-xl border border-black/[0.08] dark:border-white/[0.1] w-full object-contain" />
+              <div className="rounded-xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] bg-slate-950 p-2 flex items-center justify-center">
+                <img src={project.assets.architectureDiagram} alt="Architecture Diagram" className="w-full object-contain rounded" />
+              </div>
             )}
           </div>
         ) : (
