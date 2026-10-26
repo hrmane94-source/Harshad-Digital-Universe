@@ -16,9 +16,9 @@ export const EventsPage: React.FC = () => {
       case 'Demonstrated':
         return 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20';
       case 'Participated':
-        return 'bg-black/[0.04] dark:bg-white/[0.06] text-muted border-black/[0.06] dark:border-white/[0.08]';
+        return 'bg-black/[0.04] dark:bg-white/[0.06] text-muted border-border-hairline';
       default:
-        return 'bg-subtle text-muted border-black/[0.06] dark:border-white/[0.08]';
+        return 'bg-subtle text-muted border-border-hairline';
     }
   };
 
@@ -27,12 +27,12 @@ export const EventsPage: React.FC = () => {
 
       {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <Calendar className="w-3.5 h-3.5 text-cobalt" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Calendar className="w-3.5 h-3.5" />
           <span>COMPETITIONS &amp; SYMPOSIUMS</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
-          Events &amp; Hackathons
+          Events &amp; <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Hackathons</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           Comprehensive record of competitive hackathons, innovation challenges, entrepreneurial expos, and institutional symposiums with verified evaluation statuses.
@@ -44,7 +44,7 @@ export const EventsPage: React.FC = () => {
         {verifiedEvents.map((evt) => (
           <article
             key={evt.id}
-            className="p-8 sm:p-10 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-5 hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-colors shadow-xs"
+            className="p-8 sm:p-10 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-5 hover:border-cobalt/40 shadow-xs hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
           >
             {/* Header row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -71,7 +71,7 @@ export const EventsPage: React.FC = () => {
             </div>
 
             {/* Role & Project */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono p-4 rounded-xl bg-subtle border border-border-hairline">
               <div>
                 <span className="text-muted block text-[10px] uppercase tracking-wider mb-0.5">Role</span>
                 <span className="text-ink font-semibold">{evt.role}</span>
@@ -86,7 +86,7 @@ export const EventsPage: React.FC = () => {
 
             {/* Event Photo / Presented Dashboard Asset */}
             {evt.eventPhotoAsset && (
-              <div className="rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] bg-slate-950 shadow-md">
+              <div className="rounded-2xl overflow-hidden border border-border-hairline bg-slate-950 shadow-md">
                 <div className="px-4 py-2 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1.5">
@@ -119,7 +119,7 @@ export const EventsPage: React.FC = () => {
 
             {/* Highlights */}
             {evt.highlights && evt.highlights.length > 0 && (
-              <div className="space-y-2 pt-2 border-t border-black/[0.06] dark:border-white/[0.08]">
+              <div className="space-y-2 pt-2 border-t border-border-hairline">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-muted block">
                   Event Highlights &amp; Scope
                 </span>

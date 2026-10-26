@@ -26,10 +26,10 @@ export const ResumePage: React.FC = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
 
       {/* Top Action Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-surface dark:bg-card border border-border-hairline shadow-md">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
             <h1 className="text-xl sm:text-2xl font-serif font-bold text-ink tracking-tight">
               Official ATS-Friendly Résumé
             </h1>
@@ -43,7 +43,7 @@ export const ResumePage: React.FC = () => {
           type="button"
           onClick={handleDownload}
           disabled={downloading}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-ink text-paper font-semibold text-xs uppercase tracking-wider shadow-sm hover:opacity-90 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cobalt to-blue-600 text-white font-semibold text-xs uppercase tracking-wider shadow-md hover:shadow-lg hover:shadow-cobalt/25 active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50"
         >
           <Download className="w-4 h-4" />
           <span>{downloading ? 'Compiling PDF...' : 'Download Official PDF'}</span>
@@ -51,7 +51,7 @@ export const ResumePage: React.FC = () => {
       </div>
 
       {/* Honest Scope Disclosure */}
-      <div className="p-5 rounded-2xl bg-subtle/80 border border-black/[0.08] dark:border-white/[0.08] flex items-start gap-3.5 text-xs text-muted">
+      <div className="p-5 rounded-2xl bg-subtle/80 border border-border-hairline flex items-start gap-3.5 text-xs text-muted shadow-2xs">
         <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
         <p className="leading-relaxed">
           <strong className="text-ink">Strict Non-Fabrication Standards:</strong> No unearned certifications, fictional client work, inflated independent proficiencies, or unverified grades are listed. This document reflects verified first-year engineering progress, validated hackathon projects, and confirmed leadership roles.
@@ -59,15 +59,15 @@ export const ResumePage: React.FC = () => {
       </div>
 
       {/* Printable / ATS View Container */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-10 text-ink shadow-sm">
+      <div className="p-8 sm:p-12 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-10 text-ink shadow-xl">
 
         {/* Résumé Header */}
-        <header className="border-b border-black/[0.08] dark:border-white/[0.08] pb-6 space-y-3">
+        <header className="border-b border-border-hairline pb-6 space-y-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-ink tracking-tight">
               {resumeData.basics.name}
             </h2>
-            <span className="text-xs font-mono text-cobalt bg-subtle px-3 py-1 rounded-full border border-black/[0.06] dark:border-white/[0.08] self-start sm:self-center font-semibold">
+            <span className="text-xs font-mono text-cobalt bg-subtle px-3 py-1 rounded-full border border-border-hairline self-start sm:self-center font-semibold">
               ADCET CSE (2026–2030)
             </span>
           </div>
@@ -130,11 +130,11 @@ export const ResumePage: React.FC = () => {
           </h3>
           <div className="space-y-6">
             {resumeData.projects.map((proj, idx) => (
-              <div key={idx} className="space-y-2 p-4 rounded-xl bg-subtle/50 border border-black/[0.04] dark:border-white/[0.06]">
+              <div key={idx} className="space-y-2 p-4 rounded-xl bg-subtle/50 border border-border-hairline">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="font-serif text-lg font-bold text-ink">{proj.title}</span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle text-muted border border-black/[0.06] dark:border-white/[0.08]">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle text-muted border border-border-hairline">
                       {proj.role}
                     </span>
                   </div>
@@ -159,19 +159,19 @@ export const ResumePage: React.FC = () => {
             Technical Skills &amp; Competencies
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-            <div className="p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] space-y-1">
+            <div className="p-4 rounded-xl bg-subtle border border-border-hairline space-y-1">
               <span className="font-mono text-[10px] uppercase text-muted font-bold block">Engineering Foundations</span>
               <span className="text-ink font-medium leading-relaxed">{resumeData.skills.foundations.join(' • ')}</span>
             </div>
-            <div className="p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] space-y-1">
+            <div className="p-4 rounded-xl bg-subtle border border-border-hairline space-y-1">
               <span className="font-mono text-[10px] uppercase text-muted font-bold block">Currently Learning</span>
               <span className="text-ink font-medium leading-relaxed">{resumeData.skills.currentlyLearning.join(' • ')}</span>
             </div>
-            <div className="p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] space-y-1">
+            <div className="p-4 rounded-xl bg-subtle border border-border-hairline space-y-1">
               <span className="font-mono text-[10px] uppercase text-muted font-bold block">Cybersecurity Foundations</span>
               <span className="text-ink font-medium leading-relaxed">{resumeData.skills.cybersecurityFoundations.join(' • ')}</span>
             </div>
-            <div className="p-4 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] space-y-1">
+            <div className="p-4 rounded-xl bg-subtle border border-border-hairline space-y-1">
               <span className="font-mono text-[10px] uppercase text-muted font-bold block">AI-Assisted Workflow Ecosystem</span>
               <span className="text-ink font-medium leading-relaxed">{resumeData.skills.aiAssistedTooling.join(' • ')}</span>
             </div>

@@ -58,13 +58,13 @@ export const CreativePage: React.FC = () => {
 
       {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <Camera className="w-3.5 h-3.5 text-coral" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-coral/10 border border-coral/25 text-coral text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Camera className="w-3.5 h-3.5" />
           <span>VISUAL STORYTELLING &bull; @{contactConfig.creativeIdentity}</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
           &ldquo;Frames, places, and stories <br />
-          <span className="italic font-normal text-coral">— collected along the way.&rdquo;</span>
+          <span className="italic font-normal bg-gradient-to-r from-coral via-amber-500 to-rose-400 bg-clip-text text-transparent">— collected along the way.&rdquo;</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           The photographic and cinematic journal of Harshad Mane under the creative moniker <span className="font-mono text-ink font-semibold">shiv.premi_1630</span>. Exploring perspective, mountain light, high-frame-rate movement, and genuine natural textures across Western Ghats and Maharashtra.
@@ -82,7 +82,7 @@ export const CreativePage: React.FC = () => {
       </div>
 
       {/* Category Filter Chips */}
-      <div className="flex flex-wrap gap-2 border-b border-black/[0.08] dark:border-white/[0.08] pb-4">
+      <div className="flex flex-wrap gap-2 border-b border-border-hairline pb-4">
         {creativeCategoriesList.map((cat) => {
           const count = cat.id === 'all' 
             ? publishedItems.length 
@@ -95,7 +95,7 @@ export const CreativePage: React.FC = () => {
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer flex items-center gap-2 ${
                 selectedCategory === cat.id
                   ? 'bg-ink text-paper font-semibold shadow-xs'
-                  : 'bg-surface text-muted border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.2] dark:hover:border-white/[0.2] hover:text-ink'
+                  : 'bg-card text-muted border border-border-hairline hover:border-border-medium hover:text-ink'
               }`}
             >
               <span>{cat.label}</span>
@@ -116,7 +116,7 @@ export const CreativePage: React.FC = () => {
             <article
               key={item.id}
               onClick={() => setActiveMedia(item)}
-              className="break-inside-avoid group cursor-pointer rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.1] bg-surface flex flex-col justify-between hover:border-black/[0.2] dark:hover:border-white/[0.25] transition-all shadow-xs hover:shadow-md"
+              className="break-inside-avoid group cursor-pointer rounded-2xl overflow-hidden border border-border-hairline bg-card flex flex-col justify-between hover:border-border-medium transition-all shadow-xs hover:shadow-md tech-card"
             >
               {/* Media Viewport */}
               <div className="relative overflow-hidden bg-slate-950 flex items-center justify-center">
@@ -171,7 +171,7 @@ export const CreativePage: React.FC = () => {
                     {item.caption}
                   </p>
                 )}
-                <div className="flex items-center justify-between pt-2 border-t border-black/[0.06] dark:border-white/[0.08] text-[10px] font-mono text-faint">
+                <div className="flex items-center justify-between pt-2 border-t border-border-hairline text-[10px] font-mono text-faint">
                   {item.location && (
                     <span className="flex items-center gap-1 text-muted truncate max-w-[70%]">
                       <MapPin className="w-3 h-3 text-coral shrink-0" />
@@ -188,8 +188,8 @@ export const CreativePage: React.FC = () => {
         </div>
       ) : (
         /* Empty State */
-        <div className="p-12 sm:p-16 rounded-3xl border border-dashed border-black/[0.12] dark:border-white/[0.15] bg-surface text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] mx-auto flex items-center justify-center text-coral">
+        <div className="p-12 sm:p-16 rounded-3xl border border-dashed border-border-hairline bg-card text-center space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-subtle border border-border-hairline mx-auto flex items-center justify-center text-coral">
             <Camera className="w-8 h-8" />
           </div>
           <div className="space-y-2 max-w-lg mx-auto">

@@ -1,17 +1,23 @@
 import React from 'react';
-import {
-  Target,
-  Calendar
-} from 'lucide-react';
+import { Target, Calendar, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { verifiedGoals } from '../data/goals';
+import { fadeInUp, staggerContainer, staggerItem } from '../lib/motionVariants';
 
 export const GoalsPage: React.FC = () => {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    <motion.div
+      initial="initial"
+      animate="animate"
+      variants={staggerContainer}
+      className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16 relative"
+    >
+      {/* Ambient background glow */}
+      <div className="absolute top-10 left-10 w-96 h-96 rounded-full bg-violet/10 blur-3xl pointer-events-none -z-10" />
 
       {/* Editorial Header */}
-      <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
+      <motion.div variants={fadeInUp} className="space-y-4 max-w-3xl">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-border-hairline text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
           <Target className="w-3.5 h-3.5 text-cobalt" />
           <span>LONG-TERM VISION &amp; ASPIRATIONS</span>
         </div>
@@ -21,27 +27,33 @@ export const GoalsPage: React.FC = () => {
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           Tangible developmental objectives spanning academic engineering, defensive cybersecurity, campus leadership, visual creativity, and lifelong service.
         </p>
-      </div>
+      </motion.div>
 
       {/* Goals Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <motion.div
+        variants={staggerContainer}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
         {verifiedGoals.map((goal) => (
-          <article
+          <motion.article
             key={goal.id}
-            className="p-8 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4 hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-colors flex flex-col justify-between shadow-xs"
+            variants={staggerItem}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="p-8 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all flex flex-col justify-between shadow-sm tech-card relative overflow-hidden group"
           >
-            <div className="space-y-3">
+            <div className="space-y-3 relative z-10">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[11px] font-mono text-cobalt uppercase tracking-widest font-bold">
                   {goal.category}
                 </span>
-                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-subtle text-muted border border-black/[0.06] dark:border-white/[0.08] flex items-center gap-1 font-semibold">
+                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-subtle text-muted border border-border-hairline flex items-center gap-1 font-semibold">
                   <Calendar className="w-3 h-3 text-coral" />
                   <span>{goal.targetDate}</span>
                 </span>
               </div>
 
-              <h2 className="font-serif text-2xl font-bold text-ink tracking-tight">
+              <h2 className="font-serif text-2xl font-bold text-ink tracking-tight group-hover:text-cobalt transition-colors">
                 {goal.title}
               </h2>
 
@@ -50,14 +62,19 @@ export const GoalsPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-[11px] font-mono">
-              <span className="text-muted">Target Horizon</span>
-              <span className="text-ink font-semibold uppercase">{goal.status}</span>
+            <div className="pt-4 border-t border-border-hairline flex items-center justify-between text-[11px] font-mono relative z-10">
+              <span className="text-muted flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3 text-mint" />
+                <span>Target Horizon</span>
+              </span>
+              <span className="text-ink font-semibold uppercase px-2 py-0.5 rounded bg-subtle border border-border-hairline">
+                {goal.status}
+              </span>
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
 
-    </div>
+    </motion.div>
   );
 };

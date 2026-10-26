@@ -13,12 +13,12 @@ export const AchievementsPage: React.FC = () => {
 
       {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
           <Award className="w-3.5 h-3.5 text-coral" />
           <span>CONFIRMED RECOGNITION</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
-          Achievements &amp; Honors
+          Achievements &amp; <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Honors</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           Accredited competition honors, subject-specific academic achievements, and elected student council leadership. All listings are strictly confirmed without fabrication.
@@ -39,7 +39,7 @@ export const AchievementsPage: React.FC = () => {
             return (
               <article
                 key={ach.id}
-                className="p-8 sm:p-10 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4 relative overflow-hidden shadow-xs hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-colors"
+                className="p-8 sm:p-10 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-4 relative overflow-hidden shadow-xs hover:border-cobalt/40 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
@@ -67,7 +67,7 @@ export const AchievementsPage: React.FC = () => {
 
                 {/* Associated Project Links */}
                 {ach.associatedProjects && ach.associatedProjects.length > 0 && (
-                  <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-black/[0.06] dark:border-white/[0.08]">
+                  <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-border-hairline">
                     <span className="text-xs font-mono text-muted">Associated Work:</span>
                     <Link
                       to="/projects/neuroverse-2k26-website"
@@ -86,7 +86,7 @@ export const AchievementsPage: React.FC = () => {
                 )}
 
                 {/* Certificate Attachment Slot */}
-                <div className="pt-3 border-t border-black/[0.06] dark:border-white/[0.08]">
+                <div className="pt-3 border-t border-border-hairline">
                   {hasCert ? (
                     <a
                       href={ach.certificateAsset}
@@ -121,7 +121,7 @@ export const AchievementsPage: React.FC = () => {
           {verifiedLeadershipExperience.map((lead) => (
             <div
               key={lead.id}
-              className="p-6 sm:p-8 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-3 shadow-xs"
+              className="p-6 sm:p-8 rounded-2xl bg-card border border-border-hairline hover:border-border-medium transition-all space-y-3 shadow-xs tech-card"
             >
               <div className="flex items-center justify-between text-[11px] font-mono">
                 <span className="text-coral font-bold uppercase tracking-wider">
@@ -135,7 +135,7 @@ export const AchievementsPage: React.FC = () => {
               <p className="text-xs text-muted leading-relaxed">
                 {lead.description}
               </p>
-              <div className="pt-2 border-t border-black/[0.06] dark:border-white/[0.08] text-[10px] font-mono text-faint">
+              <div className="pt-2 border-t border-border-hairline text-[10px] font-mono text-faint">
                 Padua High School / Academic Milestone
               </div>
             </div>

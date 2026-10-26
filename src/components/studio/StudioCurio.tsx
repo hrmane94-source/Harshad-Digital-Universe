@@ -120,17 +120,20 @@ export const StudioCurio: React.FC = () => {
   return (
     <section 
       id="chapter-06" 
-      className="py-20 sm:py-32 border-b border-slate-200/90 dark:border-white/10 bg-paper text-ink relative overflow-hidden"
+      className="py-20 sm:py-32 border-b border-border-hairline bg-gradient-to-b from-paper via-secondary/20 to-surface/80 text-ink relative overflow-hidden transition-colors duration-250"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/3 right-1/4 w-[550px] h-[550px] rounded-full bg-cobalt/10 dark:bg-cobalt/15 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 dark:border-white/10 pb-5">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-border-hairline pb-5">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-cobalt inline-block animate-pulse" />
+              <span className="w-2.5 h-2.5 rounded-full bg-cobalt inline-block animate-pulse shadow-[0_0_8px_rgba(49,94,235,0.6)]" />
               <span className="text-ink">SECTION 07</span>
-              <span className="text-slate-300 dark:text-slate-700">//</span>
+              <span className="text-muted/40">//</span>
               <span>CURIO &bull; THE PORTFOLIO SALON</span>
             </div>
             
@@ -143,7 +146,7 @@ export const StudioCurio: React.FC = () => {
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans max-w-xl font-medium">
+            <p className="text-xs sm:text-sm text-muted font-sans max-w-xl font-medium">
               An intelligent assistant grounded exclusively in verified public records, architectural case studies, and engineering achievements. Optional &amp; polite.
             </p>
           </div>
@@ -152,7 +155,7 @@ export const StudioCurio: React.FC = () => {
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors cursor-pointer shadow-2xs active:scale-95"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset Chat</span>
@@ -167,15 +170,15 @@ export const StudioCurio: React.FC = () => {
           <div className="lg:col-span-4 space-y-6">
             
             {/* Grounding Info Card */}
-            <div className="p-6 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 space-y-4 shadow-xs">
+            <div className="p-6 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
               <div className="flex items-center gap-2 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-wider">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>VERIFIED GROUNDING PROTOCOL</span>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+              <p className="text-xs text-muted leading-relaxed font-sans">
                 CURIO answers only with documented facts. It will not fabricate accomplishments, grades, awards, or fake employment claims.
               </p>
-              <div className="text-[11px] font-mono text-muted space-y-1 border-t border-slate-100 dark:border-white/10 pt-3">
+              <div className="text-[11px] font-mono text-muted space-y-1 border-t border-border-hairline pt-3">
                 <div className="flex items-center justify-between">
                   <span>Backend Engine:</span>
                   <span className="font-bold text-ink">Grounded AI Service</span>
@@ -199,7 +202,7 @@ export const StudioCurio: React.FC = () => {
                     type="button"
                     onClick={() => handleSendMessage(q)}
                     disabled={isLoading}
-                    className="w-full text-left p-3 rounded-xl bg-surface hover:bg-slate-50 dark:hover:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-xs font-mono text-ink transition-all hover:border-cobalt flex items-center justify-between group cursor-pointer disabled:opacity-50 shadow-2xs"
+                    className="w-full text-left p-3 rounded-xl bg-surface dark:bg-card hover:bg-subtle border border-border-hairline text-xs font-mono text-ink transition-all hover:border-cobalt/40 flex items-center justify-between group cursor-pointer disabled:opacity-50 shadow-2xs"
                   >
                     <span>{q}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted group-hover:text-cobalt transition-colors" />
@@ -211,10 +214,10 @@ export const StudioCurio: React.FC = () => {
           </div>
 
           {/* Right Column: Interactive Chat Terminal (8 cols) */}
-          <div className="lg:col-span-8 p-6 sm:p-7 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 shadow-xs flex flex-col h-[520px]">
+          <div className="lg:col-span-8 p-6 sm:p-7 rounded-2xl bg-surface dark:bg-card border border-border-hairline shadow-xs flex flex-col h-[520px]">
             
             {/* Terminal Header */}
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3 text-xs font-mono text-muted">
+            <div className="flex items-center justify-between border-b border-border-hairline pb-3 text-xs font-mono text-muted">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="font-bold text-ink">SESSION ACTIVE</span>
@@ -246,17 +249,17 @@ export const StudioCurio: React.FC = () => {
                   <div
                     className={`max-w-[85%] sm:max-w-[75%] rounded-2xl p-4 space-y-2 ${
                       msg.sender === 'user'
-                        ? 'bg-ink text-paper rounded-tr-none'
-                        : 'bg-paper border border-slate-200 dark:border-white/10 text-ink rounded-tl-none shadow-2xs'
+                        ? 'bg-ink text-paper rounded-tr-none shadow-xs'
+                        : 'bg-subtle/70 dark:bg-card-elevated border border-border-hairline text-ink rounded-tl-none shadow-2xs'
                     }`}
                   >
                     <p className="leading-relaxed whitespace-pre-wrap">{msg.text}</p>
 
                     {msg.suggestedRoute && (
-                      <div className="pt-2 border-t border-slate-200/60 dark:border-white/10">
+                      <div className="pt-2 border-t border-border-hairline">
                         <Link
                           to={msg.suggestedRoute}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface border border-cobalt/30 text-cobalt font-mono text-xs font-bold hover:bg-cobalt/10 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface dark:bg-card border border-cobalt/30 text-cobalt font-mono text-xs font-bold hover:bg-cobalt/10 transition-colors"
                         >
                           <span>{msg.routeLabel || 'Explore Page'}</span>
                           <ArrowRight className="w-3 h-3" />
@@ -270,7 +273,7 @@ export const StudioCurio: React.FC = () => {
                   </div>
 
                   {msg.sender === 'user' && (
-                    <div className="w-7 h-7 rounded-lg bg-slate-200 dark:bg-white/10 text-ink flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                    <div className="w-7 h-7 rounded-lg bg-subtle text-ink flex items-center justify-center shrink-0 mt-0.5 shadow-2xs border border-border-hairline">
                       <User className="w-4 h-4" />
                     </div>
                   )}
@@ -282,7 +285,7 @@ export const StudioCurio: React.FC = () => {
                   <div className="w-7 h-7 rounded-lg bg-cobalt text-white flex items-center justify-center shrink-0 shadow-2xs">
                     <Bot className="w-4 h-4" />
                   </div>
-                  <div className="p-4 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 text-ink rounded-tl-none flex items-center gap-2">
+                  <div className="p-4 rounded-2xl bg-subtle/70 dark:bg-card-elevated border border-border-hairline text-ink rounded-tl-none flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cobalt animate-ping" />
                     <span className="font-mono text-muted text-xs">CURIO is consulting verified records...</span>
                   </div>
@@ -290,15 +293,15 @@ export const StudioCurio: React.FC = () => {
               )}
 
               {errorNotice && (
-                <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 text-amber-900 dark:text-amber-300 text-xs flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-amber-600 dark:text-amber-400" />
+                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-amber-500" />
                   <span>{errorNotice}</span>
                 </div>
               )}
             </div>
 
             {/* Input Bar — No autofocus on mount */}
-            <div className="pt-3 border-t border-slate-100 dark:border-white/10">
+            <div className="pt-3 border-t border-border-hairline">
               <div className="flex items-center gap-2">
                 <input
                   type="text"
@@ -307,13 +310,13 @@ export const StudioCurio: React.FC = () => {
                   onKeyDown={handleKeyDown}
                   placeholder="Ask CURIO anything about Harshad's work, learning, or background..."
                   disabled={isLoading}
-                  className="flex-1 px-4 py-3 rounded-xl bg-paper border border-slate-200 dark:border-white/10 text-xs font-sans text-ink placeholder:text-muted focus:outline-none focus:border-cobalt transition-colors"
+                  className="flex-1 px-4 py-3 rounded-xl bg-subtle/60 dark:bg-card-elevated border border-border-hairline text-xs font-sans text-ink placeholder:text-muted focus:outline-none focus:border-cobalt transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => handleSendMessage()}
                   disabled={isLoading || !inputValue.trim()}
-                  className="px-4 py-3 rounded-xl bg-cobalt text-white hover:bg-blue-700 disabled:opacity-40 transition-colors font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs"
+                  className="px-4 py-3 rounded-xl bg-gradient-to-r from-cobalt to-blue-600 text-white hover:opacity-90 disabled:opacity-40 transition-all font-mono text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs active:scale-95"
                 >
                   <span>Send</span>
                   <Send className="w-3.5 h-3.5" />

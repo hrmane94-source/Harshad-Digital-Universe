@@ -466,7 +466,7 @@ export const OwnerWorkspacePage: React.FC = () => {
 
         {/* Brand Monogram Header */}
         <div className="text-center space-y-3">
-          <div className="w-16 h-16 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] flex items-center justify-center mx-auto shadow-sm">
+          <div className="w-16 h-16 rounded-2xl bg-card border border-border-hairline flex items-center justify-center mx-auto shadow-sm">
             <BrandMonogram size={36} className="w-9 h-9" />
           </div>
           <h1 className="text-2xl font-serif font-normal tracking-tight text-ink">
@@ -478,7 +478,7 @@ export const OwnerWorkspacePage: React.FC = () => {
         </div>
 
         {/* Diagnostic Status Box */}
-        <div className="p-4 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-2 text-xs">
+        <div className="p-4 rounded-2xl bg-card border border-border-hairline space-y-2 text-xs">
           <div className="flex items-center justify-between font-mono">
             <span className="text-ink-muted">Database Connection:</span>
             <span className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono tracking-wider ${
@@ -490,14 +490,14 @@ export const OwnerWorkspacePage: React.FC = () => {
             </span>
           </div>
           {!statusInfo.isConfigured && (
-            <p className="text-[11px] text-ink-muted leading-relaxed border-t border-black/[0.06] dark:border-white/[0.08] pt-2 font-mono">
+            <p className="text-[11px] text-ink-muted leading-relaxed border-t border-border-hairline pt-2 font-mono">
               To activate cloud authentication and database syncing, configure <code className="text-cobalt font-mono">VITE_SUPABASE_URL</code> and <code className="text-cobalt font-mono">VITE_SUPABASE_ANON_KEY</code>.
             </p>
           )}
         </div>
 
         {/* Authentication Form */}
-        <form onSubmit={handleEmailSignIn} className="p-7 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-5 shadow-sm">
+        <form onSubmit={handleEmailSignIn} className="p-7 rounded-2xl bg-card border border-border-hairline space-y-5 shadow-sm">
           <div className="space-y-4">
             <div>
               <label className="block text-xs font-mono text-ink-muted mb-1.5 uppercase tracking-wider">Owner Email</label>
@@ -506,7 +506,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                 required
                 disabled
                 value={emailInput}
-                className="w-full px-4 py-2.5 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-ink-muted text-xs font-mono cursor-not-allowed"
+                className="w-full px-4 py-2.5 rounded-xl bg-subtle border border-border-hairline text-ink-muted text-xs font-mono cursor-not-allowed"
               />
             </div>
 
@@ -518,7 +518,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 placeholder="Enter Supabase account password"
-                className="w-full px-4 py-2.5 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
+                className="w-full px-4 py-2.5 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -541,7 +541,7 @@ export const OwnerWorkspacePage: React.FC = () => {
           <button
             type="button"
             onClick={handleGoogleSignIn}
-            className="w-full py-2.5 rounded-xl bg-subtle hover:bg-black/[0.04] dark:hover:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-ink text-xs font-medium transition-colors cursor-pointer font-mono"
+            className="w-full py-2.5 rounded-xl bg-subtle hover:bg-black/[0.04] dark:hover:bg-white/[0.06] border border-border-hairline text-ink text-xs font-medium transition-colors cursor-pointer font-mono"
           >
             Sign in with Google OAuth
           </button>
@@ -560,7 +560,7 @@ export const OwnerWorkspacePage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
 
       {/* Top Banner */}
-      <header className="p-6 sm:p-8 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+      <header className="p-6 sm:p-8 rounded-2xl bg-card border border-border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -590,7 +590,7 @@ export const OwnerWorkspacePage: React.FC = () => {
             type="button"
             onClick={() => loadCloudData()}
             title="Refresh from cloud database"
-            className="p-2.5 rounded-xl bg-subtle text-ink-muted hover:text-ink border border-black/[0.08] dark:border-white/[0.1] transition-colors cursor-pointer"
+            className="p-2.5 rounded-xl bg-subtle text-ink-muted hover:text-ink border border-border-hairline transition-colors cursor-pointer"
           >
             <RefreshCw className="w-4 h-4" />
           </button>
@@ -607,7 +607,7 @@ export const OwnerWorkspacePage: React.FC = () => {
           <button
             type="button"
             onClick={handleSignOut}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-subtle text-ink-muted hover:text-ink border border-black/[0.08] dark:border-white/[0.1] text-xs font-mono transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-subtle text-ink-muted hover:text-ink border border-border-hairline text-xs font-mono transition-colors cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
             <span>Sign Out</span>
@@ -616,7 +616,7 @@ export const OwnerWorkspacePage: React.FC = () => {
       </header>
 
       {/* Workspace Tabs Navigation */}
-      <div className="flex flex-wrap gap-2 border-b border-black/[0.08] dark:border-white/[0.1] pb-3">
+      <div className="flex flex-wrap gap-2 border-b border-border-hairline pb-3">
         {[
           { id: 'overview', label: 'Overview & Metrics' },
           { id: 'projects', label: `Project Laboratory (${projects.length})` },
@@ -632,7 +632,7 @@ export const OwnerWorkspacePage: React.FC = () => {
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
               activeTab === tab.id
                 ? 'bg-ink text-paper font-semibold shadow-sm'
-                : 'bg-surface text-ink-muted border border-black/[0.08] dark:border-white/[0.1] hover:text-ink'
+                : 'bg-card text-ink-muted border border-border-hairline hover:text-ink'
             }`}
           >
             {tab.label}
@@ -646,25 +646,25 @@ export const OwnerWorkspacePage: React.FC = () => {
 
           {/* Key Metric Tiles (Factual only, Rule 15: No fake visitor stats) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-1">
+            <div className="p-5 rounded-2xl bg-card border border-border-hairline space-y-1">
               <span className="text-xs font-mono text-ink-muted">Published to Portfolio</span>
               <p className="text-3xl font-serif text-cobalt font-normal">{publishedProjectsCount}</p>
               <span className="text-[11px] text-ink-muted font-mono">Live Case Studies</span>
             </div>
 
-            <div className="p-5 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-1">
+            <div className="p-5 rounded-2xl bg-card border border-border-hairline space-y-1">
               <span className="text-xs font-mono text-ink-muted">Laboratory Drafts</span>
               <p className="text-3xl font-serif text-coral font-normal">{draftProjectsCount}</p>
               <span className="text-[11px] text-ink-muted font-mono">Unpublished Drafts</span>
             </div>
 
-            <div className="p-5 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-1">
+            <div className="p-5 rounded-2xl bg-card border border-border-hairline space-y-1">
               <span className="text-xs font-mono text-ink-muted">Active Tasks Pending</span>
               <p className="text-3xl font-serif text-ink font-normal">{pendingTasksCount}</p>
               <span className="text-[11px] text-ink-muted font-mono">Action Items</span>
             </div>
 
-            <div className="p-5 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-1">
+            <div className="p-5 rounded-2xl bg-card border border-border-hairline space-y-1">
               <span className="text-xs font-mono text-ink-muted">Active Learning Tracks</span>
               <p className="text-3xl font-serif text-emerald-600 dark:text-emerald-400 font-normal">{learningItems.length}</p>
               <span className="text-[11px] text-ink-muted font-mono">Current Disciplines</span>
@@ -675,7 +675,7 @@ export const OwnerWorkspacePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
             {/* Urgent Tasks Preview */}
-            <div className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4">
+            <div className="p-6 rounded-2xl bg-card border border-border-hairline space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-serif font-normal text-ink flex items-center gap-2">
                   <CheckSquare className="w-4 h-4 text-cobalt" />
@@ -695,7 +695,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                   <div
                     key={task.id}
                     onClick={() => toggleTaskStatus(task.id)}
-                    className="p-3 rounded-xl bg-subtle border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between gap-3 cursor-pointer hover:border-black/20 dark:hover:border-white/20 transition-colors"
+                    className="p-3 rounded-xl bg-subtle border border-border-hairline flex items-center justify-between gap-3 cursor-pointer hover:border-black/20 dark:hover:border-white/20 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
                       <span className={`w-3.5 h-3.5 rounded border flex items-center justify-center ${task.status === 'done' ? 'bg-cobalt border-cobalt text-white' : 'border-black/30 dark:border-white/30'}`}>
@@ -705,7 +705,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                         {task.title}
                       </span>
                     </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface border border-black/[0.08] dark:border-white/[0.1] text-ink-muted capitalize">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-card border border-border-hairline text-ink-muted capitalize">
                       {task.priority}
                     </span>
                   </div>
@@ -714,7 +714,7 @@ export const OwnerWorkspacePage: React.FC = () => {
             </div>
 
             {/* Active Learning Summary */}
-            <div className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4">
+            <div className="p-6 rounded-2xl bg-card border border-border-hairline space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-serif font-normal text-ink flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-coral" />
@@ -731,7 +731,7 @@ export const OwnerWorkspacePage: React.FC = () => {
 
               <div className="space-y-3">
                 {learningItems.map((item) => (
-                  <div key={item.id} className="p-3 rounded-xl bg-subtle border border-black/[0.06] dark:border-white/[0.08] space-y-1">
+                  <div key={item.id} className="p-3 rounded-xl bg-subtle border border-border-hairline space-y-1">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-semibold text-ink">{item.title}</span>
                       <span className="text-[10px] font-mono text-cobalt capitalize">{item.status}</span>
@@ -768,7 +768,7 @@ export const OwnerWorkspacePage: React.FC = () => {
             {projects.map((proj) => (
               <div
                 key={proj.id}
-                className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] flex flex-col md:flex-row md:items-center justify-between gap-4"
+                className="p-6 rounded-2xl bg-card border border-border-hairline flex flex-col md:flex-row md:items-center justify-between gap-4"
               >
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2.5">
@@ -794,7 +794,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                     onClick={() => togglePublication(proj.id)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-mono font-semibold border transition-colors cursor-pointer flex items-center gap-1.5 ${
                       proj.publicationStatus === 'published'
-                        ? 'bg-subtle text-ink border-black/[0.08] dark:border-white/[0.1] hover:bg-black/[0.04]'
+                        ? 'bg-subtle text-ink border-border-hairline hover:bg-black/[0.04]'
                         : 'bg-emerald-600 text-white border-emerald-600 hover:bg-emerald-700'
                     }`}
                   >
@@ -815,7 +815,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                     href={`/projects/${proj.slug}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-2 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-ink-muted hover:text-ink text-xs transition-colors"
+                    className="p-2 rounded-xl bg-subtle border border-border-hairline text-ink-muted hover:text-ink text-xs transition-colors"
                     title="Preview Case Study"
                   >
                     <ArrowRight className="w-4 h-4" />
@@ -830,19 +830,19 @@ export const OwnerWorkspacePage: React.FC = () => {
       {/* --- Tab 3: Tasks --- */}
       {activeTab === 'tasks' && (
         <div className="space-y-6 animate-in fade-in duration-150">
-          <form onSubmit={handleAddTask} className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] flex flex-col sm:flex-row items-center gap-3">
+          <form onSubmit={handleAddTask} className="p-6 rounded-2xl bg-card border border-border-hairline flex flex-col sm:flex-row items-center gap-3">
             <input
               type="text"
               required
               value={newTaskTitle}
               onChange={(e) => setNewTaskTitle(e.target.value)}
               placeholder="What needs to be done next? (e.g. Study Linux network sockets)"
-              className="w-full px-4 py-2.5 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+              className="w-full px-4 py-2.5 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
             />
             <select
               value={newTaskPriority}
               onChange={(e) => setNewTaskPriority(e.target.value as any)}
-              className="px-3 py-2.5 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+              className="px-3 py-2.5 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
             >
               <option value="low">Low Priority</option>
               <option value="medium">Medium Priority</option>
@@ -861,7 +861,7 @@ export const OwnerWorkspacePage: React.FC = () => {
             {tasks.map((task) => (
               <div
                 key={task.id}
-                className="p-4 rounded-xl bg-surface border border-black/[0.08] dark:border-white/[0.1] flex items-center justify-between gap-3"
+                className="p-4 rounded-xl bg-card border border-border-hairline flex items-center justify-between gap-3"
               >
                 <div
                   onClick={() => toggleTaskStatus(task.id)}
@@ -879,7 +879,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-ink-muted capitalize">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle border border-border-hairline text-ink-muted capitalize">
                     {task.priority}
                   </span>
                   <button
@@ -902,16 +902,16 @@ export const OwnerWorkspacePage: React.FC = () => {
         <div className="space-y-6 animate-in fade-in duration-150">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {learningItems.map((item) => (
-              <div key={item.id} className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-3">
+              <div key={item.id} className="p-6 rounded-2xl bg-card border border-border-hairline space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-mono text-cobalt uppercase font-semibold">{item.category}</span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle text-ink border border-black/[0.08] dark:border-white/[0.1] capitalize">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle text-ink border border-border-hairline capitalize">
                     {item.status}
                   </span>
                 </div>
                 <h3 className="text-base font-serif font-normal text-ink">{item.title}</h3>
                 <p className="text-xs text-ink-muted">{item.notes}</p>
-                <div className="pt-2 border-t border-black/[0.06] dark:border-white/[0.08] text-[11px] font-mono text-ink-muted space-y-1">
+                <div className="pt-2 border-t border-border-hairline text-[11px] font-mono text-ink-muted space-y-1">
                   <div><strong className="text-ink">Resources:</strong> {item.resources}</div>
                   <div><strong className="text-ink">Next Action:</strong> {item.nextAction}</div>
                   <div><strong className="text-ink">Target:</strong> {item.flexibleWeeklyTarget}</div>
@@ -927,7 +927,7 @@ export const OwnerWorkspacePage: React.FC = () => {
         <div className="space-y-6 animate-in fade-in duration-150">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {goals.map((g) => (
-              <div key={g.id} className="p-5 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-2">
+              <div key={g.id} className="p-5 rounded-2xl bg-card border border-border-hairline space-y-2">
                 <div className="flex items-center justify-between text-xs font-mono text-cobalt">
                   <span className="uppercase">{g.category}</span>
                   <span>{g.targetDate}</span>
@@ -947,7 +947,7 @@ export const OwnerWorkspacePage: React.FC = () => {
             🔒 <strong>Strictly Private:</strong> Personal reflections are never exposed to public visitors or published routes.
           </div>
 
-          <form onSubmit={handleAddReflection} className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4">
+          <form onSubmit={handleAddReflection} className="p-6 rounded-2xl bg-card border border-border-hairline space-y-4">
             <h3 className="text-sm font-serif font-normal text-ink">Record Private Journal Entry</h3>
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <input
@@ -956,12 +956,12 @@ export const OwnerWorkspacePage: React.FC = () => {
                 value={newReflectionTitle}
                 onChange={(e) => setNewReflectionTitle(e.target.value)}
                 placeholder="Title of reflection"
-                className="w-full sm:flex-1 px-4 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+                className="w-full sm:flex-1 px-4 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
               />
               <select
                 value={newReflectionMood}
                 onChange={(e) => setNewReflectionMood(e.target.value)}
-                className="w-full sm:w-auto px-3 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+                className="w-full sm:w-auto px-3 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
               >
                 <option value="Focused">Focused</option>
                 <option value="Optimistic">Optimistic</option>
@@ -976,7 +976,7 @@ export const OwnerWorkspacePage: React.FC = () => {
               value={newReflectionContent}
               onChange={(e) => setNewReflectionContent(e.target.value)}
               placeholder="Record your thoughts, lessons, or honest reflections..."
-              className="w-full px-4 py-2.5 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none"
+              className="w-full px-4 py-2.5 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none"
             />
             <button
               type="submit"
@@ -988,7 +988,7 @@ export const OwnerWorkspacePage: React.FC = () => {
 
           <div className="space-y-4">
             {reflections.map((refl) => (
-              <div key={refl.id} className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-2">
+              <div key={refl.id} className="p-6 rounded-2xl bg-card border border-border-hairline space-y-2">
                 <div className="flex items-center justify-between text-xs font-mono text-ink-muted">
                   <span className="text-cobalt">{refl.date}</span>
                   <span>Mood: {refl.mood}</span>
@@ -1003,7 +1003,7 @@ export const OwnerWorkspacePage: React.FC = () => {
 
       {/* --- Tab 7: System & Storage Status --- */}
       {activeTab === 'system' && (
-        <div className="p-8 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-6">
+        <div className="p-8 rounded-2xl bg-card border border-border-hairline space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-serif font-normal text-ink flex items-center gap-2">
@@ -1027,7 +1027,7 @@ export const OwnerWorkspacePage: React.FC = () => {
           </div>
 
           <div className="space-y-3 text-xs font-mono">
-            <div className="p-4 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] space-y-2">
+            <div className="p-4 rounded-xl bg-subtle border border-border-hairline space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-cobalt font-bold block">Live Connection Status</span>
                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
@@ -1043,7 +1043,7 @@ export const OwnerWorkspacePage: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] space-y-1">
+            <div className="p-4 rounded-xl bg-subtle border border-border-hairline space-y-1">
               <span className="text-cobalt font-bold block">Target Supabase PostgreSQL Schema</span>
               <p className="text-ink-muted">Schema file ready at <code className="text-ink">supabase/schema.sql</code></p>
               <ul className="text-ink-muted space-y-0.5 pt-2">
@@ -1055,7 +1055,7 @@ export const OwnerWorkspacePage: React.FC = () => {
               </ul>
             </div>
 
-            <div className="p-4 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] space-y-1">
+            <div className="p-4 rounded-xl bg-subtle border border-border-hairline space-y-1">
               <span className="text-coral font-bold block">Asset Directories (Local &amp; Bucket)</span>
               <p className="text-ink-muted">Local asset directories populated with <code className="text-ink">.gitkeep</code> in <code className="text-ink">public/assets/</code></p>
             </div>
@@ -1066,7 +1066,7 @@ export const OwnerWorkspacePage: React.FC = () => {
       {/* Modal: New Project Draft */}
       {showNewProjectModal && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="max-w-xl w-full bg-surface border border-black/[0.1] dark:border-white/[0.15] rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+          <div className="max-w-xl w-full bg-card border border-border-hairline rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
             <h3 className="text-xl font-serif font-normal text-ink">Create New Project Draft</h3>
 
             <form onSubmit={handleCreateProjectDraft} className="space-y-4">
@@ -1078,7 +1078,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                   value={newProjectTitle}
                   onChange={(e) => setNewProjectTitle(e.target.value)}
                   placeholder="e.g. SentriGate"
-                  className="w-full px-4 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+                  className="w-full px-4 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
                 />
               </div>
 
@@ -1089,7 +1089,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                   value={newProjectTagline}
                   onChange={(e) => setNewProjectTagline(e.target.value)}
                   placeholder="e.g. Automated CI/CD Secret Scanning Utility"
-                  className="w-full px-4 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+                  className="w-full px-4 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
                 />
               </div>
 
@@ -1100,7 +1100,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                     type="text"
                     value={newProjectDomain}
                     onChange={(e) => setNewProjectDomain(e.target.value)}
-                    className="w-full px-4 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+                    className="w-full px-4 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
                   />
                 </div>
                 <div>
@@ -1109,7 +1109,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                     type="text"
                     value={newProjectRole}
                     onChange={(e) => setNewProjectRole(e.target.value)}
-                    className="w-full px-4 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
+                    className="w-full px-4 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none"
                   />
                 </div>
               </div>
@@ -1121,7 +1121,7 @@ export const OwnerWorkspacePage: React.FC = () => {
                   value={newProjectProblem}
                   onChange={(e) => setNewProjectProblem(e.target.value)}
                   placeholder="What friction does this project address?"
-                  className="w-full px-4 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none"
+                  className="w-full px-4 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none"
                 />
               </div>
 
@@ -1132,11 +1132,11 @@ export const OwnerWorkspacePage: React.FC = () => {
                   value={newProjectSolution}
                   onChange={(e) => setNewProjectSolution(e.target.value)}
                   placeholder="How does your application solve it?"
-                  className="w-full px-4 py-2 rounded-xl bg-paper border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none"
+                  className="w-full px-4 py-2 rounded-xl bg-paper border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-black/[0.08] dark:border-white/[0.1]">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-border-hairline">
                 <button
                   type="button"
                   onClick={() => setShowNewProjectModal(false)}

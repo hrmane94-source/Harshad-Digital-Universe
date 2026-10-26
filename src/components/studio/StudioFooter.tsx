@@ -30,14 +30,14 @@ export const StudioFooter: React.FC = () => {
   return (
     <footer 
       id="chapter-07" 
-      className="pt-20 sm:pt-28 pb-16 bg-surface text-ink relative overflow-hidden border-t border-slate-200/90 dark:border-white/10"
+      className="pt-20 sm:pt-28 pb-16 bg-gradient-to-b from-paper via-secondary/30 to-paper text-ink relative overflow-hidden border-t border-border-hairline transition-colors duration-250"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         
         {/* Top Folio Strip */}
-        <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono uppercase tracking-widest text-muted pb-6 border-b border-slate-200 dark:border-white/10">
+        <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono uppercase tracking-widest text-muted pb-6 border-b border-border-hairline">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.6)]" />
             <span className="text-ink font-bold">SECTION 08 // DISPATCH &amp; CONTACT</span>
           </div>
 
@@ -46,7 +46,7 @@ export const StudioFooter: React.FC = () => {
               <MapPin className="w-3.5 h-3.5 text-coral" />
               <span>ADCET ASHTA, MAHARASHTRA</span>
             </span>
-            <span className="hidden sm:inline text-slate-300 dark:text-slate-700">&bull;</span>
+            <span className="hidden sm:inline text-muted/40">&bull;</span>
             <span className="hidden sm:inline">16.9482° N, 74.4093° E</span>
           </div>
         </div>
@@ -57,28 +57,28 @@ export const StudioFooter: React.FC = () => {
           {/* Left Column: Bold Closing Statement (7 cols) */}
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100/70 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-300 text-[11px] font-mono font-bold tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-400/30 text-[11px] font-mono font-bold tracking-wider">
                 <span>OPEN FOR ENGINEERING DIALOGUE</span>
               </div>
 
               <h2 className="font-serif text-4xl sm:text-6xl lg:text-[4.75rem] font-normal text-ink leading-[1.02] tracking-tight">
                 Curious about systems, <br />
                 applied AI tooling, or <br />
-                <span className="italic font-serif text-cobalt font-bold">
+                <span className="italic font-serif text-cobalt font-bold bg-gradient-to-r from-cobalt via-violet to-blue-400 bg-clip-text text-transparent">
                   collaborating on a hackathon?
                 </span>
               </h2>
             </div>
 
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-sans max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-muted font-sans max-w-xl leading-relaxed">
               Available for technical internships, DevSecOps discussions, and collaborative engineering hackathons. Rooted in structured procedural C and applied artificial intelligence.
             </p>
 
             {/* Direct Email Dispatch Box */}
-            <div className="p-6 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 shadow-xs space-y-4 max-w-xl">
+            <div className="p-6 rounded-2xl bg-surface dark:bg-card border border-border-hairline shadow-xs space-y-4 max-w-xl">
               <div className="flex items-center justify-between text-xs font-mono text-muted">
                 <span className="font-bold text-ink uppercase">PRIMARY DIRECT DISPATCH</span>
-                <span>INBOX CHECKED DAILY</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">INBOX CHECKED DAILY</span>
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
@@ -92,7 +92,7 @@ export const StudioFooter: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors cursor-pointer shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-subtle border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors cursor-pointer shadow-2xs active:scale-95"
                 >
                   {copied ? (
                     <>
@@ -119,7 +119,7 @@ export const StudioFooter: React.FC = () => {
                 href={contactConfig.profiles.github}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-paper border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs"
               >
                 <GithubIcon className="w-4 h-4 text-ink" />
                 <span>GitHub</span>
@@ -130,7 +130,7 @@ export const StudioFooter: React.FC = () => {
                 href={contactConfig.profiles.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-paper border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs"
               >
                 <LinkedinIcon className="w-4 h-4 text-cobalt" />
                 <span>LinkedIn</span>
@@ -141,7 +141,7 @@ export const StudioFooter: React.FC = () => {
                 href={contactConfig.profiles.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-paper border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-coral hover:border-coral transition-colors shadow-2xs"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-coral hover:border-coral/40 transition-colors shadow-2xs"
               >
                 <InstagramIcon className="w-4 h-4 text-coral" />
                 <span>@{contactConfig.creativeIdentity}</span>
@@ -152,9 +152,9 @@ export const StudioFooter: React.FC = () => {
 
           {/* Right Column: Full Directory Ledger (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-paper border border-slate-200 dark:border-white/10 shadow-xs space-y-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline shadow-xs space-y-6">
               
-              <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-4">
+              <div className="flex items-center justify-between border-b border-border-hairline pb-4">
                 <span className="font-mono text-xs font-bold text-ink uppercase tracking-wider">
                   COMPLETE DOSSIER DIRECTORY
                 </span>
@@ -180,7 +180,7 @@ export const StudioFooter: React.FC = () => {
               </div>
 
               {/* Owner Workspace Portal Link */}
-              <div className="pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+              <div className="pt-4 border-t border-border-hairline flex items-center justify-between text-xs font-mono">
                 <div className="flex items-center gap-2 text-muted">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="text-[11px]">Database: {status.isConfigured ? 'Connected' : 'Offline'}</span>
@@ -201,7 +201,7 @@ export const StudioFooter: React.FC = () => {
             <button
               type="button"
               onClick={scrollToTop}
-              className="w-full p-4 rounded-xl bg-paper hover:bg-slate-50 dark:hover:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-xs font-mono font-bold text-ink transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs"
+              className="w-full p-4 rounded-xl bg-surface dark:bg-card hover:bg-subtle border border-border-hairline text-xs font-mono font-bold text-ink transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs active:scale-98"
             >
               <ArrowUp className="w-4 h-4 text-cobalt" />
               <span>Return to Folio Top</span>
@@ -211,7 +211,7 @@ export const StudioFooter: React.FC = () => {
         </div>
 
         {/* Bottom Colophon Bar */}
-        <div className="pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted">
+        <div className="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted">
           <div className="flex items-center gap-3">
             <BrandMonogram size={28} />
             <span>

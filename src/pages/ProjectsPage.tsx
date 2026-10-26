@@ -39,13 +39,13 @@ export const ProjectsPage: React.FC = () => {
 
       {/* Editorial Page Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <ShieldCheck className="w-3.5 h-3.5 text-cobalt" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <ShieldCheck className="w-3.5 h-3.5" />
           <span>PROJECTS, PROTOTYPES &amp; EXPERIMENTS</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
           &ldquo;Ideas are interesting. <br />
-          <span className="italic font-normal text-cobalt">Building them is better.&rdquo;</span>
+          <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Building them is better.&rdquo;</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed font-sans">
           Every project below represents hands-on technical work, competitive hackathon problem-solving, or early scientific innovation. Each case study documents the problem, architecture, individual contribution, and verified limitations.
@@ -53,7 +53,7 @@ export const ProjectsPage: React.FC = () => {
       </div>
 
       {/* Scope & Integrity Note */}
-      <div className="p-5 rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-subtle/80 flex items-start gap-3.5 text-xs text-muted">
+      <div className="p-5 rounded-2xl border border-border-hairline bg-subtle/80 flex items-start gap-3.5 text-xs text-muted shadow-2xs">
         <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
         <div className="space-y-1">
           <span className="font-semibold text-ink block font-mono text-[11px] uppercase tracking-wide">
@@ -66,7 +66,7 @@ export const ProjectsPage: React.FC = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-black/[0.08] dark:border-white/[0.08] pb-4">
+      <div className="flex flex-wrap gap-2 border-b border-border-hairline pb-4">
         {filterCategories.map((cat) => (
           <button
             key={cat.id}
@@ -74,7 +74,7 @@ export const ProjectsPage: React.FC = () => {
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer ${
               selectedFilter === cat.id
                 ? 'bg-ink text-paper font-semibold shadow-xs'
-                : 'bg-surface text-muted border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.2] dark:hover:border-white/[0.2] hover:text-ink'
+                : 'bg-surface dark:bg-card text-muted border border-border-hairline hover:border-cobalt/40 hover:text-ink'
             }`}
           >
             {cat.label}
@@ -133,7 +133,7 @@ export const ProjectsPage: React.FC = () => {
       )}
 
       {/* Interactive AI Inquiries Bottom Prompt */}
-      <div className="p-8 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] text-center space-y-4 shadow-xs">
+      <div className="p-8 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all text-center space-y-4 shadow-sm tech-card">
         <div className="inline-flex items-center gap-2 text-xs font-mono text-cobalt font-semibold uppercase tracking-wider">
           <Bot className="w-4 h-4" />
           <span>Need a customized technical walkthrough?</span>

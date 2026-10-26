@@ -171,11 +171,11 @@ export const CurioAssistant: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 backdrop-blur-md text-slate-900 border border-slate-200 text-xs font-mono font-semibold shadow-md hover:border-cobalt transition-all cursor-pointer group"
+            className="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface/90 dark:bg-card/90 backdrop-blur-md text-ink border border-border-hairline hover:border-cobalt/40 text-xs font-mono font-semibold shadow-lg transition-all cursor-pointer group"
           >
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_6px_rgba(245,158,11,0.6)]" />
             <span className="font-bold tracking-wider text-cobalt">CURIO</span>
-            <span className="text-slate-500 text-[11px]">&bull; A curious guide</span>
+            <span className="text-muted text-[11px]">&bull; A curious guide</span>
           </button>
 
           <button
@@ -183,7 +183,7 @@ export const CurioAssistant: React.FC = () => {
             type="button"
             onClick={() => setIsOpen(true)}
             aria-label="Open CURIO portfolio guide"
-            className="w-13 h-13 rounded-2xl bg-gradient-to-br from-cobalt via-blue-600 to-sky-500 text-white border border-blue-400/30 flex items-center justify-center shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer relative group"
+            className="w-13 h-13 rounded-2xl bg-gradient-to-br from-cobalt via-blue-600 to-violet text-white border border-blue-400/30 flex items-center justify-center shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer relative group"
           >
             <div className="relative">
               <BrandMonogram size={24} className="text-white transition-transform group-hover:scale-105" />
@@ -197,15 +197,15 @@ export const CurioAssistant: React.FC = () => {
       {/* Floating Exhibition Dialogue Panel */}
       {isOpen && (
         <div 
-          className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:w-[450px] sm:h-[630px] sm:max-h-[85vh] z-50 flex flex-col bg-surface border border-black/[0.12] dark:border-white/[0.15] sm:rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+          className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 sm:w-[450px] sm:h-[630px] sm:max-h-[85vh] z-50 flex flex-col bg-surface/98 dark:bg-card/98 border border-border-medium sm:rounded-3xl shadow-2xl backdrop-blur-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
           role="dialog"
           aria-modal="true"
           aria-labelledby="curio-chat-title"
         >
           {/* Header */}
-          <header className="p-4 sm:p-5 border-b border-black/[0.08] dark:border-white/[0.1] bg-subtle/60 flex items-center justify-between gap-3 shrink-0">
+          <header className="p-4 sm:p-5 border-b border-border-hairline bg-subtle/50 flex items-center justify-between gap-3 shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-surface border border-black/[0.1] dark:border-white/[0.12] flex items-center justify-center shadow-xs">
+              <div className="w-10 h-10 rounded-2xl bg-surface dark:bg-card border border-border-hairline flex items-center justify-center shadow-xs">
                 <BrandMonogram size={24} />
               </div>
               <div>
@@ -213,7 +213,7 @@ export const CurioAssistant: React.FC = () => {
                   <h2 id="curio-chat-title" className="text-base font-serif font-bold text-ink">
                     CURIO
                   </h2>
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider bg-cobalt/10 text-cobalt border border-cobalt/20">
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-wider bg-cobalt/10 text-cobalt border border-cobalt/25">
                     PORTFOLIO GUIDE
                   </span>
                 </div>
@@ -228,7 +228,7 @@ export const CurioAssistant: React.FC = () => {
                 type="button"
                 onClick={handleResetChat}
                 title="Restart Conversation"
-                className="p-2 rounded-lg text-muted hover:text-ink hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-colors cursor-pointer"
+                className="p-2 rounded-lg text-muted hover:text-ink hover:bg-subtle transition-colors cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
               </button>
@@ -239,7 +239,7 @@ export const CurioAssistant: React.FC = () => {
                   triggerButtonRef.current?.focus();
                 }}
                 title="Close CURIO (Esc)"
-                className="p-2 rounded-lg text-muted hover:text-ink hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-colors cursor-pointer"
+                className="p-2 rounded-lg text-muted hover:text-ink hover:bg-subtle transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -252,7 +252,7 @@ export const CurioAssistant: React.FC = () => {
             {/* Opening Welcome State */}
             {messages.length === 0 && (
               <div className="space-y-4 py-2">
-                <div className="p-4 rounded-2xl bg-subtle/70 border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+                <div className="p-4 rounded-2xl bg-subtle/70 dark:bg-card-elevated border border-border-hairline space-y-2">
                   <div className="flex items-center gap-2 text-ink font-semibold">
                     <Bot className="w-4 h-4 text-cobalt" />
                     <span>Welcome. I&apos;m CURIO.</span>
@@ -260,7 +260,7 @@ export const CurioAssistant: React.FC = () => {
                   <p className="text-muted leading-relaxed font-sans">
                     I&apos;m a curious guide to Harshad&apos;s world. Ask me about his projects, technical journey, creative work, or achievements.
                   </p>
-                  <div className="pt-2 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center gap-2 text-[10px] font-mono text-faint">
+                  <div className="pt-2 border-t border-border-hairline flex items-center gap-2 text-[10px] font-mono text-faint">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Grounded in verified public records &bull; Zero hallucinations</span>
                   </div>
@@ -276,7 +276,7 @@ export const CurioAssistant: React.FC = () => {
                         key={idx}
                         type="button"
                         onClick={() => handleSendMessage(q)}
-                        className="px-3 py-1.5 rounded-xl bg-surface border border-black/[0.08] dark:border-white/[0.1] text-ink hover:border-cobalt hover:text-cobalt text-[11px] text-left transition-all cursor-pointer font-mono shadow-2xs"
+                        className="px-3 py-1.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-ink hover:border-cobalt/40 hover:text-cobalt text-[11px] text-left transition-all cursor-pointer font-mono shadow-2xs"
                       >
                         {q} →
                       </button>
@@ -296,7 +296,7 @@ export const CurioAssistant: React.FC = () => {
                   className={`max-w-[88%] p-3.5 rounded-2xl leading-relaxed whitespace-pre-wrap ${
                     msg.role === 'user'
                       ? 'bg-ink text-paper rounded-tr-xs shadow-xs font-sans'
-                      : 'bg-subtle/80 text-ink border border-black/[0.06] dark:border-white/[0.08] rounded-tl-xs shadow-2xs'
+                      : 'bg-subtle/70 dark:bg-card-elevated text-ink border border-border-hairline rounded-tl-xs shadow-2xs'
                   }`}
                 >
                   {renderFormattedText(msg.content)}
@@ -306,7 +306,7 @@ export const CurioAssistant: React.FC = () => {
                   <Link
                     to={msg.suggestedRoute}
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface border border-black/[0.08] dark:border-white/[0.1] text-cobalt hover:underline text-[11px] font-mono font-semibold transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface border border-border-hairline text-cobalt hover:underline text-[11px] font-mono font-semibold transition-colors"
                   >
                     <Compass className="w-3 h-3" />
                     <span>{msg.routeLabel || `Explore ${msg.suggestedRoute}`}</span>
@@ -318,7 +318,7 @@ export const CurioAssistant: React.FC = () => {
 
             {/* Typing Indicator */}
             {isLoading && (
-              <div className="flex items-center gap-2 p-3.5 rounded-2xl bg-subtle/80 border border-black/[0.06] dark:border-white/[0.08] text-muted w-fit">
+              <div className="flex items-center gap-2 p-3.5 rounded-2xl bg-subtle/80 border border-border-hairline text-muted w-fit">
                 <span className="w-2 h-2 rounded-full bg-cobalt animate-ping" />
                 <span className="font-mono text-[11px]">CURIO is consulting verified records...</span>
               </div>
@@ -341,7 +341,7 @@ export const CurioAssistant: React.FC = () => {
           </div>
 
           {/* Footer Input */}
-          <footer className="p-3 sm:p-4 border-t border-black/[0.08] dark:border-white/[0.1] bg-surface">
+          <footer className="p-3 sm:p-4 border-t border-border-hairline bg-surface">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -356,7 +356,7 @@ export const CurioAssistant: React.FC = () => {
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyDown={handleKeyDownInput}
                 placeholder="Ask CURIO about projects, learning, SIH 2026..."
-                className="flex-1 max-h-32 px-3.5 py-2.5 rounded-xl bg-subtle/50 border border-black/[0.1] dark:border-white/[0.12] text-ink text-xs focus:border-cobalt focus:outline-none resize-none transition-colors font-sans"
+                className="flex-1 max-h-32 px-3.5 py-2.5 rounded-xl bg-subtle/50 border border-border-hairline text-ink text-xs focus:border-cobalt focus:outline-none resize-none transition-colors font-sans"
               />
               <button
                 type="submit"

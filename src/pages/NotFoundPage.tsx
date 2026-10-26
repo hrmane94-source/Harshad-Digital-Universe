@@ -30,7 +30,7 @@ export const NotFoundPage: React.FC = () => {
         </Link>
         <Link
           to="/projects"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.15] bg-surface text-ink text-xs font-semibold uppercase tracking-wider hover:border-black/[0.3] transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border-hairline bg-surface text-ink text-xs font-semibold uppercase tracking-wider hover:border-black/[0.3] transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Explore Projects</span>

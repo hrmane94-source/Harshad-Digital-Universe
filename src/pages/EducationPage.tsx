@@ -15,12 +15,12 @@ export const EducationPage: React.FC = () => {
 
       {/* Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <GraduationCap className="w-3.5 h-3.5 text-cobalt" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <GraduationCap className="w-3.5 h-3.5" />
           <span>VERIFIED ACADEMIC RECORD</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
-          Education History
+          Education <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">History</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           Structured academic progression from foundational schooling at Padua High School through junior college science to current undergraduate engineering in Computer Science at ADCET Ashta.
@@ -28,7 +28,7 @@ export const EducationPage: React.FC = () => {
       </div>
 
       {/* Verified Academic Integrity Disclosure */}
-      <div className="p-5 rounded-2xl bg-subtle/80 border border-black/[0.08] dark:border-white/[0.08] flex items-start gap-3.5 text-xs text-muted">
+      <div className="p-5 rounded-2xl bg-subtle/80 border border-border-hairline flex items-start gap-3.5 text-xs text-muted shadow-2xs">
         <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
         <div className="space-y-1">
           <span className="font-semibold text-ink block font-mono text-[11px] uppercase tracking-wide">
@@ -45,7 +45,7 @@ export const EducationPage: React.FC = () => {
         {verifiedEducation.map((edu, idx) => (
           <article
             key={edu.id}
-            className="p-8 sm:p-10 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-6 relative overflow-hidden shadow-xs hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-colors"
+            className="p-8 sm:p-10 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-6 relative overflow-hidden shadow-xs hover:border-cobalt/40 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
           >
             {/* Top Accent Bar */}
             <div className={`absolute top-0 left-0 right-0 h-1.5 ${
@@ -68,7 +68,7 @@ export const EducationPage: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-2 self-start sm:self-center">
-                <span className="px-3.5 py-1.5 rounded-full bg-subtle border border-black/[0.06] dark:border-white/[0.08] text-xs font-mono text-ink flex items-center gap-1.5 font-semibold">
+                <span className="px-3.5 py-1.5 rounded-full bg-subtle border border-border-hairline text-xs font-mono text-ink flex items-center gap-1.5 font-semibold">
                   <Calendar className="w-3.5 h-3.5 text-cobalt" />
                   <span>{edu.period}</span>
                 </span>
@@ -76,7 +76,7 @@ export const EducationPage: React.FC = () => {
             </div>
 
             {/* Degree & Board */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono p-4 rounded-2xl bg-subtle border border-black/[0.04] dark:border-white/[0.06]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono p-4 rounded-2xl bg-subtle border border-border-hairline">
               <div>
                 <span className="text-muted block text-[10px] uppercase tracking-wider mb-0.5">Program / Qualification</span>
                 <span className="text-ink font-semibold text-sm">
@@ -111,7 +111,7 @@ export const EducationPage: React.FC = () => {
 
             {/* Leadership Record */}
             {edu.leadership && edu.leadership.length > 0 && (
-              <div className="space-y-2 pt-2 border-t border-black/[0.06] dark:border-white/[0.08]">
+              <div className="space-y-2 pt-2 border-t border-border-hairline">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-muted block">
                   Leadership Responsibility
                 </span>
@@ -119,7 +119,7 @@ export const EducationPage: React.FC = () => {
                   {edu.leadership.map((l, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] text-xs font-medium text-ink border border-black/[0.06] dark:border-white/[0.08]"
+                      className="px-3 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] text-xs font-medium text-ink border border-border-hairline"
                     >
                       {l}
                     </span>

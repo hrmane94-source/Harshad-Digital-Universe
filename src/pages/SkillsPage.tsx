@@ -31,7 +31,7 @@ export const SkillsPage: React.FC = () => {
       case 'Demonstrated in Project':
         return 'bg-coral/10 text-coral border-coral/20 font-medium';
       default:
-        return 'bg-subtle text-muted border-black/[0.06] dark:border-white/[0.08]';
+        return 'bg-subtle text-muted border-border-hairline';
     }
   };
 
@@ -45,12 +45,12 @@ export const SkillsPage: React.FC = () => {
 
       {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <Wrench className="w-3.5 h-3.5 text-cobalt" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Wrench className="w-3.5 h-3.5" />
           <span>TECHNICAL COMPETENCIES &amp; HONEST PROFICIENCIES</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
-          Technical Skills &amp; Tooling
+          Technical Skills &amp; <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Tooling</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           Transparent technical capabilities categorized by depth of knowledge. No arbitrary percentage bars or exaggerated claims—clear distinctions between independent fundamentals, active study, and AI-assisted engineering implementations.
@@ -58,7 +58,7 @@ export const SkillsPage: React.FC = () => {
       </div>
 
       {/* Honest Attribution Policy */}
-      <div className="p-5 rounded-2xl bg-subtle/80 border border-black/[0.08] dark:border-white/[0.08] flex items-start gap-3.5 text-xs text-muted">
+      <div className="p-5 rounded-2xl bg-subtle/80 border border-border-hairline flex items-start gap-3.5 text-xs text-muted shadow-2xs">
         <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
         <div className="space-y-1">
           <span className="font-semibold text-ink block font-mono text-[11px] uppercase tracking-wide">
@@ -71,7 +71,7 @@ export const SkillsPage: React.FC = () => {
       </div>
 
       {/* Category Filter Chips */}
-      <div className="flex flex-wrap gap-2 border-b border-black/[0.08] dark:border-white/[0.08] pb-4">
+      <div className="flex flex-wrap gap-2 border-b border-border-hairline pb-4">
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -79,7 +79,7 @@ export const SkillsPage: React.FC = () => {
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer ${
               selectedCategory === cat.id
                 ? 'bg-ink text-paper font-semibold shadow-xs'
-                : 'bg-surface text-muted border border-black/[0.08] dark:border-white/[0.08] hover:border-black/[0.2] dark:hover:border-white/[0.2] hover:text-ink'
+                : 'bg-surface dark:bg-card text-muted border border-border-hairline hover:border-cobalt/40 hover:text-ink'
             }`}
           >
             {cat.label}
@@ -92,7 +92,7 @@ export const SkillsPage: React.FC = () => {
         {filteredSkills.map((skill) => (
           <article
             key={skill.id}
-            className="p-6 sm:p-7 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-3.5 shadow-xs hover:border-black/[0.2] dark:hover:border-white/[0.2] transition-colors"
+            className="p-6 sm:p-7 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-3.5 shadow-xs hover:border-cobalt/40 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
           >
             <div className="flex items-start justify-between gap-2">
               <div>
@@ -114,7 +114,7 @@ export const SkillsPage: React.FC = () => {
             </p>
 
             {skill.projectsReferenced && skill.projectsReferenced.length > 0 && (
-              <div className="pt-2 border-t border-black/[0.06] dark:border-white/[0.08] text-[10px] font-mono text-muted flex items-center gap-1.5">
+              <div className="pt-2 border-t border-border-hairline text-[10px] font-mono text-muted flex items-center gap-1.5">
                 <span className="text-faint">Referenced In:</span>
                 <span className="text-cobalt font-medium">{skill.projectsReferenced.join(', ')}</span>
               </div>
@@ -124,7 +124,7 @@ export const SkillsPage: React.FC = () => {
       </div>
 
       {/* Tools & Ecosystem */}
-      <section className="p-8 sm:p-10 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-5 shadow-xs">
+      <section className="p-8 sm:p-10 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all space-y-5 shadow-sm tech-card">
         <div className="space-y-1">
           <span className="text-[11px] font-mono uppercase tracking-widest text-cobalt font-bold">
             TOOLING &amp; WORKFLOW ECOSYSTEM
@@ -138,7 +138,7 @@ export const SkillsPage: React.FC = () => {
           {toolsUsedList.map((tool) => (
             <span
               key={tool}
-              className="px-3.5 py-1.5 rounded-xl bg-subtle border border-black/[0.06] dark:border-white/[0.08] text-xs font-mono text-ink font-medium hover:border-black/[0.2] transition-colors"
+              className="px-3.5 py-1.5 rounded-xl bg-subtle border border-border-hairline text-xs font-mono text-ink font-medium hover:border-border-medium transition-colors"
             >
               {tool}
             </span>

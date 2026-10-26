@@ -36,12 +36,12 @@ export const ContactPage: React.FC = () => {
 
       {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <Mail className="w-3.5 h-3.5 text-cobalt" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Mail className="w-3.5 h-3.5" />
           <span>DIRECT COMMUNICATION &amp; VERIFIED CHANNELS</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
-          Let&apos;s Connect &amp; Collaborate
+          Let&apos;s Connect &amp; <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Collaborate</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           Open for technical discussions on cybersecurity screening, AI-assisted engineering, hackathon collaborations, or cinematography.
@@ -54,7 +54,7 @@ export const ContactPage: React.FC = () => {
         <div className="lg:col-span-5 space-y-6">
 
           {/* Primary Email Card */}
-          <div className="p-8 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4 shadow-xs">
+          <div className="p-8 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
             <span className="text-[11px] font-mono uppercase text-cobalt tracking-widest font-bold block">
               Primary Direct Contact
             </span>
@@ -66,7 +66,7 @@ export const ContactPage: React.FC = () => {
             </p>
             <a
               href={`mailto:${contactConfig.email}`}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-ink text-paper font-semibold text-xs uppercase tracking-wider transition-opacity hover:opacity-90 w-full justify-center shadow-xs"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cobalt to-blue-600 text-white font-semibold text-xs uppercase tracking-wider transition-opacity hover:opacity-95 w-full justify-center shadow-md active:scale-98"
             >
               <Mail className="w-4 h-4" />
               <span>{contactConfig.email}</span>
@@ -74,7 +74,7 @@ export const ContactPage: React.FC = () => {
           </div>
 
           {/* Social Profiles Grid */}
-          <div className="p-8 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-4 shadow-xs">
+          <div className="p-8 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
             <span className="text-[11px] font-mono uppercase text-muted tracking-widest font-bold block">
               Verified Profiles
             </span>
@@ -84,7 +84,7 @@ export const ContactPage: React.FC = () => {
                 href={contactConfig.profiles.github}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] hover:border-black/[0.2] transition-colors group"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-border-hairline hover:border-black/[0.2] transition-colors group"
               >
                 <div className="flex items-center gap-3">
                   <GithubIcon className="w-4 h-4 text-ink" />
@@ -100,7 +100,7 @@ export const ContactPage: React.FC = () => {
                 href={contactConfig.profiles.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] hover:border-black/[0.2] transition-colors group"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-border-hairline hover:border-black/[0.2] transition-colors group"
               >
                 <div className="flex items-center gap-3">
                   <LinkedinIcon className="w-4 h-4 text-cobalt" />
@@ -116,7 +116,7 @@ export const ContactPage: React.FC = () => {
                 href={contactConfig.profiles.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] hover:border-black/[0.2] transition-colors group"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-border-hairline hover:border-black/[0.2] transition-colors group"
               >
                 <div className="flex items-center gap-3">
                   <InstagramIcon className="w-4 h-4 text-coral" />
@@ -132,7 +132,7 @@ export const ContactPage: React.FC = () => {
                 href={contactConfig.profiles.behance}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-black/[0.04] dark:border-white/[0.06] hover:border-black/[0.2] transition-colors group"
+                className="flex items-center justify-between p-3.5 rounded-xl bg-subtle border border-border-hairline hover:border-black/[0.2] transition-colors group"
               >
                 <div className="flex items-center gap-3">
                   <span className="w-4 h-4 flex items-center justify-center font-bold text-xs text-ink">Bē</span>
@@ -152,7 +152,7 @@ export const ContactPage: React.FC = () => {
         <div className="lg:col-span-7">
           <form
             onSubmit={handleSubmit}
-            className="p-8 sm:p-10 rounded-3xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-6 shadow-xs"
+            className="p-8 sm:p-10 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all space-y-6 shadow-sm tech-card"
           >
             <div className="space-y-1">
               <h2 className="text-2xl font-serif font-bold text-ink tracking-tight">
@@ -173,7 +173,7 @@ export const ContactPage: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Alex Sharma"
-                    className="w-full px-4 py-3 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-subtle border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
                   />
                 </div>
 
@@ -185,7 +185,7 @@ export const ContactPage: React.FC = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="e.g. alex@university.edu"
-                    className="w-full px-4 py-3 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-subtle border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -197,7 +197,7 @@ export const ContactPage: React.FC = () => {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="e.g. Hackathon Team Collaboration / DevSecOps Query"
-                  className="w-full px-4 py-3 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-subtle border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none transition-colors"
                 />
               </div>
 
@@ -209,7 +209,7 @@ export const ContactPage: React.FC = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Write your note, feedback, or collaboration proposal..."
-                  className="w-full px-4 py-3 rounded-xl bg-subtle border border-black/[0.08] dark:border-white/[0.1] text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-subtle border border-border-hairline text-ink text-xs font-mono focus:border-cobalt focus:outline-none resize-none transition-colors"
                 />
               </div>
             </div>

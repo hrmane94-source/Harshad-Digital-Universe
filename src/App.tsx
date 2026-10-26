@@ -28,7 +28,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ defa
 function RouteFallback() {
   return (
     <div className="min-h-[50vh] flex items-center justify-center">
-      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-black/[0.08] dark:border-white/[0.1] text-xs font-mono text-cobalt shadow-xs">
+      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border-hairline text-xs font-mono text-cobalt shadow-xs">
         <span className="w-2 h-2 rounded-full bg-cobalt animate-ping" />
         <span>Loading spatial coordinates...</span>
       </div>

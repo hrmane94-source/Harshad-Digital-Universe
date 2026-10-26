@@ -7,58 +7,101 @@
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
+  /* Surfaces & Base */
   --color-paper: var(--bg-paper);
+  --color-secondary: var(--bg-secondary);
   --color-surface: var(--bg-surface);
   --color-subtle: var(--bg-subtle);
+  --color-alternate: var(--bg-alternate);
+  --color-card: var(--bg-card);
+  --color-card-elevated: var(--bg-card-elevated);
+
+  /* Typography */
   --color-ink: var(--text-ink);
+  --color-ink-muted: var(--text-muted);
   --color-muted: var(--text-muted);
   --color-faint: var(--text-faint);
 
+  /* Borders */
+  --color-border-hairline: var(--border-hairline);
+  --color-border-medium: var(--border-medium);
+  --color-border-strong: var(--border-strong);
+
+  /* Expressive Accents */
   --color-cobalt: var(--accent-cobalt);
+  --color-violet: var(--accent-violet);
+  --color-mint: var(--accent-mint);
   --color-coral: var(--accent-coral);
+  --color-sunny: var(--accent-sunny);
   --color-tangerine: #F97316;
-  --color-sunny: #FBBF24;
   --color-skyblue: #0EA5E9;
-  --color-mint: #10B981;
-  --color-lavender: var(--accent-lavender);
-  --color-chartreuse: var(--accent-chartreuse);
+  --color-lavender: var(--accent-violet);
+  --color-chartreuse: #A3E635;
 }
 
 @layer base {
+  /* LIGHT MODE: Bright, editorial, expressive, intentional surfaces */
   :root {
-    --bg-paper: #FFFDF9;
+    --bg-paper: #F7F8FC;
+    --bg-secondary: #EEF2FF;
     --bg-surface: #FFFFFF;
-    --bg-subtle: #F5EFE6;
-    --border-hairline: rgba(15, 23, 42, 0.08);
-    --border-medium: rgba(15, 23, 42, 0.16);
-    --border-strong: rgba(15, 23, 42, 0.28);
+    --bg-subtle: #F0F3FA;
+    --bg-alternate: #EAEFF9;
+    --bg-card: #FFFFFF;
+    --bg-card-elevated: #FFFFFF;
 
-    --text-ink: #0F172A;
-    --text-muted: #475569;
-    --text-faint: #94A3B8;
+    --bg-lavender: #F0EBFF;
+    --bg-mint: #E6F8F1;
+    --bg-coral: #FFF0EC;
 
-    --accent-cobalt: #1D4ED8;
-    --accent-coral: #F97316;
-    --accent-lavender: #6366F1;
-    --accent-chartreuse: #65A30D;
+    --border-hairline: rgba(24, 32, 51, 0.08);
+    --border-medium: rgba(24, 32, 51, 0.14);
+    --border-strong: rgba(49, 94, 235, 0.32);
+
+    --text-ink: #182033;
+    --text-muted: #56617A;
+    --text-faint: #8E99AF;
+
+    --accent-cobalt: #315EEB;
+    --accent-violet: #7855D6;
+    --accent-mint: #168B78;
+    --accent-coral: #E45D51;
+    --accent-sunny: #E9B946;
+
+    --glow-primary: rgba(49, 94, 235, 0.08);
+    --glow-secondary: rgba(120, 85, 214, 0.07);
   }
 
+  /* DARK MODE: Deep midnight-blue atmosphere, rich surfaces, fine coloured borders */
   .dark {
-    --bg-paper: #111215;
-    --bg-surface: #18191E;
-    --bg-subtle: #212228;
-    --border-hairline: rgba(255, 255, 255, 0.08);
-    --border-medium: rgba(255, 255, 255, 0.16);
-    --border-strong: rgba(255, 255, 255, 0.3);
+    --bg-paper: #0B1020;
+    --bg-secondary: #10182B;
+    --bg-surface: #131B31;
+    --bg-subtle: #18233E;
+    --bg-alternate: #1D2A4A;
+    --bg-card: #141D35;
+    --bg-card-elevated: #1B2645;
 
-    --text-ink: #F5F4F0;
-    --text-muted: #A4A4AF;
-    --text-faint: #6B6C77;
+    --bg-lavender: #181E38;
+    --bg-mint: #0E2428;
+    --bg-coral: #281B22;
 
-    --accent-cobalt: #3B82F6;
-    --accent-coral: #FB923C;
-    --accent-lavender: #A78BFA;
-    --accent-chartreuse: #A3E635;
+    --border-hairline: rgba(120, 166, 255, 0.12);
+    --border-medium: #2B3957;
+    --border-strong: rgba(120, 166, 255, 0.4);
+
+    --text-ink: #F3F5FF;
+    --text-muted: #AAB6D1;
+    --text-faint: #6D7D9F;
+
+    --accent-cobalt: #78A6FF;
+    --accent-violet: #B39AFF;
+    --accent-mint: #78E2C0;
+    --accent-coral: #FF8E82;
+    --accent-sunny: #F4CF72;
+
+    --glow-primary: rgba(120, 166, 255, 0.12);
+    --glow-secondary: rgba(179, 154, 255, 0.10);
   }
 
   body {
@@ -67,6 +110,7 @@
     color: var(--text-ink);
     overflow-x: hidden;
     letter-spacing: -0.01em;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   h1, h2, h3 {
@@ -93,23 +137,51 @@
   font-family: var(--font-mono);
 }
 
+/* Ambient Radial Lighting Fields */
+.ambient-glow-cobalt {
+  background: radial-gradient(circle at 50% 50%, var(--glow-primary) 0%, transparent 70%);
+}
+
+.ambient-glow-violet {
+  background: radial-gradient(circle at 50% 50%, var(--glow-secondary) 0%, transparent 70%);
+}
+
+/* Technical Dotted & Grid Patterns */
+.tech-dot-pattern {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.tech-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+}
+
+/* Tech Depth Card */
+.tech-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+}
+
+.dark .tech-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(120, 166, 255, 0.15);
+}
+
 /* Fine-line editorial borders */
 .border-editorial {
   border-color: var(--border-hairline);
 }
 
 .border-editorial-medium {
-  border-color: var(--border-medium);
-}
-
-/* Subtle editorial paper card */
-.editorial-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-hairline);
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.editorial-card:hover {
   border-color: var(--border-medium);
 }
 
@@ -134,7 +206,7 @@
 
 /* Reduced Motion Respect */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

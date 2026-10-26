@@ -27,7 +27,7 @@ export const JourneyPage: React.FC = () => {
       category: "Academic",
       institution: "Swami Vivekanand Junior College of Science, Koparkhairane",
       badge: "Completed HSC",
-      badgeColor: "bg-black/[0.04] dark:bg-white/[0.06] text-muted border-black/[0.06] dark:border-white/[0.08]",
+      badgeColor: "bg-black/[0.04] dark:bg-white/[0.06] text-muted border-border-hairline",
       description: "Completed higher secondary coursework in Physics, Chemistry, and Mathematics under the Maharashtra State Board. Began exploring AI tools, algorithmic reasoning, and computer systems.",
       associatedLinks: [
         { label: "Education History", url: "/education" }
@@ -51,7 +51,7 @@ export const JourneyPage: React.FC = () => {
       category: "Scientific Exposure",
       institution: "Bhabha Atomic Research Centre (BARC), Trombay",
       badge: "Scientific Delegation",
-      badgeColor: "bg-black/[0.04] dark:bg-white/[0.06] text-muted border-black/[0.06] dark:border-white/[0.08]",
+      badgeColor: "bg-black/[0.04] dark:bg-white/[0.06] text-muted border-border-hairline",
       description: "Selected for two guided scientific educational visits to the Bhabha Atomic Research Centre in connection with National Science Day activities, experiencing India's premier atomic and computational facilities.",
       associatedLinks: []
     },
@@ -87,12 +87,12 @@ export const JourneyPage: React.FC = () => {
 
       {/* Editorial Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <Milestone className="w-3.5 h-3.5 text-cobalt" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+          <Milestone className="w-3.5 h-3.5" />
           <span>PERSONAL CHRONOLOGY</span>
         </div>
         <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
-          The Journey So Far
+          The Journey <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">So Far</span>
         </h1>
         <p className="text-muted text-sm sm:text-base leading-relaxed">
           From early school science experiments and head boy governance in Mumbai to competitive national hackathons and modern engineering in Sangli.
@@ -100,21 +100,21 @@ export const JourneyPage: React.FC = () => {
       </div>
 
       {/* Vertical Fine-Line Timeline */}
-      <div className="relative border-l border-black/[0.12] dark:border-white/[0.15] ml-4 sm:ml-6 space-y-12">
+      <div className="relative border-l border-border-hairline ml-4 sm:ml-6 space-y-12">
         {timelineEvents.map((event, idx) => (
           <div key={idx} className="relative pl-6 sm:pl-10 group">
 
             {/* Timeline Node Icon */}
-            <div className="absolute -left-[17px] top-2 w-8 h-8 rounded-full bg-surface border-2 border-cobalt flex items-center justify-center text-cobalt group-hover:scale-110 transition-transform shadow-xs">
+            <div className="absolute -left-[17px] top-2 w-8 h-8 rounded-full bg-surface dark:bg-card border-2 border-cobalt flex items-center justify-center text-cobalt group-hover:scale-110 transition-transform shadow-xs">
               <span className="w-2.5 h-2.5 rounded-full bg-cobalt" />
             </div>
 
             {/* Event Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] hover:border-black/[0.2] dark:hover:border-white/[0.25] transition-all space-y-3.5 shadow-xs">
+            <div className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline hover:border-cobalt/40 transition-all space-y-3.5 shadow-xs hover:shadow-xl hover:-translate-y-0.5">
 
               {/* Badge & Period */}
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="text-xs font-mono px-3 py-1 rounded-full bg-subtle text-ink border border-black/[0.06] dark:border-white/[0.08] font-semibold flex items-center gap-1.5">
+                <span className="text-xs font-mono px-3 py-1 rounded-full bg-subtle text-ink border border-border-hairline font-semibold flex items-center gap-1.5">
                   <Calendar className="w-3 h-3 text-cobalt" />
                   <span>{event.year}</span>
                 </span>
@@ -141,7 +141,7 @@ export const JourneyPage: React.FC = () => {
 
               {/* Associated Links */}
               {event.associatedLinks.length > 0 && (
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-black/[0.06] dark:border-white/[0.08]">
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-border-hairline">
                   {event.associatedLinks.map((link, i) => (
                     <Link
                       key={i}

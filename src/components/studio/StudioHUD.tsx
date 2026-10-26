@@ -52,15 +52,15 @@ export const StudioHUD: React.FC = () => {
       aria-label="Studio Section Navigator"
     >
       {/* Current Active Section Badge */}
-      <div className="px-3.5 py-2 rounded-xl bg-surface/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-lg flex items-center gap-2.5 text-[11px] font-mono">
-        <span className="w-2 h-2 rounded-full bg-cobalt animate-pulse" />
+      <div className="px-3.5 py-2 rounded-xl bg-surface/90 dark:bg-card/90 backdrop-blur-md border border-border-hairline shadow-xl flex items-center gap-2.5 text-[11px] font-mono">
+        <span className="w-2 h-2 rounded-full bg-cobalt animate-pulse shadow-[0_0_8px_rgba(49,94,235,0.7)]" />
         <span className="font-bold text-ink">SEC {current.num}</span>
-        <span className="text-slate-300 dark:text-slate-600">//</span>
+        <span className="text-muted/40">//</span>
         <span className="text-muted tracking-wide font-medium">{current.label}</span>
       </div>
 
       {/* Mini Segment Progress Dots */}
-      <div className="p-1.5 rounded-lg bg-surface/80 backdrop-blur-md border border-slate-200/80 dark:border-white/10 flex items-center gap-1.5 w-fit shadow-xs">
+      <div className="p-1.5 rounded-lg bg-surface/80 dark:bg-card/80 backdrop-blur-md border border-border-hairline flex items-center gap-1.5 w-fit shadow-xs">
         {SECTIONS.map((sec, idx) => (
           <button
             key={sec.id}
@@ -70,8 +70,8 @@ export const StudioHUD: React.FC = () => {
             aria-label={`Jump to ${sec.num} — ${sec.label}`}
             className={`transition-all cursor-pointer rounded-full ${
               activeIndex === idx
-                ? 'w-5 h-2 bg-cobalt'
-                : 'w-2 h-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/40'
+                ? 'w-5 h-2 bg-cobalt shadow-[0_0_6px_rgba(49,94,235,0.6)]'
+                : 'w-2 h-2 bg-subtle hover:bg-cobalt/40'
             }`}
           />
         ))}

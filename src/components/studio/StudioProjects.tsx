@@ -19,26 +19,32 @@ export const StudioProjects: React.FC = () => {
   return (
     <section 
       id="chapter-02" 
-      className="py-20 sm:py-32 bg-paper border-b border-slate-200/90 dark:border-white/10 relative overflow-hidden"
+      className="py-20 sm:py-32 bg-gradient-to-b from-paper via-secondary/30 to-paper border-b border-border-hairline relative overflow-hidden transition-colors duration-250"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      {/* Background Architectural Ambient Lighting */}
+      <div className="absolute top-1/4 left-1/4 w-[650px] h-[650px] rounded-full bg-cobalt/10 dark:bg-cobalt/15 blur-3xl pointer-events-none" />
+      <div className="absolute top-2/3 right-10 w-[500px] h-[500px] rounded-full bg-violet/10 dark:bg-violet/15 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 dark:border-white/10 pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-border-hairline pb-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2.5 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse" />
+              <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.6)]" />
               <span className="text-ink">SECTION 03</span>
-              <span className="text-slate-300 dark:text-slate-700">//</span>
+              <span className="text-muted/40">//</span>
               <span>SELECTED WORK &amp; CASE STUDIES</span>
             </div>
             
             <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-ink tracking-tight leading-[1.05]">
               Ideas are interesting. <br />
-              <span className="font-bold text-cobalt italic">Building them is better.</span>
+              <span className="font-bold text-cobalt italic bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">
+                Building them is better.
+              </span>
             </h2>
 
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans max-w-xl font-medium">
+            <p className="text-xs sm:text-sm text-muted font-sans max-w-xl font-medium">
               Verified software implementations, national hackathon builds, and systems engineering. Each case study documents honest architecture, measurable outcomes, and verified technical limitations.
             </p>
           </div>
@@ -46,7 +52,7 @@ export const StudioProjects: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-xs"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-all shadow-xs hover:shadow-md active:scale-95"
             >
               <span>All 7 Verified Projects</span>
               <ArrowRight className="w-3.5 h-3.5 text-coral" />
@@ -57,7 +63,7 @@ export const StudioProjects: React.FC = () => {
         {/* ============================================================
             FLAGSHIP SPOTLIGHT: FALCON-404 (Smart India Hackathon 2026)
             ============================================================ */}
-        <div className="p-8 sm:p-10 lg:p-12 rounded-3xl bg-surface border-2 border-cobalt/30 dark:border-cobalt/40 shadow-sm relative overflow-hidden space-y-10">
+        <div className="p-8 sm:p-10 lg:p-12 rounded-3xl bg-surface dark:bg-card border-2 border-cobalt/40 dark:border-cobalt/50 shadow-xl dark:shadow-2xl dark:shadow-cobalt/15 relative overflow-hidden space-y-10">
           
           {/* Flagship Header Banner */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-white/10">

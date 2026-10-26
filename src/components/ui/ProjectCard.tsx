@@ -22,23 +22,45 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const hasRepoLink = Boolean(project.links.repositoryUrl && project.links.repositoryUrl.trim() !== "");
   const hasLiveDemoLink = Boolean(project.links.liveDemoUrl && project.links.liveDemoUrl.trim() !== "");
 
+  // Project-specific accent color mappings
+  const getDomainAccent = () => {
+    switch (project.slug) {
+      case 'falcon-404':
+        return 'text-cobalt border-cobalt/30 bg-cobalt/10';
+      case 'arogya-ai':
+        return 'text-mint border-mint/30 bg-mint/10';
+      case 'campus-copilot':
+        return 'text-cobalt border-cobalt/30 bg-cobalt/10';
+      case 'neuroverse-2k26-website':
+        return 'text-violet border-violet/30 bg-violet/10';
+      case 'gada-electronics':
+        return 'text-sunny border-sunny/30 bg-sunny/10';
+      case 'artbook-ai':
+        return 'text-coral border-coral/30 bg-coral/10';
+      case 'eco-friendly-planting-system':
+        return 'text-mint border-mint/30 bg-mint/10';
+      default:
+        return 'text-cobalt border-cobalt/30 bg-cobalt/10';
+    }
+  };
+
   return (
-    <article className={`rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-surface transition-all duration-300 hover:border-black/[0.2] dark:hover:border-white/[0.25] hover:shadow-lg flex flex-col group ${
-      featuredLayout ? 'lg:grid lg:grid-cols-12 lg:gap-8 items-center p-2 sm:p-3' : 'p-2 sm:p-2.5'
+    <article className={`rounded-2xl border border-border-hairline bg-surface dark:bg-card transition-all duration-250 hover:border-cobalt/40 dark:hover:border-cobalt/50 shadow-xs hover:shadow-xl hover:-translate-y-1 flex flex-col group ${
+      featuredLayout ? 'lg:grid lg:grid-cols-12 lg:gap-8 items-center p-3 sm:p-4' : 'p-2.5 sm:p-3'
     }`}>
 
       {/* Cover Artwork / Image */}
       <div className={`${featuredLayout ? 'lg:col-span-7' : 'w-full'}`}>
-        <Link to={`/projects/${project.slug}`} className="block overflow-hidden rounded-xl bg-slate-950 border border-black/[0.08] dark:border-white/[0.08]">
+        <Link to={`/projects/${project.slug}`} className="block overflow-hidden rounded-xl bg-slate-950 border border-border-hairline shadow-inner">
           {hasCoverAsset ? (
             <div className="relative overflow-hidden aspect-video bg-slate-950 flex items-center justify-center p-1.5 group-hover:bg-slate-900 transition-colors">
               <img
                 src={project.assets.cover}
                 alt={project.title}
-                className="w-full h-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                className="w-full h-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.025]"
                 loading="lazy"
               />
-              <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-slate-700/80 backdrop-blur-sm text-[10px] font-mono text-slate-300">
+              <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700/80 backdrop-blur-sm text-[10px] font-mono text-slate-300">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>Live Dashboard</span>
               </div>
@@ -62,12 +84,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
           {/* Header Badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-subtle text-muted border border-black/[0.06] dark:border-white/[0.08]">
+            <span className={`text-[11px] font-mono px-2.5 py-0.5 rounded-full border ${getDomainAccent()} font-semibold`}>
               {project.domain.split(',')[0]}
             </span>
 
             {project.importance === 'flagship' && (
-              <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-cobalt text-white font-bold tracking-wider">
+              <span className="text-[10px] font-mono uppercase px-2.5 py-0.5 rounded-full bg-cobalt text-white font-bold tracking-wider shadow-xs">
                 Flagship Case Study
               </span>
             )}
@@ -93,7 +115,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
 
           {/* Role badge */}
-          <div className="text-[11px] text-muted font-mono bg-subtle px-3 py-1.5 rounded-lg border border-black/[0.04] dark:border-white/[0.06] inline-block">
+          <div className="text-[11px] text-muted font-mono bg-subtle px-3 py-1.5 rounded-lg border border-border-hairline inline-block">
             <span className="text-faint">Role: </span>
             <span className="text-ink font-medium">{project.role}</span>
           </div>
@@ -108,7 +130,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             {project.technologies.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.04] text-muted border border-black/[0.04] dark:border-white/[0.06]"
+                className="text-[10px] font-mono px-2 py-0.5 rounded bg-subtle text-muted border border-border-hairline"
               >
                 {tech}
               </span>
@@ -118,13 +140,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Footer CTAs */}
-        <div className="pt-5 mt-5 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between gap-3">
+        <div className="pt-5 mt-5 border-t border-border-hairline flex items-center justify-between gap-3">
           <Link
             to={`/projects/${project.slug}`}
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink hover:text-cobalt transition-colors group/link"
           >
             <span>Read Architecture</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1 text-coral" />
           </Link>
 
           <div className="flex items-center gap-2">
@@ -139,14 +161,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 <GithubIcon className="w-4 h-4" />
               </a>
             )}
-
             {hasLiveDemoLink && (
               <a
                 href={project.links.liveDemoUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="p-1.5 rounded-lg text-muted hover:text-ink hover:bg-subtle transition-colors"
-                title="Open Live Demonstration"
+                className="p-1.5 rounded-lg text-cobalt hover:bg-cobalt/10 transition-colors"
+                title="Open Live Demo"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>

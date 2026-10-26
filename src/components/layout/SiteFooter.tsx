@@ -25,11 +25,11 @@ export const SiteFooter: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-black/[0.08] dark:border-white/[0.08] bg-paper text-muted text-xs transition-colors duration-200">
+    <footer className="border-t border-border-hairline bg-secondary/50 dark:bg-card/30 backdrop-blur-sm text-muted text-xs transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-black/[0.06] dark:border-white/[0.08]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-border-hairline">
 
           {/* Brand & Persona */}
           <div className="lg:col-span-2 space-y-4">
@@ -58,7 +58,7 @@ export const SiteFooter: React.FC = () => {
                 href={contactConfig.profiles.github}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg border border-black/[0.08] dark:border-white/[0.1] bg-surface flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt transition-colors"
+                className="w-8 h-8 rounded-lg border border-border-hairline bg-card flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-xs"
                 aria-label="GitHub Profile"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
@@ -67,7 +67,7 @@ export const SiteFooter: React.FC = () => {
                 href={contactConfig.profiles.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg border border-black/[0.08] dark:border-white/[0.1] bg-surface flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt transition-colors"
+                className="w-8 h-8 rounded-lg border border-border-hairline bg-card flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-xs"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-3.5 h-3.5" />
@@ -76,7 +76,7 @@ export const SiteFooter: React.FC = () => {
                 href={contactConfig.profiles.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg border border-black/[0.08] dark:border-white/[0.1] bg-surface flex items-center justify-center text-ink hover:text-coral hover:border-coral transition-colors"
+                className="w-8 h-8 rounded-lg border border-border-hairline bg-card flex items-center justify-center text-ink hover:text-coral hover:border-coral/40 transition-colors shadow-xs"
                 aria-label="Instagram Creative Profile"
               >
                 <InstagramIcon className="w-3.5 h-3.5" />
@@ -85,14 +85,14 @@ export const SiteFooter: React.FC = () => {
                 href={contactConfig.profiles.behance}
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-lg border border-black/[0.08] dark:border-white/[0.1] bg-surface flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt transition-colors font-bold text-[10px]"
+                className="w-8 h-8 rounded-lg border border-border-hairline bg-card flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors font-bold text-[10px] shadow-xs"
                 aria-label="Behance Portfolio"
               >
                 Bē
               </a>
               <a
                 href={`mailto:${contactConfig.email}`}
-                className="w-8 h-8 rounded-lg border border-black/[0.08] dark:border-white/[0.1] bg-surface flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt transition-colors"
+                className="w-8 h-8 rounded-lg border border-border-hairline bg-card flex items-center justify-center text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-xs"
                 aria-label="Email Harshad Mane"
               >
                 <Mail className="w-3.5 h-3.5" />
@@ -187,7 +187,7 @@ export const SiteFooter: React.FC = () => {
               <li className="pt-2">
                 <Link
                   to="/owner"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-black/[0.08] dark:border-white/[0.1] bg-surface text-ink hover:border-black/[0.2] transition-colors"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-border-hairline bg-card text-ink hover:border-border-medium hover:text-cobalt transition-colors shadow-xs"
                 >
                   <Lock className="w-3 h-3 text-muted" />
                   <span>Private Owner OS</span>

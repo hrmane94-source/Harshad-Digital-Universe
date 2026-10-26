@@ -50,14 +50,14 @@ export const AboutPage: React.FC = () => {
 
         {/* Left: Bio Story */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-subtle border border-black/[0.08] dark:border-white/[0.08] text-muted text-[11px] font-mono tracking-widest uppercase font-semibold">
-            <UserCheck className="w-3.5 h-3.5 text-cobalt" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+            <UserCheck className="w-3.5 h-3.5" />
             <span>PERSONAL PHILOSOPHY &amp; BACKGROUND</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
             Curious about systems. <br />
-            <span className="italic font-normal text-cobalt">Grounded in human values.</span>
+            <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Grounded in human values.</span>
           </h1>
 
           <p className="text-muted text-base leading-relaxed">
@@ -68,7 +68,7 @@ export const AboutPage: React.FC = () => {
             I enjoy creating practical applications, exploring emerging ideas, taking part in technical hackathons, and learning through hands-on building. I don&apos;t claim senior mastery or celebrity accolades—I simply love the craft of building useful software, solving difficult problems with teammates, and expanding what I know.
           </p>
 
-          <div className="p-5 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-1.5 shadow-xs">
+          <div className="p-5 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-1.5 shadow-xs">
             <span className="text-[11px] font-mono text-coral uppercase font-bold tracking-wider">What Motivates Me</span>
             <p className="text-xs sm:text-sm text-ink leading-relaxed">
               Improving my life through continuous education, testing my limits, building tangible practical capabilities, supporting friends and teammates when they face challenges, and living an adventurous life without regrets.
@@ -85,7 +85,7 @@ export const AboutPage: React.FC = () => {
 
       {/* Core Personal Pillars */}
       <section className="space-y-8">
-        <div className="space-y-1 pb-4 border-b border-black/[0.08] dark:border-white/[0.08]">
+        <div className="space-y-1 pb-4 border-b border-border-hairline">
           <span className="text-[11px] font-mono uppercase tracking-widest text-muted font-semibold">
             CORE PRINCIPLES
           </span>
@@ -98,7 +98,7 @@ export const AboutPage: React.FC = () => {
           {corePillars.map((pillar, idx) => (
             <article
               key={idx}
-              className="p-6 sm:p-8 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-3"
+              className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline hover:border-cobalt/40 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-200 space-y-3"
             >
               <div className="flex items-center gap-2 text-xs font-mono text-cobalt font-bold">
                 <span>0{idx + 1} //</span>
@@ -117,7 +117,7 @@ export const AboutPage: React.FC = () => {
 
       {/* Interests Beyond Code */}
       <section className="space-y-8">
-        <div className="space-y-1 pb-4 border-b border-black/[0.08] dark:border-white/[0.08]">
+        <div className="space-y-1 pb-4 border-b border-border-hairline">
           <span className="text-[11px] font-mono uppercase tracking-widest text-muted font-semibold">
             BEYOND THE TERMINAL
           </span>
@@ -132,9 +132,9 @@ export const AboutPage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-surface border border-black/[0.08] dark:border-white/[0.1] space-y-3"
+                className="p-6 rounded-2xl bg-card border border-border-hairline hover:border-border-medium transition-all space-y-3 tech-card"
               >
-                <div className="w-9 h-9 rounded-xl bg-subtle border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-cobalt">
+                <div className="w-9 h-9 rounded-xl bg-subtle border border-border-hairline flex items-center justify-center text-cobalt">
                   <Icon className="w-4 h-4" />
                 </div>
                 <h4 className="font-serif text-lg font-bold text-ink">
@@ -150,7 +150,7 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* Bottom CTA to Journey & Education */}
-      <section className="pt-8 border-t border-black/[0.08] dark:border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <section className="pt-8 border-t border-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <h4 className="font-serif text-xl font-bold text-ink">Want to trace the educational timeline?</h4>
           <p className="text-xs text-muted">Explore schools, colleges, and developmental milestones.</p>
@@ -158,7 +158,7 @@ export const AboutPage: React.FC = () => {
         <div className="flex items-center gap-3">
           <Link
             to="/journey"
-            className="px-5 py-2.5 rounded-xl border border-black/[0.1] dark:border-white/[0.12] bg-surface text-ink text-xs font-semibold hover:border-black/[0.3] transition-colors"
+            className="px-5 py-2.5 rounded-xl border border-border-hairline bg-surface text-ink text-xs font-semibold hover:border-black/[0.3] transition-colors"
           >
             Personal Journey
           </Link>
