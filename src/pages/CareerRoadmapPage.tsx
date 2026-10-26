@@ -27,6 +27,7 @@ export const CareerRoadmapPage: React.FC = () => {
   };
 
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#EAF3FF] via-[#F4F1FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <motion.div
       initial="initial"
       animate="animate"
@@ -53,7 +54,7 @@ export const CareerRoadmapPage: React.FC = () => {
       {/* Vision 2030 Banner */}
       <motion.section
         variants={fadeInUp}
-        className="p-8 sm:p-10 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all space-y-4 shadow-sm relative overflow-hidden tech-card"
+        className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-card border border-border-hairline hover:border-cobalt/40 transition-all space-y-4 shadow-chromatic relative overflow-hidden tech-card"
       >
         <div className="absolute top-0 right-0 w-80 h-40 bg-gradient-to-bl from-cobalt/10 via-violet/5 to-transparent pointer-events-none" />
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -200,5 +201,6 @@ export const CareerRoadmapPage: React.FC = () => {
       </motion.section>
 
     </motion.div>
+    </div>
   );
 };

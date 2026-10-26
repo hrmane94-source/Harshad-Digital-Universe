@@ -32,6 +32,7 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#FFECEA]/60 via-[#F4F1FF] to-[#EAF3FF] dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
       {/* Editorial Header */}
@@ -54,7 +55,7 @@ export const ContactPage: React.FC = () => {
         <div className="lg:col-span-5 space-y-6">
 
           {/* Primary Email Card */}
-          <div className="p-8 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
+          <div className="p-8 rounded-3xl bg-white dark:bg-card border border-border-hairline space-y-4 shadow-xs hover:shadow-warm transition-all">
             <span className="text-[11px] font-mono uppercase text-cobalt tracking-widest font-bold block">
               Primary Direct Contact
             </span>
@@ -74,7 +75,7 @@ export const ContactPage: React.FC = () => {
           </div>
 
           {/* Social Profiles Grid */}
-          <div className="p-8 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
+          <div className="p-8 rounded-3xl bg-white dark:bg-card border border-border-hairline space-y-4 shadow-xs hover:shadow-warm transition-all">
             <span className="text-[11px] font-mono uppercase text-muted tracking-widest font-bold block">
               Verified Profiles
             </span>
@@ -152,7 +153,7 @@ export const ContactPage: React.FC = () => {
         <div className="lg:col-span-7">
           <form
             onSubmit={handleSubmit}
-            className="p-8 sm:p-10 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all space-y-6 shadow-sm tech-card"
+            className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-card border border-border-hairline hover:border-cobalt/40 transition-all space-y-6 shadow-chromatic tech-card"
           >
             <div className="space-y-1">
               <h2 className="text-2xl font-serif font-bold text-ink tracking-tight">
@@ -233,6 +234,7 @@ export const ContactPage: React.FC = () => {
 
       </div>
 
+    </div>
     </div>
   );
 };

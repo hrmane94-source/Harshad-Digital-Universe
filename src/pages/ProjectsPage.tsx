@@ -35,52 +35,53 @@ export const ProjectsPage: React.FC = () => {
   const others = verifiedProjects.filter(p => !['falcon-404', 'arogya-ai', 'campus-copilot'].includes(p.slug));
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    <div className="min-h-screen bg-gradient-to-b from-[#EAF3FF] via-[#F4F1FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
-      {/* Editorial Page Header */}
-      <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          <span>PROJECTS, PROTOTYPES &amp; EXPERIMENTS</span>
-        </div>
-        <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
-          &ldquo;Ideas are interesting. <br />
-          <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Building them is better.&rdquo;</span>
-        </h1>
-        <p className="text-muted text-sm sm:text-base leading-relaxed font-sans">
-          Every project below represents hands-on technical work, competitive hackathon problem-solving, or early scientific innovation. Each case study documents the problem, architecture, individual contribution, and verified limitations.
-        </p>
-      </div>
-
-      {/* Scope & Integrity Note */}
-      <div className="p-5 rounded-2xl border border-border-hairline bg-subtle/80 flex items-start gap-3.5 text-xs text-muted shadow-2xs">
-        <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
-        <div className="space-y-1">
-          <span className="font-semibold text-ink block font-mono text-[11px] uppercase tracking-wide">
-            Engineering Scope &amp; Integrity Note
-          </span>
-          <p className="leading-relaxed">
-            Prototypes are distinguished from production services. Datasets used in hackathons (such as Arogya AI) were demonstration datasets and are not claimed as operational hospital records. All links without live URLs remain unpopulated.
+        {/* Editorial Page Header */}
+        <div className="space-y-4 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cobalt/10 border border-cobalt/25 text-cobalt text-[11px] font-mono tracking-widest uppercase font-semibold">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>PROJECTS, PROTOTYPES &amp; EXPERIMENTS</span>
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-serif text-ink tracking-tight font-normal leading-[1.08]">
+            &ldquo;Ideas are interesting. <br />
+            <span className="italic font-normal bg-gradient-to-r from-cobalt via-violet to-sky-400 bg-clip-text text-transparent">Building them is better.&rdquo;</span>
+          </h1>
+          <p className="text-muted text-sm sm:text-base leading-relaxed font-sans">
+            Every project below represents hands-on technical work, competitive hackathon problem-solving, or early scientific innovation. Each case study documents the problem, architecture, individual contribution, and verified limitations.
           </p>
         </div>
-      </div>
 
-      {/* Filter Tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-border-hairline pb-4">
-        {filterCategories.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => setSelectedFilter(cat.id)}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer ${
-              selectedFilter === cat.id
-                ? 'bg-ink text-paper font-semibold shadow-xs'
-                : 'bg-surface dark:bg-card text-muted border border-border-hairline hover:border-cobalt/40 hover:text-ink'
-            }`}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+        {/* Scope & Integrity Note */}
+        <div className="p-5 rounded-2xl border border-border-hairline bg-white dark:bg-card flex items-start gap-3.5 text-xs text-muted shadow-xs">
+          <Info className="w-4 h-4 text-cobalt shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <span className="font-semibold text-ink block font-mono text-[11px] uppercase tracking-wide">
+              Engineering Scope &amp; Integrity Note
+            </span>
+            <p className="leading-relaxed">
+              Prototypes are distinguished from production services. Datasets used in hackathons (such as Arogya AI) were demonstration datasets and are not claimed as operational hospital records. All links without live URLs remain unpopulated.
+            </p>
+          </div>
+        </div>
+
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap gap-2 border-b border-border-hairline pb-4">
+          {filterCategories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedFilter(cat.id)}
+              className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer ${
+                selectedFilter === cat.id
+                  ? 'bg-ink text-white font-semibold shadow-xs'
+                  : 'bg-white dark:bg-card text-muted border border-border-hairline hover:border-cobalt/40 hover:text-ink shadow-2xs hover:shadow-chromatic'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
 
       {/* Layout Option 1: Filtered Specific View */}
       {selectedFilter !== 'all' ? (
@@ -132,20 +133,21 @@ export const ProjectsPage: React.FC = () => {
         </div>
       )}
 
-      {/* Interactive AI Inquiries Bottom Prompt */}
-      <div className="p-8 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all text-center space-y-4 shadow-sm tech-card">
-        <div className="inline-flex items-center gap-2 text-xs font-mono text-cobalt font-semibold uppercase tracking-wider">
-          <Bot className="w-4 h-4" />
-          <span>Need a customized technical walkthrough?</span>
+        {/* Interactive AI Inquiries Bottom Prompt */}
+        <div className="p-8 rounded-3xl bg-white dark:bg-card border border-border-hairline hover:border-cobalt/40 transition-all text-center space-y-4 shadow-chromatic tech-card">
+          <div className="inline-flex items-center gap-2 text-xs font-mono text-cobalt font-semibold uppercase tracking-wider">
+            <Bot className="w-4 h-4" />
+            <span>Need a customized technical walkthrough?</span>
+          </div>
+          <h3 className="font-serif text-2xl font-bold text-ink">
+            Ask CURIO — Personal Portfolio Guide
+          </h3>
+          <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">
+            Ask questions like &ldquo;Compare FALCON-404 and Arogya AI&rdquo; or &ldquo;What did Harshad implement in Neuroverse 2K26?&rdquo; for instant grounded answers.
+          </p>
         </div>
-        <h3 className="font-serif text-2xl font-bold text-ink">
-          Ask CURIO — Personal Portfolio Guide
-        </h3>
-        <p className="text-xs text-muted max-w-md mx-auto leading-relaxed">
-          Ask questions like &ldquo;Compare FALCON-404 and Arogya AI&rdquo; or &ldquo;What did Harshad implement in Neuroverse 2K26?&rdquo; for instant grounded answers.
-        </p>
-      </div>
 
+      </div>
     </div>
   );
 };

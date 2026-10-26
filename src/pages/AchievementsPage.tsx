@@ -9,6 +9,7 @@ import { verifiedAchievements, verifiedLeadershipExperience } from '../data/achi
 
 export const AchievementsPage: React.FC = () => {
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#FFF5E6] via-[#F4F1FF] to-[#EAF3FF] dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
       {/* Editorial Header */}
@@ -39,7 +40,7 @@ export const AchievementsPage: React.FC = () => {
             return (
               <article
                 key={ach.id}
-                className="p-8 sm:p-10 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-4 relative overflow-hidden shadow-xs hover:border-cobalt/40 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+                className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-card border border-border-hairline space-y-4 relative overflow-hidden shadow-xs hover:border-amber-400/40 hover:shadow-warm hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
@@ -143,6 +144,7 @@ export const AchievementsPage: React.FC = () => {
         </div>
       </section>
 
+    </div>
     </div>
   );
 };

@@ -17,6 +17,7 @@ import { fadeInUp, staggerContainer } from '../lib/motionVariants';
 
 export const ExplorationsPage: React.FC = () => {
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#FFECEA] via-[#FFF5E6] to-[#FFECEA] dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <motion.div
       initial="initial"
       animate="animate"
@@ -43,7 +44,7 @@ export const ExplorationsPage: React.FC = () => {
       {/* Flagship Ambition Feature: The All-India Motorcycle Circuit */}
       <motion.section
         variants={fadeInUp}
-        className="p-8 sm:p-12 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all space-y-6 shadow-sm tech-card relative overflow-hidden"
+        className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-card border border-border-hairline hover:border-coral/40 transition-all space-y-6 shadow-warm tech-card relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-80 h-40 bg-gradient-to-bl from-coral/10 via-sunny/5 to-transparent pointer-events-none" />
 
@@ -137,5 +138,6 @@ export const ExplorationsPage: React.FC = () => {
       </motion.div>
 
     </motion.div>
+    </div>
   );
 };

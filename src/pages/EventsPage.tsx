@@ -23,6 +23,7 @@ export const EventsPage: React.FC = () => {
   };
 
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#EAF3FF] via-[#F4F1FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
       {/* Editorial Header */}
@@ -44,7 +45,7 @@ export const EventsPage: React.FC = () => {
         {verifiedEvents.map((evt) => (
           <article
             key={evt.id}
-            className="p-8 sm:p-10 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-5 hover:border-cobalt/40 shadow-xs hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+            className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-card border border-border-hairline space-y-5 hover:border-cobalt/40 shadow-xs hover:shadow-chromatic hover:-translate-y-0.5 transition-all duration-200"
           >
             {/* Header row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -137,6 +138,7 @@ export const EventsPage: React.FC = () => {
         ))}
       </div>
 
+    </div>
     </div>
   );
 };

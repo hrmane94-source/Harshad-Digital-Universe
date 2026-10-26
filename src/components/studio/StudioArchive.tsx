@@ -108,23 +108,23 @@ export const StudioArchive: React.FC = () => {
   return (
     <section 
       id="chapter-05" 
-      className="py-20 sm:py-32 border-b border-slate-200/90 dark:border-white/10 bg-surface text-ink relative overflow-hidden"
+      className="py-20 sm:py-32 border-b border-border-hairline bg-gradient-to-b from-[#EAF3FF] via-[#F4F1FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper text-ink relative overflow-hidden transition-colors duration-250"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-5">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-border-hairline pb-5">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block animate-pulse" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
               <span className="text-ink">SECTION 06</span>
-              <span className="text-slate-300 dark:text-slate-700">//</span>
+              <span className="text-muted/40">//</span>
               <span>ARCHIVE OF MILESTONES &amp; RECOGNITION</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl font-normal text-ink tracking-tight">
               Verified outcomes, <span className="font-bold text-cobalt italic">competitive builds,</span> &amp; leadership.
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-sans max-w-xl font-medium">
+            <p className="text-xs sm:text-sm text-muted font-sans max-w-xl font-medium">
               An unembellished record of competitive recognition, hackathon demonstrations, academic subject leadership, and institutional responsibilities.
             </p>
           </div>
@@ -132,7 +132,7 @@ export const StudioArchive: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/achievements"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-paper border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs hover:shadow-chromatic"
             >
               <span>View All Achievements</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -154,12 +154,12 @@ export const StudioArchive: React.FC = () => {
               onClick={() => setActiveFilter(f.id as ArchiveFilter)}
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-colors shrink-0 flex items-center gap-2 cursor-pointer ${
                 activeFilter === f.id
-                  ? 'bg-ink text-paper font-bold shadow-xs'
-                  : 'bg-paper text-muted hover:text-ink border border-slate-200 dark:border-white/10'
+                  ? 'bg-ink text-white font-bold shadow-xs'
+                  : 'bg-white dark:bg-card text-muted hover:text-ink border border-border-hairline shadow-2xs'
               }`}
             >
               <span>{f.label}</span>
-              <span className={`px-1.5 py-0.2 rounded text-[10px] ${activeFilter === f.id ? 'bg-white/20 text-paper' : 'bg-slate-100 dark:bg-white/5 text-muted'}`}>
+              <span className={`px-1.5 py-0.2 rounded text-[10px] ${activeFilter === f.id ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-white/5 text-muted'}`}>
                 {f.count}
               </span>
             </button>
@@ -167,7 +167,7 @@ export const StudioArchive: React.FC = () => {
         </div>
 
         {/* High-Clarity Archival Ledger Table */}
-        <div className="border border-slate-200 dark:border-white/10 rounded-2xl bg-paper overflow-hidden shadow-xs">
+        <div className="border border-border-hairline rounded-2xl bg-white dark:bg-card overflow-hidden shadow-xs hover:shadow-chromatic transition-shadow">
           <div className="divide-y divide-slate-100 dark:divide-white/5">
             {filteredEntries.map((entry, index) => (
               <div 

@@ -23,10 +23,11 @@ export const ResumePage: React.FC = () => {
   };
 
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#F4F1FF] via-[#EAF3FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
 
       {/* Top Action Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-surface dark:bg-card border border-border-hairline shadow-md">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-white dark:bg-card border border-border-hairline shadow-chromatic">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
@@ -197,6 +198,7 @@ export const ResumePage: React.FC = () => {
 
       </div>
 
+    </div>
     </div>
   );
 };

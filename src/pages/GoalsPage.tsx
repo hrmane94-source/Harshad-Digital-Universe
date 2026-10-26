@@ -6,6 +6,7 @@ import { fadeInUp, staggerContainer, staggerItem } from '../lib/motionVariants';
 
 export const GoalsPage: React.FC = () => {
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#F4F1FF] via-[#EDE5FF]/50 to-[#EAF3FF] dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <motion.div
       initial="initial"
       animate="animate"
@@ -40,7 +41,7 @@ export const GoalsPage: React.FC = () => {
             variants={staggerItem}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="p-8 rounded-3xl bg-card border border-border-hairline hover:border-border-medium transition-all flex flex-col justify-between shadow-sm tech-card relative overflow-hidden group"
+            className="p-8 rounded-3xl bg-white dark:bg-card border border-border-hairline hover:border-cobalt/40 transition-all flex flex-col justify-between shadow-xs hover:shadow-chromatic tech-card relative overflow-hidden group"
           >
             <div className="space-y-3 relative z-10">
               <div className="flex items-center justify-between gap-2">
@@ -76,5 +77,6 @@ export const GoalsPage: React.FC = () => {
       </motion.div>
 
     </motion.div>
+    </div>
   );
 };

@@ -19,7 +19,7 @@ export const StudioProjects: React.FC = () => {
   return (
     <section 
       id="chapter-02" 
-      className="py-20 sm:py-32 bg-gradient-to-b from-paper via-secondary/30 to-paper border-b border-border-hairline relative overflow-hidden transition-colors duration-250"
+      className="py-20 sm:py-32 bg-gradient-to-b from-[#EAF3FF] via-[#EDE5FF]/50 to-[#EAF3FF] dark:from-paper dark:via-paper dark:to-paper border-b border-border-hairline relative overflow-hidden transition-colors duration-250"
     >
       {/* Background Architectural Ambient Lighting */}
       <div className="absolute top-1/4 left-1/4 w-[650px] h-[650px] rounded-full bg-cobalt/10 dark:bg-cobalt/15 blur-3xl pointer-events-none" />
@@ -52,7 +52,7 @@ export const StudioProjects: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-all shadow-xs hover:shadow-md active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-all shadow-sm hover:shadow-chromatic active:scale-95"
             >
               <span>All 7 Verified Projects</span>
               <ArrowRight className="w-3.5 h-3.5 text-coral" />
@@ -63,7 +63,7 @@ export const StudioProjects: React.FC = () => {
         {/* ============================================================
             FLAGSHIP SPOTLIGHT: FALCON-404 (Smart India Hackathon 2026)
             ============================================================ */}
-        <div className="p-8 sm:p-10 lg:p-12 rounded-3xl bg-surface dark:bg-card border-2 border-cobalt/40 dark:border-cobalt/50 shadow-xl dark:shadow-2xl dark:shadow-cobalt/15 relative overflow-hidden space-y-10">
+        <div className="p-8 sm:p-10 lg:p-12 rounded-3xl bg-white dark:bg-card border-2 border-cobalt/40 dark:border-cobalt/50 shadow-chromatic relative overflow-hidden space-y-10">
           
           {/* Flagship Header Banner */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-white/10">

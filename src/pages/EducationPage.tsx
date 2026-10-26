@@ -11,6 +11,7 @@ import { verifiedEducation } from '../data/education';
 
 export const EducationPage: React.FC = () => {
   return (
+    <div className="min-h-screen bg-gradient-to-b from-[#F4F1FF] via-[#EAF3FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
       {/* Header */}
@@ -45,7 +46,7 @@ export const EducationPage: React.FC = () => {
         {verifiedEducation.map((edu, idx) => (
           <article
             key={edu.id}
-            className="p-8 sm:p-10 rounded-3xl bg-surface dark:bg-card border border-border-hairline space-y-6 relative overflow-hidden shadow-xs hover:border-cobalt/40 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+            className="p-8 sm:p-10 rounded-3xl bg-white dark:bg-card border border-border-hairline space-y-6 relative overflow-hidden shadow-xs hover:border-cobalt/40 hover:shadow-chromatic hover:-translate-y-0.5 transition-all duration-200"
           >
             {/* Top Accent Bar */}
             <div className={`absolute top-0 left-0 right-0 h-1.5 ${
@@ -132,6 +133,7 @@ export const EducationPage: React.FC = () => {
         ))}
       </div>
 
+    </div>
     </div>
   );
 };

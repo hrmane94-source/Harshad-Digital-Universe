@@ -18,7 +18,7 @@ export const StudioHero: React.FC = () => {
   return (
     <section 
       id="chapter-00"
-      className="relative min-h-[92vh] flex flex-col justify-between pt-8 sm:pt-12 pb-16 bg-paper border-b border-border-hairline overflow-hidden transition-colors duration-250"
+      className="relative min-h-[92vh] flex flex-col justify-between pt-8 sm:pt-12 pb-16 bg-gradient-to-b from-[#F4F1FF] via-[#EAF3FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper border-b border-border-hairline overflow-hidden transition-colors duration-250"
     >
       {/* Background Atmospheric Glows & Technical Grid */}
       <div 
@@ -133,7 +133,7 @@ export const StudioHero: React.FC = () => {
               <button
                 type="button"
                 onClick={scrollToJourney}
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs cursor-pointer active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs hover:shadow-chromatic cursor-pointer active:scale-[0.98]"
               >
                 <span>Technical Journey</span>
                 <ArrowRight className="w-4 h-4 text-muted" />
@@ -141,7 +141,7 @@ export const StudioHero: React.FC = () => {
 
               <Link
                 to="/resume"
-                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-muted hover:text-ink hover:border-border-strong transition-colors shadow-2xs active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-muted hover:text-ink hover:border-border-strong transition-colors shadow-2xs hover:shadow-chromatic active:scale-[0.98]"
               >
                 <FileText className="w-4 h-4 text-muted" />
                 <span>Interactive Résumé</span>
@@ -167,19 +167,19 @@ export const StudioHero: React.FC = () => {
 
             {/* Quick Studio Metrics Strip Under Portrait */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center font-mono">
-              <div className="p-3 rounded-xl bg-surface dark:bg-card border border-cobalt/20 shadow-2xs hover:border-cobalt/40 transition-colors">
+              <div className="p-3 rounded-xl bg-white dark:bg-card border border-cobalt/25 shadow-2xs hover:shadow-chromatic transition-all">
                 <span className="block font-serif text-xl font-bold text-cobalt">07</span>
                 <span className="text-[10px] text-muted">Projects</span>
               </div>
-              <div className="p-3 rounded-xl bg-surface dark:bg-card border border-amber-500/20 shadow-2xs hover:border-amber-500/40 transition-colors">
+              <div className="p-3 rounded-xl bg-white dark:bg-card border border-amber-500/25 shadow-2xs hover:shadow-warm transition-all">
                 <span className="block font-serif text-xl font-bold text-amber-500">SIH &apos;26</span>
                 <span className="text-[10px] text-muted">Problem 26188</span>
               </div>
-              <div className="p-3 rounded-xl bg-surface dark:bg-card border border-coral/20 shadow-2xs hover:border-coral/40 transition-colors">
+              <div className="p-3 rounded-xl bg-white dark:bg-card border border-coral/25 shadow-2xs hover:shadow-warm transition-all">
                 <span className="block font-serif text-xl font-bold text-coral">2nd</span>
                 <span className="text-[10px] text-muted">PixelCraft</span>
               </div>
-              <div className="p-3 rounded-xl bg-surface dark:bg-card border border-mint/20 shadow-2xs hover:border-mint/40 transition-colors">
+              <div className="p-3 rounded-xl bg-white dark:bg-card border border-mint/25 shadow-2xs hover:shadow-mint transition-all">
                 <span className="block font-serif text-xl font-bold text-mint">89.2%</span>
                 <span className="text-[10px] text-muted">SSC Topper</span>
               </div>

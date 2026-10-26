@@ -5,6 +5,7 @@ import { InstagramIcon } from '../ui/BrandIcons';
 import { contactConfig } from '../../data/contact';
 import { creativeGalleryItems, creativeCategoriesList } from '../../data/gallery';
 import type { CreativeMediaItem } from '../../types/portfolio';
+import { PrismaticLens3DArtwork } from './PrismaticLens3DArtwork';
 
 export const StudioCreative: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -20,17 +21,17 @@ export const StudioCreative: React.FC = () => {
   return (
     <section 
       id="chapter-04" 
-      className="py-20 sm:py-32 border-b border-slate-200/90 dark:border-white/10 bg-paper text-ink relative overflow-hidden"
+      className="py-20 sm:py-32 border-b border-border-hairline bg-gradient-to-b from-[#FFECEA] via-[#FFF5E6]/60 to-[#FFECEA] dark:from-paper dark:via-paper dark:to-paper text-ink relative overflow-hidden transition-colors duration-250"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-slate-200 dark:border-white/10 pb-5">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-cobalt uppercase font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse" />
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 border-b border-border-hairline pb-8">
+          <div className="space-y-3 max-w-2xl">
+            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-coral uppercase font-bold">
+              <span className="w-2.5 h-2.5 rounded-full bg-coral inline-block animate-pulse shadow-[0_0_8px_rgba(230,93,89,0.6)]" />
               <span className="text-ink">SECTION 05</span>
-              <span className="text-slate-300 dark:text-slate-700">//</span>
+              <span className="text-muted/40">//</span>
               <span>VISUAL ESSAY &amp; CINEMATOGRAPHY</span>
             </div>
             
@@ -40,29 +41,36 @@ export const StudioCreative: React.FC = () => {
             </h2>
 
             <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-mono text-muted">
-              <span className="font-bold text-ink">CREATIVE IDENTITY:</span>
+              <span className="font-bold text-ink">CREATIVE MONIKER:</span>
               <a
                 href={contactConfig.profiles.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="px-2.5 py-0.5 rounded-full bg-coral/10 text-coral border border-coral/30 font-bold font-mono hover:bg-coral/20 transition-colors inline-flex items-center gap-1.5"
+                className="px-2.5 py-0.5 rounded-full bg-coral/15 text-coral border border-coral/30 font-bold font-mono hover:bg-coral/25 transition-colors inline-flex items-center gap-1.5"
               >
                 <InstagramIcon className="w-3 h-3" />
                 <span>@{contactConfig.creativeIdentity}</span>
               </a>
               <span>&bull;</span>
-              <span>{published.length} Authentic Photos &amp; Video Clips</span>
+              <span>{published.length} Authentic Photographic Works &amp; Cinema Reels</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Link
-              to="/creative"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-surface border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors shadow-2xs"
-            >
-              <span>Explore All {published.length} Works</span>
-              <ArrowRight className="w-3.5 h-3.5 text-coral" />
-            </Link>
+          {/* Interactive 3D Aperture Lens Artwork */}
+          <div className="flex items-center gap-6">
+            <div className="hidden sm:block w-44 h-36 relative shrink-0">
+              <PrismaticLens3DArtwork size="sm" />
+            </div>
+
+            <div className="flex flex-col gap-2 shrink-0">
+              <Link
+                to="/creative"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-coral hover:border-coral/40 transition-all shadow-sm hover:shadow-warm active:scale-95"
+              >
+                <span>Explore All {published.length} Works</span>
+                <ArrowRight className="w-3.5 h-3.5 text-coral" />
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -76,7 +84,7 @@ export const StudioCreative: React.FC = () => {
               className={`px-4 py-1.5 rounded-full text-xs font-mono transition-colors cursor-pointer shrink-0 ${
                 selectedCategory === cat.id
                   ? 'bg-ink text-paper font-bold shadow-xs'
-                  : 'bg-surface text-muted hover:text-ink border border-slate-200 dark:border-white/10'
+                  : 'bg-white dark:bg-card text-muted hover:text-ink border border-border-hairline hover:border-border-medium'
               }`}
             >
               {cat.label}
@@ -90,7 +98,7 @@ export const StudioCreative: React.FC = () => {
             <div 
               key={piece.id}
               onClick={() => setActiveMedia(piece)}
-              className="p-4 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 shadow-xs hover:shadow-md transition-all space-y-3 group cursor-pointer"
+              className="p-4 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-sm hover:shadow-warm transition-all space-y-3 group cursor-pointer tech-card"
             >
               {/* Media Viewport */}
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center">
@@ -137,74 +145,79 @@ export const StudioCreative: React.FC = () => {
         </div>
 
         {/* Motorcycle Expedition Ambitions Banner */}
-        <div className="p-6 sm:p-7 rounded-2xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-amber-800 dark:text-amber-400 font-bold">
-              <Compass className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-              <span>TRAVEL &amp; MOTORCYCLE EXPEDITION HORIZONS</span>
+        <div className="p-6 sm:p-7 rounded-2xl bg-[#FFF5E6] dark:bg-amber-950/20 border border-amber-300/60 dark:border-amber-900/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-700 dark:text-amber-400 flex items-center justify-center shrink-0">
+              <Compass className="w-5 h-5" />
             </div>
-            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-sans">
-              Documenting journeys through Western Ghats passes and dreaming of long-distance motorcycle expeditions across Ladakh and remote India.
-            </p>
+            <div>
+              <span className="text-xs font-mono uppercase text-amber-700 dark:text-amber-400 font-bold block">
+                EXPEDITION DISPATCH
+              </span>
+              <p className="text-sm font-serif font-bold text-ink">
+                All-India Motorcycle Circuit Preparation &bull; 2027&ndash;2030 Long-Term Ambition
+              </p>
+            </div>
           </div>
-
           <Link
             to="/explorations"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border border-amber-300 dark:border-amber-800 text-xs font-mono font-bold text-amber-900 dark:text-amber-300 hover:bg-amber-100/50 transition-colors shrink-0"
+            className="inline-flex items-center gap-1 text-xs font-mono font-bold text-amber-700 dark:text-amber-400 hover:underline shrink-0"
           >
-            <span>View Expedition Log</span>
+            <span>Read Ambition Brief</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
       </div>
 
-      {/* Lightbox Modal for Homepage Preview */}
+      {/* Lightbox Modal */}
       {activeMedia && (
         <div 
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
           onClick={() => setActiveMedia(null)}
         >
           <button
             type="button"
             onClick={() => setActiveMedia(null)}
-            className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition-colors cursor-pointer z-50"
-            aria-label="Close"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer z-50"
           >
             <X className="w-6 h-6" />
           </button>
 
           <div 
-            className="max-w-4xl w-full bg-surface dark:bg-slate-900 rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col max-h-[90vh]"
+            className="max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-black flex-1 flex items-center justify-center p-2 min-h-[40vh] max-h-[70vh]">
+            <div className="bg-black flex-1 flex items-center justify-center overflow-hidden min-h-[300px] max-h-[70vh]">
               {activeMedia.mediaType === 'video' ? (
                 <video 
                   src={activeMedia.source} 
-                  poster={activeMedia.poster || activeMedia.thumbnail}
+                  poster={activeMedia.thumbnail}
                   controls 
                   autoPlay 
-                  playsInline 
-                  className="max-h-[68vh] w-auto max-w-full mx-auto rounded-lg" 
+                  className="max-h-[70vh] w-auto max-w-full mx-auto" 
                 />
               ) : (
                 <img 
                   src={activeMedia.source} 
                   alt={activeMedia.alt} 
-                  className="max-h-[68vh] w-auto max-w-full mx-auto object-contain rounded-lg" 
+                  className="max-h-[70vh] w-auto max-w-full mx-auto object-contain" 
                 />
               )}
             </div>
 
-            <div className="p-5 space-y-1.5 border-t border-slate-200 dark:border-white/10 bg-surface dark:bg-slate-900">
-              <div className="flex items-center justify-between text-xs font-mono text-muted">
+            <div className="p-4 sm:p-6 space-y-1.5 border-t border-white/10 bg-slate-900 text-white">
+              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
                 <span className="uppercase text-coral font-bold">{activeMedia.category}</span>
-                <span>{activeMedia.location}</span>
+                <span>{activeMedia.date}</span>
               </div>
-              <h3 className="font-serif text-xl font-bold text-ink">{activeMedia.title}</h3>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold">
+                {activeMedia.title}
+              </h3>
               {activeMedia.caption && (
-                <p className="text-xs text-slate-600 dark:text-slate-300 font-sans">{activeMedia.caption}</p>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                  {activeMedia.caption}
+                </p>
               )}
             </div>
           </div>

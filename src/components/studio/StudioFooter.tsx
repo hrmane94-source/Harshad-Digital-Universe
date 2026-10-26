@@ -30,7 +30,7 @@ export const StudioFooter: React.FC = () => {
   return (
     <footer 
       id="chapter-07" 
-      className="pt-20 sm:pt-28 pb-16 bg-gradient-to-b from-paper via-secondary/30 to-paper text-ink relative overflow-hidden border-t border-border-hairline transition-colors duration-250"
+      className="pt-20 sm:pt-28 pb-16 bg-gradient-to-b from-[#EDE5FF]/60 via-[#EAF3FF] to-[#FFECEA]/50 dark:from-paper dark:via-paper dark:to-paper text-ink relative overflow-hidden border-t border-border-hairline transition-colors duration-250"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         
@@ -75,7 +75,7 @@ export const StudioFooter: React.FC = () => {
             </p>
 
             {/* Direct Email Dispatch Box */}
-            <div className="p-6 rounded-2xl bg-surface dark:bg-card border border-border-hairline shadow-xs space-y-4 max-w-xl">
+            <div className="p-6 rounded-2xl bg-white dark:bg-card border-2 border-cobalt/25 shadow-chromatic space-y-4 max-w-xl">
               <div className="flex items-center justify-between text-xs font-mono text-muted">
                 <span className="font-bold text-ink uppercase">PRIMARY DIRECT DISPATCH</span>
                 <span className="text-emerald-600 dark:text-emerald-400 font-semibold">INBOX CHECKED DAILY</span>
@@ -92,7 +92,7 @@ export const StudioFooter: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-subtle border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors cursor-pointer shadow-2xs active:scale-95"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface dark:bg-card-elevated border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt transition-colors cursor-pointer shadow-2xs active:scale-95"
                 >
                   {copied ? (
                     <>
@@ -119,7 +119,7 @@ export const StudioFooter: React.FC = () => {
                 href={contactConfig.profiles.github}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs hover:shadow-chromatic"
               >
                 <GithubIcon className="w-4 h-4 text-ink" />
                 <span>GitHub</span>
@@ -130,7 +130,7 @@ export const StudioFooter: React.FC = () => {
                 href={contactConfig.profiles.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors shadow-2xs hover:shadow-chromatic"
               >
                 <LinkedinIcon className="w-4 h-4 text-cobalt" />
                 <span>LinkedIn</span>
@@ -141,7 +141,7 @@ export const StudioFooter: React.FC = () => {
                 href={contactConfig.profiles.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-coral hover:border-coral/40 transition-colors shadow-2xs"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-coral hover:border-coral/40 transition-colors shadow-2xs hover:shadow-warm"
               >
                 <InstagramIcon className="w-4 h-4 text-coral" />
                 <span>@{contactConfig.creativeIdentity}</span>
@@ -152,7 +152,7 @@ export const StudioFooter: React.FC = () => {
 
           {/* Right Column: Full Directory Ledger (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline shadow-xs space-y-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-chromatic space-y-6">
               
               <div className="flex items-center justify-between border-b border-border-hairline pb-4">
                 <span className="font-mono text-xs font-bold text-ink uppercase tracking-wider">
@@ -201,7 +201,7 @@ export const StudioFooter: React.FC = () => {
             <button
               type="button"
               onClick={scrollToTop}
-              className="w-full p-4 rounded-xl bg-surface dark:bg-card hover:bg-subtle border border-border-hairline text-xs font-mono font-bold text-ink transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs active:scale-98"
+              className="w-full p-4 rounded-xl bg-white dark:bg-card hover:bg-subtle border border-border-hairline text-xs font-mono font-bold text-ink transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs hover:shadow-chromatic active:scale-98"
             >
               <ArrowUp className="w-4 h-4 text-cobalt" />
               <span>Return to Folio Top</span>

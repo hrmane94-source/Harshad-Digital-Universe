@@ -45,7 +45,8 @@ export const ProjectDetailPage: React.FC = () => {
   const hasVideoLink = Boolean(project.links.demoVideoUrl && project.links.demoVideoUrl.trim() !== "");
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-12">
+    <div className="min-h-screen bg-gradient-to-b from-[#EAF3FF] via-[#F4F1FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
+    <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-12">
 
       {/* Back to Projects */}
       <motion.div initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
@@ -87,13 +88,13 @@ export const ProjectDetailPage: React.FC = () => {
 
         {/* Roles & Team Context */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-border-hairline">
-          <div className="p-4 rounded-xl bg-surface dark:bg-card border border-border-hairline">
+          <div className="p-4 rounded-xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow">
             <span className="text-[11px] font-mono uppercase tracking-wider text-muted block mb-1">Confirmed Role</span>
             <span className="text-sm font-semibold text-ink">{project.role}</span>
           </div>
 
           {project.teamContext && (
-            <div className="p-4 rounded-xl bg-surface dark:bg-card border border-border-hairline">
+            <div className="p-4 rounded-xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow">
               <span className="text-[11px] font-mono uppercase tracking-wider text-muted block mb-1">Team &amp; Collaboration Context</span>
               <span className="text-xs text-muted leading-relaxed">{project.teamContext}</span>
             </div>
@@ -148,7 +149,7 @@ export const ProjectDetailPage: React.FC = () => {
 
       {/* External Verified Actions (If any provided) */}
       {(hasRepoLink || hasLiveDemoLink || hasWebsiteLink || hasDocLink || hasVideoLink) && (
-        <section className="flex flex-wrap items-center gap-3 p-4 rounded-2xl bg-surface dark:bg-card border border-border-hairline shadow-xs">
+        <section className="flex flex-wrap items-center gap-3 p-4 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow shadow-xs">
           <span className="text-xs font-mono text-muted uppercase tracking-wider mr-2 font-semibold">Verified Links:</span>
           {hasRepoLink && (
             <a href={project.links.repositoryUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border-hairline text-xs font-medium text-ink hover:border-cobalt/40 transition-colors">
@@ -185,7 +186,7 @@ export const ProjectDetailPage: React.FC = () => {
 
       {/* Competition Ledger (If Hackathon project) */}
       {project.competition && (
-        <section className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
+        <section className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow space-y-4 shadow-xs">
           <div className="flex items-center justify-between border-b border-border-hairline pb-3">
             <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400">
               <Award className="w-5 h-5" />
@@ -261,7 +262,7 @@ export const ProjectDetailPage: React.FC = () => {
       </section>
 
       {/* Actual Features Implemented */}
-      <section className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-6 shadow-xs">
+      <section className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow space-y-6 shadow-xs">
         <div className="flex items-center justify-between pb-2 border-b border-border-hairline">
           <div className="flex items-center gap-2 text-cobalt">
             <CheckCircle2 className="w-5 h-5" />
@@ -311,7 +312,7 @@ export const ProjectDetailPage: React.FC = () => {
       </section>
 
       {/* Technologies & Tools Used */}
-      <section className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
+      <section className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow space-y-4 shadow-xs">
         <div className="flex items-center gap-2 text-cobalt">
           <Cpu className="w-5 h-5" />
           <h2 className="font-serif text-xl font-bold text-ink">Technology Stack &amp; Tooling</h2>
@@ -336,7 +337,7 @@ export const ProjectDetailPage: React.FC = () => {
       {/* Lessons Learned & Future Work */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <div className="p-6 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-3 shadow-xs">
+        <div className="p-6 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow space-y-3 shadow-xs">
           <h3 className="font-mono text-xs uppercase tracking-wider text-muted font-bold">
             Key Lessons Learned
           </h3>
@@ -350,7 +351,7 @@ export const ProjectDetailPage: React.FC = () => {
           </ul>
         </div>
 
-        <div className="p-6 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-3 shadow-xs">
+        <div className="p-6 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow space-y-3 shadow-xs">
           <h3 className="font-mono text-xs uppercase tracking-wider text-muted font-bold">
             Future Development Roadmap
           </h3>
@@ -367,7 +368,7 @@ export const ProjectDetailPage: React.FC = () => {
       </section>
 
       {/* Media & Screenshots Section */}
-      <section className="p-6 sm:p-8 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
+      <section className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-xs hover:shadow-chromatic transition-shadow space-y-4 shadow-xs">
         <h3 className="font-serif text-xl font-bold text-ink">Project Visual Documentation</h3>
 
         {hasScreenshots || hasArchDiagram || hasVideoAsset ? (
@@ -426,6 +427,7 @@ export const ProjectDetailPage: React.FC = () => {
         ) : <div />}
       </nav>
 
+    </div>
     </div>
   );
 };

@@ -16,9 +16,19 @@
   --color-card: var(--bg-card);
   --color-card-elevated: var(--bg-card-elevated);
 
+  /* Chromatic Canvases & Surfaces */
+  --color-warm: var(--bg-warm);
+  --color-mint-canvas: var(--bg-mint);
+  --color-coral-canvas: var(--bg-coral);
+  --color-lavender: var(--bg-lavender);
+  --color-skyblue: var(--bg-skyblue);
+  --color-aqua: var(--bg-aqua);
+  --color-butter: var(--bg-butter);
+
   /* Typography */
   --color-ink: var(--text-ink);
   --color-ink-muted: var(--text-muted);
+  --color-text-secondary: var(--text-secondary);
   --color-muted: var(--text-muted);
   --color-faint: var(--text-faint);
 
@@ -30,46 +40,54 @@
   /* Expressive Accents */
   --color-cobalt: var(--accent-cobalt);
   --color-violet: var(--accent-violet);
+  --color-teal: var(--accent-teal);
   --color-mint: var(--accent-mint);
   --color-coral: var(--accent-coral);
+  --color-tangerine: var(--accent-tangerine);
   --color-sunny: var(--accent-sunny);
-  --color-tangerine: #F97316;
-  --color-skyblue: #0EA5E9;
-  --color-lavender: var(--accent-violet);
   --color-chartreuse: #A3E635;
 }
 
 @layer base {
-  /* LIGHT MODE: Bright, editorial, expressive, intentional surfaces */
+  /* LIGHT MODE: Chromatic Digital Atlas — Rich, vibrant, intentional surfaces */
   :root {
-    --bg-paper: #F7F8FC;
-    --bg-secondary: #EEF2FF;
+    --bg-paper: #F4F1FF;
+    --bg-secondary: #EAF3FF;
     --bg-surface: #FFFFFF;
-    --bg-subtle: #F0F3FA;
-    --bg-alternate: #EAEFF9;
+    --bg-subtle: #EEF2FC;
+    --bg-alternate: #E5ECFA;
     --bg-card: #FFFFFF;
     --bg-card-elevated: #FFFFFF;
 
-    --bg-lavender: #F0EBFF;
-    --bg-mint: #E6F8F1;
-    --bg-coral: #FFF0EC;
+    /* Chromatic Section Canvases */
+    --bg-warm: #FFF5E6;
+    --bg-mint: #E8F8F1;
+    --bg-coral: #FFECEA;
+    --bg-lavender: #EDE5FF;
+    --bg-skyblue: #DDEBFF;
+    --bg-aqua: #D8F6F0;
+    --bg-butter: #FFF0BF;
 
-    --border-hairline: rgba(24, 32, 51, 0.08);
-    --border-medium: rgba(24, 32, 51, 0.14);
-    --border-strong: rgba(49, 94, 235, 0.32);
+    --border-hairline: rgba(23, 27, 53, 0.09);
+    --border-medium: rgba(23, 27, 53, 0.16);
+    --border-strong: rgba(49, 94, 235, 0.38);
 
-    --text-ink: #182033;
-    --text-muted: #56617A;
-    --text-faint: #8E99AF;
+    --text-ink: #171B35;
+    --text-secondary: #414D69;
+    --text-muted: #626E88;
+    --text-faint: #8E9BB3;
 
     --accent-cobalt: #315EEB;
-    --accent-violet: #7855D6;
-    --accent-mint: #168B78;
-    --accent-coral: #E45D51;
-    --accent-sunny: #E9B946;
+    --accent-violet: #7953D6;
+    --accent-teal: #087F82;
+    --accent-mint: #15866B;
+    --accent-coral: #E65D59;
+    --accent-tangerine: #E77936;
+    --accent-sunny: #C38B18;
 
-    --glow-primary: rgba(49, 94, 235, 0.08);
-    --glow-secondary: rgba(120, 85, 214, 0.07);
+    --glow-primary: rgba(49, 94, 235, 0.10);
+    --glow-secondary: rgba(121, 83, 214, 0.09);
+    --shadow-chromatic: 0 16px 36px -12px rgba(49, 94, 235, 0.12), 0 8px 16px -8px rgba(121, 83, 214, 0.08);
   }
 
   /* DARK MODE: Deep midnight-blue atmosphere, rich surfaces, fine coloured borders */
@@ -82,26 +100,34 @@
     --bg-card: #141D35;
     --bg-card-elevated: #1B2645;
 
-    --bg-lavender: #181E38;
+    --bg-warm: #1B1826;
     --bg-mint: #0E2428;
     --bg-coral: #281B22;
+    --bg-lavender: #181E38;
+    --bg-skyblue: #132238;
+    --bg-aqua: #0E2428;
+    --bg-butter: #242013;
 
     --border-hairline: rgba(120, 166, 255, 0.12);
     --border-medium: #2B3957;
     --border-strong: rgba(120, 166, 255, 0.4);
 
     --text-ink: #F3F5FF;
+    --text-secondary: #C8D3EB;
     --text-muted: #AAB6D1;
     --text-faint: #6D7D9F;
 
     --accent-cobalt: #78A6FF;
     --accent-violet: #B39AFF;
+    --accent-teal: #64D2C1;
     --accent-mint: #78E2C0;
     --accent-coral: #FF8E82;
+    --accent-tangerine: #FFA066;
     --accent-sunny: #F4CF72;
 
     --glow-primary: rgba(120, 166, 255, 0.12);
     --glow-secondary: rgba(179, 154, 255, 0.10);
+    --shadow-chromatic: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
   }
 
   body {
@@ -159,6 +185,59 @@
     linear-gradient(to bottom, currentColor 1px, transparent 1px);
 }
 
+/* Chromatic Surfaces & Layered Depth */
+.surface-warm {
+  background-color: var(--bg-warm);
+}
+
+.surface-skyblue {
+  background-color: var(--bg-skyblue);
+}
+
+.surface-lavender {
+  background-color: var(--bg-lavender);
+}
+
+.surface-aqua {
+  background-color: var(--bg-aqua);
+}
+
+.surface-butter {
+  background-color: var(--bg-butter);
+}
+
+.surface-coral {
+  background-color: var(--bg-coral);
+}
+
+.surface-mint {
+  background-color: var(--bg-mint);
+}
+
+.shadow-chromatic {
+  box-shadow: 0 16px 36px -12px rgba(49, 94, 235, 0.12), 0 8px 18px -6px rgba(121, 83, 214, 0.08);
+}
+
+.dark .shadow-chromatic {
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(120, 166, 255, 0.12);
+}
+
+.shadow-warm {
+  box-shadow: 0 16px 36px -12px rgba(230, 93, 89, 0.12), 0 8px 18px -6px rgba(231, 121, 54, 0.08);
+}
+
+.dark .shadow-warm {
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(255, 142, 130, 0.12);
+}
+
+.shadow-mint {
+  box-shadow: 0 16px 36px -12px rgba(21, 134, 107, 0.12), 0 8px 18px -6px rgba(8, 127, 130, 0.08);
+}
+
+.dark .shadow-mint {
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(120, 226, 192, 0.12);
+}
+
 /* Tech Depth Card */
 .tech-card {
   background-color: var(--bg-surface);
@@ -168,7 +247,7 @@
 
 .tech-card:hover {
   border-color: var(--border-medium);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 14px 34px -10px rgba(23, 27, 53, 0.10);
 }
 
 .dark .tech-card:hover {

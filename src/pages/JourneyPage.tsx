@@ -77,7 +77,7 @@ export const JourneyPage: React.FC = () => {
   };
 
   return (
-    <div className="relative selection:bg-cobalt/20 selection:text-cobalt overflow-hidden">
+    <div className="relative selection:bg-cobalt/20 selection:text-cobalt overflow-hidden bg-gradient-to-b from-[#F4F1FF] via-[#EAF3FF] to-[#EDE5FF]/40 dark:from-paper dark:via-paper dark:to-paper transition-colors duration-250">
       
       {/* Ambient background glows */}
       <div className="pointer-events-none absolute top-24 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-cobalt/10 via-violet/5 to-transparent blur-3xl -z-10" />

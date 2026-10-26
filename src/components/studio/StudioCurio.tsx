@@ -120,7 +120,7 @@ export const StudioCurio: React.FC = () => {
   return (
     <section 
       id="chapter-06" 
-      className="py-20 sm:py-32 border-b border-border-hairline bg-gradient-to-b from-paper via-secondary/20 to-surface/80 text-ink relative overflow-hidden transition-colors duration-250"
+      className="py-20 sm:py-32 border-b border-border-hairline bg-gradient-to-b from-[#EDE5FF]/50 via-[#EAF3FF] to-[#F4F1FF] dark:from-paper dark:via-paper dark:to-paper text-ink relative overflow-hidden transition-colors duration-250"
     >
       {/* Background Ambient Glow */}
       <div className="absolute top-1/3 right-1/4 w-[550px] h-[550px] rounded-full bg-cobalt/10 dark:bg-cobalt/15 blur-3xl pointer-events-none" />
@@ -155,7 +155,7 @@ export const StudioCurio: React.FC = () => {
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors cursor-pointer shadow-2xs active:scale-95"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-cobalt hover:border-cobalt/40 transition-colors cursor-pointer shadow-2xs hover:shadow-chromatic active:scale-95"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset Chat</span>
@@ -170,7 +170,7 @@ export const StudioCurio: React.FC = () => {
           <div className="lg:col-span-4 space-y-6">
             
             {/* Grounding Info Card */}
-            <div className="p-6 rounded-2xl bg-surface dark:bg-card border border-border-hairline space-y-4 shadow-xs">
+            <div className="p-6 rounded-2xl bg-white dark:bg-card border border-border-hairline space-y-4 shadow-xs hover:shadow-chromatic transition-shadow">
               <div className="flex items-center gap-2 text-xs font-mono text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-wider">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>VERIFIED GROUNDING PROTOCOL</span>
@@ -202,7 +202,7 @@ export const StudioCurio: React.FC = () => {
                     type="button"
                     onClick={() => handleSendMessage(q)}
                     disabled={isLoading}
-                    className="w-full text-left p-3 rounded-xl bg-surface dark:bg-card hover:bg-subtle border border-border-hairline text-xs font-mono text-ink transition-all hover:border-cobalt/40 flex items-center justify-between group cursor-pointer disabled:opacity-50 shadow-2xs"
+                    className="w-full text-left p-3 rounded-xl bg-white dark:bg-card hover:bg-subtle border border-border-hairline text-xs font-mono text-ink transition-all hover:border-cobalt/40 flex items-center justify-between group cursor-pointer disabled:opacity-50 shadow-2xs hover:shadow-chromatic"
                   >
                     <span>{q}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted group-hover:text-cobalt transition-colors" />
@@ -214,7 +214,7 @@ export const StudioCurio: React.FC = () => {
           </div>
 
           {/* Right Column: Interactive Chat Terminal (8 cols) */}
-          <div className="lg:col-span-8 p-6 sm:p-7 rounded-2xl bg-surface dark:bg-card border border-border-hairline shadow-xs flex flex-col h-[520px]">
+          <div className="lg:col-span-8 p-6 sm:p-7 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-chromatic flex flex-col h-[520px]">
             
             {/* Terminal Header */}
             <div className="flex items-center justify-between border-b border-border-hairline pb-3 text-xs font-mono text-muted">

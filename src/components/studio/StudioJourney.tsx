@@ -134,7 +134,7 @@ export const StudioJourney: React.FC = () => {
   return (
     <section 
       id="chapter-03" 
-      className="py-20 sm:py-32 border-b border-slate-200/90 dark:border-white/10 bg-gradient-to-b from-emerald-50/30 via-paper to-surface text-ink relative overflow-hidden"
+      className="py-20 sm:py-32 border-b border-border-hairline bg-gradient-to-b from-[#E8F8F1]/60 via-[#EAF3FF]/40 to-[#EDE5FF]/50 dark:from-paper dark:via-paper dark:to-paper text-ink relative overflow-hidden transition-colors duration-250"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
@@ -158,7 +158,7 @@ export const StudioJourney: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/journey"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface border border-slate-300 dark:border-white/15 text-xs font-mono font-bold text-ink hover:text-emerald-700 hover:border-emerald-600 transition-colors shadow-2xs"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-card border border-border-hairline text-xs font-mono font-bold text-ink hover:text-emerald-700 hover:border-emerald-600 transition-colors shadow-2xs"
             >
               <span>Full Journey Narrative</span>
               <ArrowRight className="w-3.5 h-3.5 text-emerald-600" />
@@ -181,11 +181,11 @@ export const StudioJourney: React.FC = () => {
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-colors shrink-0 flex items-center gap-2 cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-ink text-paper font-bold shadow-xs'
-                  : 'bg-surface text-muted hover:text-ink border border-slate-200 dark:border-white/10'
+                  : 'bg-white dark:bg-card text-muted hover:text-ink border border-border-hairline hover:border-border-medium'
               }`}
             >
               <span>{tab.label}</span>
-              <span className={`px-1.5 py-0.2 rounded text-[10px] ${activeTab === tab.id ? 'bg-white/20 text-paper' : 'bg-slate-100 dark:bg-white/5 text-muted'}`}>
+              <span className={`px-1.5 py-0.2 rounded text-[10px] ${activeTab === tab.id ? 'bg-white/20 text-paper' : 'bg-subtle text-muted'}`}>
                 {tab.count}
               </span>
             </button>
@@ -197,7 +197,7 @@ export const StudioJourney: React.FC = () => {
           {filteredEvents.map((event) => (
             <div 
               key={event.id}
-              className="p-6 sm:p-8 rounded-2xl bg-surface border border-slate-200 dark:border-white/10 shadow-xs hover:shadow-md transition-shadow grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
+              className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-sm hover:shadow-chromatic transition-all grid grid-cols-1 lg:grid-cols-12 gap-6 items-start tech-card"
             >
               {/* Left Column: Period & Badge (3 cols) */}
               <div className="lg:col-span-3 space-y-2">

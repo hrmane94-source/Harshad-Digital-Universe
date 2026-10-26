@@ -45,7 +45,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   };
 
   return (
-    <article className={`rounded-2xl border border-border-hairline bg-surface dark:bg-card transition-all duration-250 hover:border-cobalt/40 dark:hover:border-cobalt/50 shadow-xs hover:shadow-xl hover:-translate-y-1 flex flex-col group ${
+    <article className={`rounded-2xl border border-border-hairline bg-white dark:bg-card transition-all duration-250 hover:border-cobalt/40 dark:hover:border-cobalt/50 shadow-sm hover:shadow-chromatic hover:-translate-y-1 flex flex-col group tech-card ${
       featuredLayout ? 'lg:grid lg:grid-cols-12 lg:gap-8 items-center p-3 sm:p-4' : 'p-2.5 sm:p-3'
     }`}>
 
