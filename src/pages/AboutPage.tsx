@@ -14,6 +14,7 @@ import { assetConfig } from '../data/assets';
 import { AboutSculpturalDimension3D } from '../components/about/AboutSculpturalDimension3D';
 import { AboutCuriousCanvas } from '../components/about/AboutCuriousCanvas';
 import { AboutPhotoSpread } from '../components/about/AboutPhotoSpread';
+import { AboutPersonalSWOT } from '../components/about/AboutPersonalSWOT';
 import { creativeGalleryItems } from '../data/gallery';
 
 export const AboutPage: React.FC = () => {
@@ -255,6 +256,9 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* PERSONAL SWOT ANALYSIS: A LITTLE SELF-AWARENESS */}
+        <AboutPersonalSWOT />
 
         {/* 3. CLOSING STATEMENT: PRESSURE IS A PRIVILEGE */}
         <section className="pt-8 border-t border-border-hairline">
