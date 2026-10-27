@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, ArrowRight, Compass, Play, Film, X } from 'lucide-react';
+import { ArrowRight, Compass } from 'lucide-react';
 import { InstagramIcon } from '../ui/BrandIcons';
 import { contactConfig } from '../../data/contact';
 import { creativeGalleryItems, creativeCategoriesList } from '../../data/gallery';
 import type { CreativeMediaItem } from '../../types/portfolio';
 import { PrismaticLens3DArtwork } from './PrismaticLens3DArtwork';
+import { CreativeTiltFrame } from '../creative/CreativeTiltFrame';
+import { CreativeLightbox } from '../creative/CreativeLightbox';
 
 export const StudioCreative: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -92,55 +94,16 @@ export const StudioCreative: React.FC = () => {
           ))}
         </div>
 
-        {/* Creative Asymmetric Grid — Authentic Photos & Videos */}
+        {/* Creative Tilt Cards Grid — 3D Tilt, Glare, Light Sweep */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-          {filteredPieces.map((piece) => (
-            <div 
+          {filteredPieces.map((piece, index) => (
+            <CreativeTiltFrame
               key={piece.id}
+              item={piece}
               onClick={() => setActiveMedia(piece)}
-              className="p-4 rounded-2xl bg-white dark:bg-card border border-border-hairline shadow-sm hover:shadow-warm transition-all space-y-3 group cursor-pointer tech-card"
-            >
-              {/* Media Viewport */}
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center">
-                <img
-                  src={piece.thumbnail || piece.source}
-                  alt={piece.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-
-                {/* If video: render video play indicator */}
-                {piece.mediaType === 'video' && (
-                  <div className="absolute inset-0 bg-black/35 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                    <div className="w-10 h-10 rounded-full bg-white/95 text-slate-900 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-                      <Play className="w-4 h-4 ml-0.5 fill-slate-900" />
-                    </div>
-                    <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/80 text-white flex items-center gap-1">
-                      <Film className="w-2.5 h-2.5 text-sunny" />
-                      <span>VIDEO</span>
-                    </span>
-                  </div>
-                )}
-
-                <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[9px] font-mono uppercase bg-black/70 text-white backdrop-blur-xs">
-                  {piece.category}
-                </span>
-              </div>
-
-              {/* Description */}
-              <div className="space-y-1">
-                <h3 className="font-serif text-base font-bold text-ink group-hover:text-coral transition-colors truncate">
-                  {piece.title}
-                </h3>
-                <div className="flex items-center justify-between text-[10px] font-mono text-muted pt-1 border-t border-slate-100 dark:border-white/5">
-                  <span className="flex items-center gap-1 truncate max-w-[70%]">
-                    <MapPin className="w-2.5 h-2.5 text-coral shrink-0" />
-                    <span className="truncate">{piece.location}</span>
-                  </span>
-                  <span>{piece.date}</span>
-                </div>
-              </div>
-            </div>
+              variant={piece.isVertical ? 'portrait' : 'standard'}
+              frameNumber={index + 1}
+            />
           ))}
         </div>
 
@@ -170,58 +133,14 @@ export const StudioCreative: React.FC = () => {
 
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Premium Immersive Lightbox Modal */}
       {activeMedia && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setActiveMedia(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setActiveMedia(null)}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer z-50"
-          >
-            <X className="w-6 h-6" />
-          </button>
-
-          <div 
-            className="max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col max-h-[90vh]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="bg-black flex-1 flex items-center justify-center overflow-hidden min-h-[300px] max-h-[70vh]">
-              {activeMedia.mediaType === 'video' ? (
-                <video 
-                  src={activeMedia.source} 
-                  poster={activeMedia.thumbnail}
-                  controls 
-                  autoPlay 
-                  className="max-h-[70vh] w-auto max-w-full mx-auto" 
-                />
-              ) : (
-                <img 
-                  src={activeMedia.source} 
-                  alt={activeMedia.alt} 
-                  className="max-h-[70vh] w-auto max-w-full mx-auto object-contain" 
-                />
-              )}
-            </div>
-
-            <div className="p-4 sm:p-6 space-y-1.5 border-t border-white/10 bg-slate-900 text-white">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                <span className="uppercase text-coral font-bold">{activeMedia.category}</span>
-                <span>{activeMedia.date}</span>
-              </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold">
-                {activeMedia.title}
-              </h3>
-              {activeMedia.caption && (
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                  {activeMedia.caption}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
+        <CreativeLightbox
+          activeItem={activeMedia}
+          items={filteredPieces}
+          onClose={() => setActiveMedia(null)}
+          onSelect={(item) => setActiveMedia(item)}
+        />
       )}
     </section>
   );
